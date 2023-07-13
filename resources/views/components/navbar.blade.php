@@ -34,7 +34,7 @@
                 </button>
 
                 <!-- Profile dropdown -->
-                <div x-data="{ open: false }" x-init="open = false" class="relative ml-3">
+                <div x-data="{ open: false }" x-init="open = false" @click.away="open = false" class="relative ml-3">
                     <div>
                         <button @click="open = !open" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" :aria-expanded="open.toString()" :aria-haspopup="open.toString()">
                             <span class="sr-only">Open user menu</span>
@@ -42,13 +42,12 @@
                         </button>
                     </div>
 
-                    <div x-show.transition="open" x-cloak class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                    <div x-show.transition="open" x-cloak @click.away="open = false" :class="{ 'hidden': !open }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                     </div>
                 </div>
-
 
             </div>
         </div>
