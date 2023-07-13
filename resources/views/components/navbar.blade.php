@@ -14,11 +14,13 @@
                 </button>
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div class="flex flex-shrink-0 items-center">
+                <div class="flex flex-shrink-0 items-center" style="width: 88px !important;">
                     <a href="{{ route('home') }}" class="block">
                         <img src="{{ url('/img/ozdevs-logo-two.png') }}" alt="OzDevs" class="w-auto">
                     </a>
                 </div>
+
+
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <a href="{{ route('developers') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
