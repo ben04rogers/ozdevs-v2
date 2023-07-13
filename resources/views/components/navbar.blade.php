@@ -16,8 +16,9 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{ route('home') }}" class="block text-white font-semibold text-lg">OzDevs</a>
-                </div>
+                    <a href="{{ route('home') }}" class="block">
+                        <img src="{{ url('/img/ozdevs-logo.png') }}" alt="OzDevs" class="h-5 w-auto">
+                    </a>                </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <a href="{{ route('developers') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
