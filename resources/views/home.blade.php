@@ -16,4 +16,26 @@
         </div>
     </div>
 
+    <div class="container mx-auto mt-10">
+        <div class="flex flex-wrap gap-6">
+            @foreach ($developers as $developer)
+                <div class="bg-white rounded-lg shadow-lg p-6 w-full flex">
+                    <div class="flex-shrink-0 mr-4">
+                        @empty($developer['avatar'])
+                            <img src="{{ asset('img/placeholder-avatar.png') }}" alt="Avatar" class="w-12 h-12 rounded-full">
+                        @else
+                            <img src="{{ $developer['avatar'] }}" alt="Avatar" class="w-12 h-12 rounded-full">
+                        @endempty
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">{{ $developer['name'] }}</h2>
+                        <p class="text-gray-600">{{ $developer['bio'] }}</p>
+                        <p class="text-gray-600 mt-4">Location: {{ $developer['city'] }}, {{ $developer['state'] }}, {{ $developer['country'] }}</p>
+                        <p class="text-gray-600">Search Status: {{ $developer['search_status'] }}</p>
+                        <p class="text-gray-600">Role Level: {{ $developer['role_level'] }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
