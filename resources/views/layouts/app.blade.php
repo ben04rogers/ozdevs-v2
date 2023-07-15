@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="bg-gray-50 dark:bg-gray-900">
         <x-navbar />
 
         <div class="container max-w-screen-xl mx-auto px-2 sm:px-6 mt-16">
