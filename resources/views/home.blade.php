@@ -17,6 +17,8 @@
     </div>
 
     <div class="container mx-auto mt-10">
+        <h2 class="text-2xl mb-5">Developers available right now</h2>
+
         <div class="flex flex-wrap gap-y-6">
             @foreach ($developers as $developer)
                 <div class="bg-white rounded-lg shadow-lg p-6 w-full flex">
@@ -40,6 +42,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="flex justify-center my-8">
+            <a href="{{ route('developers') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 sm:px-4 sm:py-3 text-sm font-medium">See more developers</a>
         </div>
     </div>
 @endsection
