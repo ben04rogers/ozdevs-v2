@@ -16,7 +16,7 @@
     <body>
         <x-navbar />
 
-        <div class="container mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="container max-w-screen-xl mx-auto px-2 sm:px-6 mt-16">
             @yield('content')
         </div>
     </body>

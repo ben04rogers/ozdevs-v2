@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="bg-white">
-        <div class="px-6 pt-14 lg:px-8">
+        <div class="pt-14 lg:px-8">
             <div class="mx-auto max-w-3xl lg:py-20">
                 <div class="text-center">
                     <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">The reverse job board for developers in Australia</h1>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="container mx-auto mt-10">
-        <h2 class="text-2xl mb-5">Developers available right now</h2>
+        <h2 class="text-xl lg:text-2xl mb-5">Developers available right now</h2>
 
         <div class="flex flex-wrap gap-y-6">
             @foreach ($developers as $developer)
