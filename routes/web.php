@@ -21,7 +21,7 @@ Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/developers', [DevelopersController::class, "index"])->name("developers");
 
 Route::get('/login', [LoginController::class, "index"])->name("login");
-Route::post('/login', [LoginController::class, "store"]);
+Route::post('/login', [LoginController::class, "store"])->middleware('web');
 Route::post('/logout', [LoginController::class, "logout"])->name("logout");
 
 Route::get('/register', [RegisterController::class, "index"])->name("register");

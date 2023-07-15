@@ -14,10 +14,9 @@
         <div class="flex flex-col sm:flex-row justify-between items-start">
             <h2 class="text-xl font-bold">{{ $developer['hero'] }}</h2>
             <span class="bg-green-100 text-green-800 text-sm font-medium inline-flex md:block mt-2 sm:mt-0 sm:ml-0 md:ml-2 px-2.5 py-1.5 rounded-full dark:bg-green-900 dark:text-green-300">
-    {{ ucfirst($developer['search_status']) }}
-  </span>
+                {{ ucfirst($developer['search_status']) }}
+            </span>
         </div>
-
 
         <p class="text-gray-600 mt-2">{{ $developer['city'] }}, {{ $developer['state'] }}</p>
         <p class="text-gray-600">{{ $developer['bio'] }}</p>
