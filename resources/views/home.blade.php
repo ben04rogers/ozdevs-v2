@@ -1,18 +1,21 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="lg:px-8">
-        <div class="mx-auto max-w-3xl lg:py-10">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Hire Developers in Australia</h1>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Find your next developer opportunity in Australia. Create a profile and let companies come to you.</p>
-                <div class="mt-5 flex items-center justify-center gap-x-3">
-                    <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 sm:px-4 sm:py-3 text-sm md:text-lg font-medium">Get started</a>
-                    <a href="{{ route('developers') }}" class="text-gray-900 border border-gray-900 rounded-md px-3 py-2 sm:px-4 sm:py-3 text-sm md:text-lg font-medium">Developers</a>
-                </div>
+    <section class="dark:bg-gray-900">
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Reverse Job Board for Developers in Australia</h1>
+                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Find your next developer opportunity in Australia. Create a profile and let companies come to you.</p>
+                <a href="#" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2">Get Started</a>
+                <a href="{{ route('developers') }}" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+                    Developers
+                </a>
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex justify-end">
+                <img src="{{ url('img/people.svg') }}" class="h-[350px]">
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="container mx-auto mt-10">
         <h2 class="text-xl lg:text-2xl mb-5">Developers available right now</h2>
