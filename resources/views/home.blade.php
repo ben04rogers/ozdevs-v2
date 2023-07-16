@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="pt-10 lg:px-8">
+    <div class="lg:px-8">
         <div class="mx-auto max-w-3xl lg:py-10">
             <div class="text-center">
                 <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">The reverse job board for developers in Australia</h1>
