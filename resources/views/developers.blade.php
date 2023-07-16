@@ -47,8 +47,9 @@
                     <!-- Apply and Clear buttons -->
                     <div class="space-x-0 lg:space-x-2 mb-10">
                         <button type="submit" class="w-full lg:w-auto text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
-                        <a href="{{ route('developers') }}" class="w-full lg:w-auto py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Clear</a>
-                    </div>
+                        @if(request()->has('search') || request()->has('city') || request()->has('experience_level'))
+                            <a href="{{ route('developers') }}" class="w-full lg:w-auto py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Clear</a>
+                        @endif                    </div>
                 </form>
             </div>
 
