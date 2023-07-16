@@ -18,7 +18,7 @@
             </span>
         </div>
 
-        <p class="text-gray-600 mt-2">{{ $developer['city'] }}, {{ $developer['state'] }}</p>
+        <p class="text-gray-600 mt-2">{{ $developer['city'] }}, {{ strtoupper($developer['state']) }}</p>
         <p class="text-gray-600">{{ $developer['bio'] }}</p>
     </div>
 </div>

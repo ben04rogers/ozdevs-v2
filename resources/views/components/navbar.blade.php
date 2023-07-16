@@ -19,8 +19,8 @@
                 </a>
                 <div class="hidden sm:ml-3 sm:block">
                     <div class="flex space-x-4">
-                        <a href="{{ route('developers') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
-                        <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pricing</a>
+                        <a href="{{ route('developers') }}" class="text-white hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
+                        <a href="{{ route('pricing') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Pricing</a>
                     </div>
                 </div>
             </div>
@@ -43,8 +43,7 @@
 
                         <div x-show.transition="open" x-cloak @click.away="open = false" :class="{ 'hidden': !open }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">  <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                            <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -59,7 +58,7 @@
     <div class="sm:hidden" id="mobile-menu" x-show="mobileOpen">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <a href="{{ route('developers') }}" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Developers</a>
-            <a href="" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Pricing</a>
+            <a href="{{ route('pricing') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Pricing</a>
         </div>
     </div>
 </nav>
