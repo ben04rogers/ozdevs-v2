@@ -1,4 +1,4 @@
-<nav class="bg-gray-800" x-data="{ mobileOpen: false }">
+<nav class="bg-gray-800 sticky top-0 z-50" x-data="{ mobileOpen: false }">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -57,8 +57,13 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu" x-show="mobileOpen">
         <div class="space-y-1 px-2 pb-3 pt-2">
-            <a href="{{ route('developers') }}" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Developers</a>
+            <a href="{{ route('developers') }}" class="text-gray-300 hover:bg-gray-700 block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Developers</a>
             <a href="{{ route('pricing') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Pricing</a>
+            @guest
+            <a href="{{ route('login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Login</a>
+            <a href="{{ route('register') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Register</a>
+            @else
+            @endguest
         </div>
     </div>
 </nav>
