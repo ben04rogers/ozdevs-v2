@@ -20,13 +20,17 @@
 
                     <!-- Filter by city -->
                     <div class="mb-4">
-                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                        <select id="city" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="city">
-                            <option value="">All Cities</option>
-                            <option value="sydney" {{ request('city') === 'sydney' ? 'selected' : '' }}>Sydney</option>
-                            <option value="melbourne" {{ request('city') === 'melbourne' ? 'selected' : '' }}>Melbourne</option>
-                            <option value="brisbane" {{ request('city') === 'brisbane' ? 'selected' : '' }}>Brisbane</option>
-                            <!-- Add more city options here -->
+                        <label for="city" class="block text-sm font-medium text-gray-700">State</label>
+                        <select id="city" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="state">
+                            <option value="">All States</option>
+                            <option value="nsw" {{ request('state') === 'nsw' ? 'selected' : '' }}>New South Wales</option>
+                            <option value="vic" {{ request('state') === 'vic' ? 'selected' : '' }}>Victoria</option>
+                            <option value="qld" {{ request('state') === 'qld' ? 'selected' : '' }}>Queensland</option>
+                            <option value="wa" {{ request('state') === 'wa' ? 'selected' : '' }}>Western Australia</option>
+                            <option value="sa" {{ request('state') === 'sa' ? 'selected' : '' }}>South Australia</option>
+                            <option value="tas" {{ request('state') === 'tas' ? 'selected' : '' }}>Tasmania</option>
+                            <option value="act" {{ request('state') === 'act' ? 'selected' : '' }}>Australian Capital Territory</option>
+                            <option value="nt" {{ request('state') === 'nt' ? 'selected' : '' }}>Northern Territory</option>
                         </select>
                     </div>
 
@@ -49,15 +53,18 @@
                         <button type="submit" class="w-full lg:w-auto text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
                         @if(request()->has('search') || request()->has('city') || request()->has('experience_level'))
                             <a href="{{ route('developers') }}" class="w-full lg:w-auto py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Clear</a>
-                        @endif                    </div>
+                        @endif
+                    </div>
                 </form>
             </div>
 
             <!-- Developers cards column -->
             <div class="flex flex-wrap w-full lg:w-4/5 gap-y-6" style="height: fit-content;">
-                @foreach ($developers as $developer)
+                @forelse($developers as $developer)
                     <x-developer-card :developer="$developer"></x-developer-card>
-                @endforeach
+                @empty
+                    <p>No developers found.</p>
+                @endforelse
             </div>
         </div>
 

@@ -12,8 +12,8 @@ class DevelopersController extends Controller
         $query = DeveloperProfile::query();
 
         // Apply filters if provided
-        if ($request->filled('city')) {
-            $query->where('city', $request->input('city'));
+        if ($request->filled('state')) {
+            $query->where('state', $request->input('state'));
         }
 
         if ($request->filled('experience_level')) {
