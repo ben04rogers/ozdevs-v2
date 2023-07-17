@@ -17,8 +17,8 @@
                 {{ ucfirst($developer['search_status']) }}
             </span>
         </div>
-
-        <p class="text-gray-600 mt-2">{{ $developer['city'] }}, {{ strtoupper($developer['state']) }}</p>
-        <p class="text-gray-600">{{ $developer['bio'] }}</p>
+        <p class="text-gray-600 mt-1">{{ $developer['city'] }}, {{ strtoupper($developer['state']) }}</p>
+        <p class="text-gray-600 mt-1">{{ $developer['bio'] }}</p>
+        <p class="text-gray-600 mt-1">{{ ucfirst($developer['role_level']) }}</p>
     </div>
 </div>
