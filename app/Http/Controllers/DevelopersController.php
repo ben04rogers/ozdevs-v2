@@ -20,6 +20,8 @@ class DevelopersController extends Controller
             $query->where('role_level', $request->input('experience_level'));
         }
 
+        $query->whereIn('search_status', ['open', 'actively looking']);
+
         // Retrieve filtered developers with pagination
         $developers = $query->paginate(15);
 
@@ -30,5 +32,4 @@ class DevelopersController extends Controller
             'developers' => $developers,
         ]);
     }
-
 }
