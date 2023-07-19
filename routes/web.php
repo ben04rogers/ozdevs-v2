@@ -23,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/developers', [DevelopersController::class, "index"])->name("developers");
 Route::get('/pricing', [PricingController::class, "index"])->name("pricing");
-Route::get('/get-started', [GetStartedController::class, "index"])->name("getStarted");
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/get-started', [GetStartedController::class, "index"])->name("getStarted");
+});
 
 Route::get('/login', [LoginController::class, "index"])->name("login");
 Route::post('/login', [LoginController::class, "store"])->middleware('web');
