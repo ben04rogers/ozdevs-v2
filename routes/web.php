@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DeveloperProfilesController;
 use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\GetStartedController;
 use App\Http\Controllers\HomeController;
@@ -30,3 +31,6 @@ Route::post('/logout', [LoginController::class, "logout"])->name("logout");
 
 Route::get('/register', [RegisterController::class, "index"])->name("register");
 Route::post('/register', [RegisterController::class, "store"]);
+
+Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
+Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");
