@@ -131,7 +131,11 @@
                 @forelse($developers as $developer)
                     <x-developer-card :developer="$developer"></x-developer-card>
                 @empty
-                    <p>No developers found.</p>
+                    <div class="w-full text-center text-xl mt-5">
+                        <p class="mb-5">No developers found.</p>
+                        <img src="{{ url('img/void.svg') }}" class="h-[200px] mx-auto" />
+                    </div>
+
                 @endforelse
             </div>
         </div>
