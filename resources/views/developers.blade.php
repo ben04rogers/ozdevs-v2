@@ -59,8 +59,9 @@
                 <select id="experience" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="experience_level">
                     <option value="">All Experience Levels</option>
                     <option value="junior" {{ request('experience_level') === 'junior' ? 'selected' : '' }}>Junior</option>
-                    <option value="intermediate" {{ request('experience_level') === 'intermediate' ? 'selected' : '' }}>Intermediate</option>
+                    <option value="mid" {{ request('experience_level') === 'mid' ? 'selected' : '' }}>Mid</option>
                     <option value="senior" {{ request('experience_level') === 'senior' ? 'selected' : '' }}>Senior</option>
+                    <option value="principal" {{ request('experience_level') === 'principal' ? 'selected' : '' }}>Principal</option>
                 </select>
             </div>
 
@@ -107,9 +108,9 @@
                         <select id="experience" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="experience_level">
                             <option value="">All Experience Levels</option>
                             <option value="junior" {{ request('experience_level') === 'junior' ? 'selected' : '' }}>Junior</option>
-                            <option value="intermediate" {{ request('experience_level') === 'intermediate' ? 'selected' : '' }}>Intermediate</option>
+                            <option value="mid" {{ request('experience_level') === 'mid' ? 'selected' : '' }}>Mid</option>
                             <option value="senior" {{ request('experience_level') === 'senior' ? 'selected' : '' }}>Senior</option>
-                            <!-- Add more experience level options here -->
+                            <option value="principal" {{ request('experience_level') === 'principal' ? 'selected' : '' }}>Principal</option>
                         </select>
                     </div>
 
