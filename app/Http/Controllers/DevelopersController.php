@@ -20,6 +20,25 @@ class DevelopersController extends Controller
             $query->where('role_level', $request->input('experience_level'));
         }
 
+        $searchQuery = $request->query('search');
+
+        // Search all developer attributes for the search query
+        if ($searchQuery) {
+            $query->where(function ($subquery) use ($searchQuery) {
+                $subquery->where('name', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('bio', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('state', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('hero', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('city', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('role_level', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('website', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('github', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('twitter', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('stack_overflow', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('linkedin', 'like', '%' . $searchQuery . '%');
+            });
+        }
+
         $query->whereIn('search_status', ['open', 'actively looking']);
 
         // Retrieve filtered developers with pagination
