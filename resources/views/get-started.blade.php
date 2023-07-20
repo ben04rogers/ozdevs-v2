@@ -7,7 +7,7 @@
             <div class="w-full md:w-1/2">
                 <div class="p-6 relative flex flex-col h-full overflow-hidden border border-gray-300 rounded-lg justify bg-white">
                     <div>
-                        <h3 class="text-3xl md:text-4xl pb-3 text-gray-800">Developer</h3>
+                        <h3 class="text-3xl md:text-3xl pb-3 text-gray-800">Developer</h3>
                         <ul class="md:text-lg pb-6 pl-1 text-gray-600">
                             <li class="pb-1">
                                 <span class="inline-flex items-center justify-center flex-shrink-0 w-4 h-4 mr-1 text-white bg-green-500 rounded-full">
@@ -46,7 +46,7 @@
             <div class="w-full md:w-1/2 mt-4 md:mt-0">
                 <div class="p-6 relative flex flex-col h-full overflow-hidden border border-gray-300 rounded-lg justify bg-white">
                     <div>
-                        <h3 class="text-3xl md:text-4xl pb-3 text-gray-800">Company</h3>
+                        <h3 class="text-3xl md:text-3xl pb-3 text-gray-800">Company</h3>
                         <ul class="md:text-lg pb-6 pl-1 text-gray-600">
                             <li class="pb-1">
                                 <span class="inline-flex items-center justify-center flex-shrink-0 w-4 h-4 mr-1 text-white bg-green-500 rounded-full">

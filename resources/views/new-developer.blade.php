@@ -1,8 +1,10 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="max-w-2xl mx-auto bg-white p-5 rounded-lg">
-    <form action="{{ route('newDeveloper') }}" method="POST">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">Your Developer Profile</h1>
+
+        <form action="{{ route('newDeveloper') }}" method="POST" class="bg-white p-6 rounded-lg">
         @csrf
 
         <!-- Name -->
@@ -51,8 +53,6 @@
             <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio:</label>
             <textarea id="bio" name="bio" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bio..."></textarea>
         </div>
-
-
 
         <!-- Search Status -->
         <div>
