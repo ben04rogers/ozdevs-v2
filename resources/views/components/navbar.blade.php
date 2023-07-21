@@ -35,9 +35,10 @@
                     <!-- Profile dropdown -->
                     <div class="relative ml-3" x-data="{ open: false }" @click.away="open = false">
                         <div>
-                            <button @click="open = !open" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <button @click="open = !open" type="button" class="flex flex-col justify-center items-center rounded-full bg-gray-800 text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                                <img class="h-7 w-7 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                                <p class="text-white text-[11px]">My Profile</p>
                             </button>
                         </div>
 
@@ -45,7 +46,6 @@
                             @auth
                                 <a href="{{ route('getStarted') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Get Started</a>
                             @endauth
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 
                             <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
