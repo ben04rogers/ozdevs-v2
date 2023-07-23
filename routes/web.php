@@ -33,6 +33,8 @@ Route::post('/logout', [LoginController::class, "logout"])->name("logout");
 Route::get('/register', [RegisterController::class, "index"])->name("register");
 Route::post('/register', [RegisterController::class, "store"]);
 
+Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "show"]);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
     Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");

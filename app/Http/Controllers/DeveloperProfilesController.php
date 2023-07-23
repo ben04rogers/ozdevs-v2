@@ -38,4 +38,18 @@ class DeveloperProfilesController extends Controller
 
         return redirect()->route('developers')->with('success', 'Developer profile created successfully.');
     }
+
+    public function show($id)
+    {
+        // Find the developer profile by ID
+        $developerProfile = DeveloperProfile::where('user_id', $id)->first();
+
+        // Check if the developer profile exists
+        if (!$developerProfile) {
+            return redirect()->route('developers')->with('error', 'Developer profile not found.');
+        }
+
+        // If everything is valid, return the view with the developer profile data
+        return view('developer-profile', compact('developerProfile'));
+    }
 }
