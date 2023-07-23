@@ -5,12 +5,10 @@
         <h2 class="text-2xl lg:text-3xl mb-5 font-bold">Find developers in Australia</h2>
 
         <div class="flex justify-between mb-2">
-            <p class="text-gray-500">{{ $developers->firstItem() }} to {{ $developers->lastItem() }} of {{ $developers->total() }} developers</p>
-
             <div class="flex justify-end block lg:hidden">
                 <button class="flex items-center justify-center text-white bg-customBlue hover:bg-customDarkBlue focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-gray-700 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
                     </span>
-                    Filter
+                    Filters
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="white" aria-hidden="true">
                         <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"></path>
                     </svg>
@@ -77,6 +75,13 @@
 
             <!-- Filters column -->
             <div class="w-full lg:w-1/5 mr-4 hidden lg:block">
+
+                <!-- Filters text and line -->
+                <div class="flex items-center mb-4">
+                    <p class="font-medium text-gray-900">Filters</p>
+                    <div class="flex-grow h-px ml-4 bg-gray-300"></div>
+                </div>
+
                 <form action="{{ route('developers') }}" method="GET">
                     <!-- Search bar -->
                     <div class="mb-4">
@@ -123,16 +128,29 @@
             </div>
 
             <!-- Developers cards column -->
-            <div class="flex flex-wrap w-full lg:w-4/5 gap-y-6" style="height: fit-content;">
-                @forelse($developers as $developer)
-                    <x-developer-card :developer="$developer"></x-developer-card>
-                @empty
-                    <div class="w-full text-center text-xl mt-5">
-                        <p class="mb-5">No developers found.</p>
-                        <img src="{{ url('img/void.svg') }}" class="h-[200px] mx-auto" />
-                    </div>
+            <div class="w-full lg:w-4/5 gap-y-6">
+                <!-- Developers text and line -->
+                <div class="flex items-center mb-4">
+                    @if($developers->total() > 0)
+                        <p class="font-medium text-gray-900">{{ $developers->firstItem() }} to {{ $developers->lastItem() }} of {{ $developers->total() }} developers</p>
+                    @else
+                        <p class="font-medium text-gray-900">{{ $developers->total() }} Developers</p>
+                    @endif
 
-                @endforelse
+                    <div class="flex-grow h-px ml-4 bg-gray-300"></div>
+                </div>
+
+                <div class="flex flex-wrap" style="height: fit-content;">
+                    @forelse($developers as $developer)
+                        <x-developer-card :developer="$developer"></x-developer-card>
+                    @empty
+                        <div class="w-full text-center text-xl mt-5">
+                            <p class="mb-5">No developers found.</p>
+                            <img src="{{ url('img/void.svg') }}" class="h-[200px] mx-auto" />
+                        </div>
+
+                    @endforelse
+                </div>
             </div>
         </div>
 
