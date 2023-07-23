@@ -61,7 +61,7 @@
                                 <span class="text-5xl font-bold tracking-tight text-gray-900">$99</span>
                                 <span class="text-md font-semibold leading-6 tracking-wide text-gray-600">/month</span>
                             </p>
-                            <a href="#" class="mt-10 block w-full rounded-md px-3 py-2 text-center text-sm font-semibold text-white shadow-sm bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300">Get access</a>
+                            <a href="#" class="mt-10 block w-full rounded-md px-3 py-2 text-center text-sm font-semibold text-white shadow-sm bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300">Get access</a>
                             <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
                         </div>
                     </div>

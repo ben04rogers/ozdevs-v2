@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold mb-8 text-center">Your Developer Profile</h1>
+        <h1 class="text-3xl font-bold mb-8 text-center">Create Developer Profile</h1>
 
         @if($errors->any())
             <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -166,7 +166,7 @@
 
         <!-- Submit Button -->
         <div>
-            <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2 mt-4 w-full">Create Profile</button>
+            <button type="submit" class="text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2 mt-4 w-full text-sm">Create Developer Profile</button>
         </div>
     </form>
     </div>

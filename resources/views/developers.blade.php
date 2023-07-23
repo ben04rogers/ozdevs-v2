@@ -8,7 +8,7 @@
             <p class="text-gray-500">{{ $developers->firstItem() }} to {{ $developers->lastItem() }} of {{ $developers->total() }} developers</p>
 
             <div class="flex justify-end block lg:hidden">
-                <button class="flex items-center justify-center text-white bg-black hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-gray-700 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
+                <button class="flex items-center justify-center text-white bg-customBlue hover:bg-customDarkBlue focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-gray-700 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
                     </span>
                     Filter
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="white" aria-hidden="true">
@@ -17,8 +17,6 @@
                 </button>
             </div>
         </div>
-
-
 
         <!-- drawer component -->
         <div id="drawer-right-example" class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800 z-50" tabindex="-1" aria-labelledby="drawer-right-label">
@@ -67,7 +65,7 @@
 
             <!-- Apply and Clear buttons -->
             <div class="mb-10">
-                <button type="submit" class="w-full lg:w-auto text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
+                <button type="submit" class="w-full lg:w-auto text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
                 @if(request()->has('search') || request()->has('city') || request()->has('experience_level'))
                     <a href="{{ route('developers') }}" class="block text-center w-full lg:w-auto py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Clear</a>
                 @endif
@@ -114,11 +112,9 @@
                         </select>
                     </div>
 
-                    <!-- Add more filters here -->
-
                     <!-- Apply and Clear buttons -->
                     <div class="space-x-0 lg:space-x-2 mb-10">
-                        <button type="submit" class="w-full lg:w-auto text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
+                        <button type="submit" class="w-full lg:w-auto text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2">Apply</button>
                         @if(request()->has('search') || request()->has('city') || request()->has('experience_level'))
                             <a href="{{ route('developers') }}" class="w-full lg:w-auto py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Clear</a>
                         @endif
