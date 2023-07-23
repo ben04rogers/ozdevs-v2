@@ -1,4 +1,4 @@
-<div class="bg-white p-6 w-full flex border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="{{ url('/developer-profiles/' . $developer['id']) }}" class="bg-white p-6 w-full flex border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
     <div class="mr-4">
         @empty($developer['avatar'])
 {{--            <div class="w-20 h-20 mb-2 md:mb-0 md:w-36 md:h-36 md:top-6 md:left-0">--}}
@@ -20,11 +20,13 @@
                             <path d="M20 6L9 17l-5-5"></path>
                         </svg>
                 </span>
-                 <span>{{ ucfirst($developer['search_status']) }}</span>
+                 <p style="width: max-content;">{{ ucfirst($developer['search_status']) }}</p>
              </div>
         </div>
         <p class="text-gray-600 mt-1">{{ $developer['city'] }}, {{ strtoupper($developer['state']) }}</p>
-        <p class="text-gray-600 mt-1">{{ $developer['bio'] }}</p>
+        <p class="text-gray-600 mt-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+            {{ $developer['bio'] }}
+        </p>
         <p class="text-gray-600 mt-1">{{ ucfirst($developer['role_level']) }}</p>
     </div>
-</div>
+</a>

@@ -31,6 +31,13 @@
                 <p class="text-gray-800 mb-4">Twitter: {{ $developerProfile->twitter }}</p>
                 <p class="text-gray-800 mb-4">Email Notifications: {{ $developerProfile->email_notifications ? 'Yes' : 'No' }}</p>
             </div>
+
+            <!-- Display Edit Button for the authenticated user's own profile -->
+            @auth
+                @if(auth()->user()->id === $developerProfile->user_id)
+                    <a href="{{ url('/developer-profiles/' . auth()->user()->id . '/edit') }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white rounded-lg mt-4">Edit</a>
+                @endif
+            @endauth
         </div>
     </div>
 @endsection
