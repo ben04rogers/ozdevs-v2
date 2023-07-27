@@ -53,6 +53,10 @@
                                 <a href="{{ url('/developer-profiles/' . auth()->user()->developerProfile->id) }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Developer Profile</a>
                             @endif
 
+                            @if(auth()->user()->companyProfile()->exists())
+                                <a href="{{ url('/company-profiles/' . auth()->user()->companyProfile->id) }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Company Profile</a>
+                            @endif
+
                             <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
