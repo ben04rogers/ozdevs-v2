@@ -67,7 +67,7 @@
                         Post job & project opportunities.
                     </li>
                 </ul>
-                <a href="" class="block text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center" style="width: fit-content;">
+                <a href="{{ route('newCompanyForm') }}" class="block text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center" style="width: fit-content;">
                     Create Company Profile
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1 inline-block" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>

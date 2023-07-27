@@ -10,7 +10,7 @@ class DeveloperProfilesController extends Controller
 {
     public function index() {
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
-            return redirect()->route('developers')->with('warning', 'You have already created a developer profile.');
+            return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('warning', 'You have already created a developer profile.');
         }
 
         return view("new-developer");
@@ -88,6 +88,6 @@ class DeveloperProfilesController extends Controller
         // Update the developer profile with the validated data
         $developerProfile->update($data);
 
-        return redirect()->route('developers')->with('success', 'Developer profile updated successfully.');
+        return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }
 }

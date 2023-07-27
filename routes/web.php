@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CompanyProfilesController;
 use App\Http\Controllers\DeveloperProfilesController;
 use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\GetStartedController;
@@ -34,11 +35,14 @@ Route::post('/logout', [LoginController::class, "logout"])->name("logout");
 Route::get('/register', [RegisterController::class, "index"])->name("register");
 Route::post('/register', [RegisterController::class, "store"]);
 
-Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "show"]);
+Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "show"])->name("developerProfile");
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
     Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");
+
+    Route::get('/new-company', [CompanyProfilesController::class, "index"])->name("newCompanyForm");
+    Route::post('/new-company', [CompanyProfilesController::class, "store"])->name("newCompany");
 
     Route::get("/developer-profiles/{id}/edit", [DeveloperProfilesController::class, "edit"])->name("editDeveloper");
     Route::put("/developer-profiles/{id}", [DeveloperProfilesController::class, "update"])->name("updateDeveloper");

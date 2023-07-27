@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(DeveloperProfile::class);
     }
+
+    public function companyProfile()
+    {
+        return $this->hasOne(CompanyProfile::class);
+    }
 }
