@@ -7,6 +7,7 @@ use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\GetStartedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PricingController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,5 +39,12 @@ Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "sho
 Route::middleware(['auth'])->group(function () {
     Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
     Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");
+
+    Route::get("/developer-profiles/{id}/edit", [DeveloperProfilesController::class, "edit"])->name("editDeveloper");
+    Route::put("/developer-profiles/{id}", [DeveloperProfilesController::class, "update"])->name("updateDeveloper");
+
+    Route::get('/billing-portal', function (Request $request) {
+        return $request->user()->redirectToBillingPortal();
+    });
 });
 
