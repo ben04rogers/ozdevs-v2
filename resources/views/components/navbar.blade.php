@@ -50,7 +50,7 @@
                             <h1></h1>
 
                             @if(auth()->user()->developerProfile()->exists())
-                                <a href="{{ url('/developer-profiles/' . auth()->user()->id) }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Developer Profile</a>
+                                <a href="{{ url('/developer-profiles/' . auth()->user()->developerProfile->id) }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Developer Profile</a>
                             @endif
 
                             <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</a>

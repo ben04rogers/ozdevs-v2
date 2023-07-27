@@ -19,12 +19,12 @@ class DeveloperProfilesController extends Controller
     public function edit($id)
     {
         // Users can only edit their own profile
-        if (auth()->user()->id != $id) {
+        if (auth()->user()->developerProfile->id != $id) {
             return redirect()->route('developers')->with('error', 'You are not authorized to edit this profile.');
         }
 
         // Find the developer profile by ID
-        $developerProfile = DeveloperProfile::where('user_id', $id)->first();
+        $developerProfile = DeveloperProfile::where('id', $id)->first();
 
         // Check if the developer profile exists
         if (!$developerProfile) {
@@ -61,7 +61,7 @@ class DeveloperProfilesController extends Controller
     public function show($id)
     {
         // Find the developer profile by ID
-        $developerProfile = DeveloperProfile::where('user_id', $id)->first();
+        $developerProfile = DeveloperProfile::where('id', $id)->first();
 
         // Check if the developer profile exists
         if (!$developerProfile) {
