@@ -37,6 +37,8 @@ Route::post('/register', [RegisterController::class, "store"]);
 
 Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "show"])->name("developerProfile");
 
+Route::get("/company-profiles/{id}", [CompanyProfilesController::class, "show"])->name("companyProfile");
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
     Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");

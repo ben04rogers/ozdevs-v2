@@ -13,7 +13,7 @@ class CompanyProfilesController extends Controller
 {
     public function index() {
         if (CompanyProfile::where('user_id', auth()->id())->exists()) {
-            return redirect()->route('developers', auth()->user()->companyProfile->id)->with('warning', 'You have already created a company profile.');
+            return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('warning', 'You have already created a company profile.');
         }
 
         return view("new-company");
@@ -33,12 +33,27 @@ class CompanyProfilesController extends Controller
         // Create a new company profile with the validated data
         $companyProfile = new CompanyProfile($data);
 
-        // Set the user ID for the developer profile
+        // Set the user ID for the company profile
         $companyProfile->user_id = auth()->id();
 
-        // Save the developer profile
+        // Save the company profile
         $companyProfile->save();
 
-        return redirect()->route('developers')->with('success', 'Company profile created successfully.');
+        return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('success', 'Company profile created successfully.');
+    }
+
+    public function show($id)
+    {
+        // Find the company profile by ID
+        $companyProfile = CompanyProfile::where('id', $id)->first();
+
+        // Check if the company profile exists
+        if (!$companyProfile) {
+            // TODO: Change this to redirect somewhere else
+            return redirect()->route('developers')->with('error', 'Company profile not found.');
+        }
+
+        // If everything is valid, return the view with the company profile data
+        return view('company-profile', compact('companyProfile'));
     }
 }

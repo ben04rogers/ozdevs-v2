@@ -55,7 +55,7 @@ class DeveloperProfilesController extends Controller
         // Save the developer profile
         $developerProfile->save();
 
-        return redirect()->route('developers')->with('success', 'Developer profile created successfully.');
+        return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('success', 'Developer profile created successfully.');
     }
 
     public function show($id)
