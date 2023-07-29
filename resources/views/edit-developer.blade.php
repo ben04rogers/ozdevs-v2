@@ -100,14 +100,14 @@
             <div class="mb-4" x-data="{ partTime: {{ $developerProfile->part_time ? 'true' : 'false' }}, fullTime: {{ $developerProfile->full_time ? 'true' : 'false' }}, contract: {{ $developerProfile->contract ? 'true' : 'false' }} }">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Employment Type:</label>
                 <div class="flex items-center">
-                    <input type="checkbox" id="part_time" name="part_time" :value="partTime ? 1 : 0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" x-on:click="partTime = !partTime" x-bind:checked="partTime">
-                    <label for="part_time" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Part Time</label>
-                    <input type="hidden" name="part_time" :value="partTime ? 1 : 0">
-                </div>
-                <div class="flex items-center">
                     <input type="checkbox" id="full_time" name="full_time" :value="fullTime ? 1 : 0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" x-on:click="fullTime = !fullTime" x-bind:checked="fullTime">
                     <label for="full_time" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full Time</label>
                     <input type="hidden" name="full_time" :value="fullTime ? 1 : 0">
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="part_time" name="part_time" :value="partTime ? 1 : 0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" x-on:click="partTime = !partTime" x-bind:checked="partTime">
+                    <label for="part_time" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Part Time</label>
+                    <input type="hidden" name="part_time" :value="partTime ? 1 : 0">
                 </div>
                 <div class="flex items-center">
                     <input type="checkbox" id="contract" name="contract" :value="contract ? 1 : 0" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" x-on:click="contract = !contract" x-bind:checked="contract">
