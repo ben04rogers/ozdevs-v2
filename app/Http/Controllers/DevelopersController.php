@@ -41,6 +41,8 @@ class DevelopersController extends Controller
 
         $query->whereIn('search_status', ['open', 'actively looking']);
 
+        $query->orderByDesc('created_at');
+
         // Retrieve filtered developers with pagination
         $developers = $query->paginate(15);
 

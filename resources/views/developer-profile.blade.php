@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <div class="max-w-2xl mx-auto mb-8"">
+    <div class="max-w-2xl mx-auto mb-8">
         <div class="bg-white p-6 rounded-lg shadow-md">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold">{{ $developerProfile->hero }}</h1>
@@ -14,8 +14,12 @@
                 @endauth
             </div>
 
-            <div class="mb-4">
-                <img class="rounded w-32 h-32 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
+            <div>
+                @if ($developerProfile->image)
+                    <img class="rounded w-32 h-32 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
+                @else
+                    <img class="rounded w-32 h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                @endif
 
                 <div class="mb-3">
                     <h3 class="text-lg mb-1">Location</h3>
