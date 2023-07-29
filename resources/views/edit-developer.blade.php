@@ -14,9 +14,17 @@
             </div>
         @endif
 
-        <form action="{{ route('updateDeveloper', ['id' => $developerProfile->user_id]) }}" method="POST" class="bg-white p-6 rounded-lg">
+        <form action="{{ route('updateDeveloper', ['id' => $developerProfile->user_id]) }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg">
             @csrf
             @method('PUT')
+
+            <!-- Image -->
+            <div class="mb-4">
+                <img class="rounded w-36 h-36 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
+
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
+                <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+            </div>
 
             <!-- Name -->
             <div class="mb-4">

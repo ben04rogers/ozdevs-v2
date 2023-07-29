@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDevProfileRequest;
 use App\Models\DeveloperProfile;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class DeveloperProfilesController extends Controller
 {
@@ -74,9 +75,6 @@ class DeveloperProfilesController extends Controller
 
     public function update(StoreDevProfileRequest $request, $id)
     {
-        Log::info(json_encode($request->validated()));
-
-
         // Find the developer profile by ID
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
@@ -87,6 +85,26 @@ class DeveloperProfilesController extends Controller
 
         // Validate the request data
         $data = $request->validated();
+
+        // Handle the image upload to S3
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            try {
+                $uploadedImage = $request->file('image');
+
+                // Generate a unique filename (you can use any logic to generate a unique name)
+                $fileName = 'profile_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
+
+                // Use the store method to store the file in the root of the 's3' disk
+                $imagePath = $uploadedImage->storeAs('', $fileName, 's3');
+
+                // Get the S3 URL of the uploaded image
+                $s3Url = Storage::disk('s3')->url($imagePath);
+
+                $data['image'] = $s3Url;
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+            }
+        }
 
         // Update the developer profile with the validated data
         $developerProfile->update($data);

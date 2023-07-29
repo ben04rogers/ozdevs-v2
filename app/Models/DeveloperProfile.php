@@ -35,6 +35,7 @@ class DeveloperProfile extends Model
         'stack_overflow',
         'linkedin',
         'email_notifications',
+        'image'
     ];
 
     public function user()
