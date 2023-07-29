@@ -34,20 +34,8 @@
                 <input type="text" id="search" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="search" value="{{ request('search') }}">
             </div>
 
-            <div class="mb-4">
-                <label for="city" class="block text-sm font-medium text-gray-700">State</label>
-                <select id="city" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="state">
-                    <option value="">All States</option>
-                    <option value="nsw" {{ request('state') === 'nsw' ? 'selected' : '' }}>New South Wales</option>
-                    <option value="vic" {{ request('state') === 'vic' ? 'selected' : '' }}>Victoria</option>
-                    <option value="qld" {{ request('state') === 'qld' ? 'selected' : '' }}>Queensland</option>
-                    <option value="wa" {{ request('state') === 'wa' ? 'selected' : '' }}>Western Australia</option>
-                    <option value="sa" {{ request('state') === 'sa' ? 'selected' : '' }}>South Australia</option>
-                    <option value="tas" {{ request('state') === 'tas' ? 'selected' : '' }}>Tasmania</option>
-                    <option value="act" {{ request('state') === 'act' ? 'selected' : '' }}>Australian Capital Territory</option>
-                    <option value="nt" {{ request('state') === 'nt' ? 'selected' : '' }}>Northern Territory</option>
-                </select>
-            </div>
+            <!-- Filter by state -->
+            <x-state-select selectedState="{{ request('state') }}" />
 
             <div class="mb-4">
                 <label for="experience" class="block text-sm font-medium text-gray-700">Experience Level</label>
@@ -88,21 +76,8 @@
                         <input type="text" id="search" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="search" value="{{ request('search') }}">
                     </div>
 
-                    <!-- Filter by city -->
-                    <div class="mb-4">
-                        <label for="city" class="block text-sm font-medium text-gray-700">State</label>
-                        <select id="city" class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full" name="state">
-                            <option value="">All States</option>
-                            <option value="nsw" {{ request('state') === 'nsw' ? 'selected' : '' }}>New South Wales</option>
-                            <option value="vic" {{ request('state') === 'vic' ? 'selected' : '' }}>Victoria</option>
-                            <option value="qld" {{ request('state') === 'qld' ? 'selected' : '' }}>Queensland</option>
-                            <option value="wa" {{ request('state') === 'wa' ? 'selected' : '' }}>Western Australia</option>
-                            <option value="sa" {{ request('state') === 'sa' ? 'selected' : '' }}>South Australia</option>
-                            <option value="tas" {{ request('state') === 'tas' ? 'selected' : '' }}>Tasmania</option>
-                            <option value="act" {{ request('state') === 'act' ? 'selected' : '' }}>Australian Capital Territory</option>
-                            <option value="nt" {{ request('state') === 'nt' ? 'selected' : '' }}>Northern Territory</option>
-                        </select>
-                    </div>
+                    <!-- Filter by state -->
+                    <x-state-select selectedState="{{ request('state') }}" />
 
                     <!-- Filter by experience level -->
                     <div class="mb-4">

@@ -4,7 +4,7 @@
             <img src="{{ asset('/img/profile-placeholder.png') }}" alt="profile" class="h-auto md:h-auto object-cover max-w-36 max-h-36 rounded-lg border border-gray-300">
 {{--            <img src="https://randomuser.me/api/portraits/men/{{ $developer['id'] }}.jpg" alt="Avatar" class="h-auto md:h-auto object-cover max-w-36 max-h-36 rounded-lg border border-gray-300">--}}
         @else
-            <img src="{{ $developer['image'] }}" alt="Avatar" class="h-auto md:h-auto object-cover max-w-36 max-h-36 rounded-lg border border-gray-300">
+            <img src="{{ $developer['image'] }}" alt="Avatar" class="md:h-auto object-cover w-36 h-36 rounded-lg border border-gray-300">
         @endempty
     </div>
     <div class="w-full">

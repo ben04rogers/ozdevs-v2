@@ -20,10 +20,9 @@
 
             <!-- Image -->
             <div class="mb-4">
-                <img class="rounded w-36 h-36 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
-
+                <img class="rounded w-32 h-32 border mb-5" id="profileImage" src="{{$developerProfile->image}}" alt="Extra large avatar">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
-                <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none" accept="image/*">
             </div>
 
             <!-- Name -->
@@ -182,5 +181,22 @@
                 <button type="submit" class="text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2 mt-4 w-full text-sm">Save</button>
             </div>
         </form>
+
+        <script>
+            // Update the displayed image when a new image is selected
+            const fileInput = document.getElementById('image');
+            const profileImage = document.getElementById('profileImage');
+
+            fileInput.addEventListener('change', function () {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        profileImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
     </div>
 @endsection

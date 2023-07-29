@@ -40,7 +40,7 @@ class StoreDevProfileRequest extends FormRequest
             'stack_overflow' => 'nullable|string|max:255',
             'linkedin' => 'nullable|string|max:255',
             'email_notifications' => 'nullable|boolean',
-            'image' => 'nullable|image|max:2048' // Allow images up to 2048 kilobytes (2 MB)
+            'image' => 'nullable|image|max:2048'
         ];
     }
 }

@@ -37,7 +37,11 @@
                         <div>
                             <button @click="open = !open" type="button" class="flex flex-col justify-center items-center rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-7 w-7 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                                @if (auth()->user()->developerProfile->image)
+                                    <img class="h-7 w-7 rounded-full" src="{{ auth()->user()->developerProfile->image }}" alt="">
+                                @else
+                                    <img class="h-7 w-7 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                                @endif
                                 <p class="text-white text-[11px]">My Profile</p>
                             </button>
                         </div>

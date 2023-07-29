@@ -15,7 +15,7 @@
             </div>
 
             <div class="mb-4">
-                <img class="rounded w-36 h-36 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
+                <img class="rounded w-32 h-32 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
 
                 <div class="mb-3">
                     <h3 class="text-lg mb-1">Location</h3>
