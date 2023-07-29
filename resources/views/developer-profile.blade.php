@@ -2,10 +2,8 @@
 
 @section("content")
     <div class="max-w-2xl mx-auto mb-8">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold">{{ $developerProfile->hero }}</h1>
-
+        <div class="bg-white p-6 rounded-lg shadow-md relative">
+            <div class="absolute right-5 top-5">
                 <!-- Display Edit Button for the authenticated user's own profile -->
                 @auth
                     @if(auth()->user()->id === $developerProfile->user_id)
@@ -16,40 +14,49 @@
 
             <div>
                 @if ($developerProfile->image)
-                    <img class="rounded w-32 h-32 border mb-5" src="{{$developerProfile->image}}" alt="Extra large avatar">
+                    <img class="rounded w-32 h-32 border mb-5 my-4" src="{{$developerProfile->image}}" alt="Extra large avatar">
                 @else
                     <img class="rounded w-32 h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
                 @endif
 
-                <div class="mb-3">
-                    <h3 class="text-lg mb-1">Location</h3>
-                    <p><i class="fa-solid fa-location-dot text-gray-400 mr-2"></i>{{ $developerProfile->city }}, {{ $developerProfile->state }}</p>
-                </div>
+                <h1 class="text-3xl font-bold text-left mb-5">{{ $developerProfile->hero }}</h1>
 
-                <div class="mb-3">
-                    <h3 class="text-lg">Search Status</h3>
-                    <p><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>{{ ucfirst($developerProfile->search_status) }}</p>
-                </div>
+                <div class="sm:grid sm:grid-cols-2 flex flex-col">
+                        <!-- Location -->
+                        <div class="mb-4">
+                            <h3 class="text-lg mb-1">Location</h3>
+                            <p><i class="fa-solid fa-location-dot text-gray-400 mr-2"></i>{{ $developerProfile->city }}, {{ $developerProfile->state }}</p>
+                        </div>
 
-                <div class="mb-4">
-                    <h3 class="text-lg mb-1">Role Level</h3>
-                    <p class="text-gray-800 mb-2"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>{{ ucfirst($developerProfile->role_level) }}</p>
-                </div>
+                        <!-- Search Status -->
+                        <div class="mb-4">
+                            <h3 class="text-lg">Search Status</h3>
+                            <p><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>{{ ucfirst($developerProfile->search_status) }}</p>
+                        </div>
 
-                <div class="mb-4">
-                    <h3 class="text-lg mb-1">Preferred Positions</h3>
-                    @if($developerProfile->part_time)
-                    <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Part-time</p>
-                    @endif
-                    @if($developerProfile->full_time)
-                        <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Full-time</p>
-                    @endif
-                    @if($developerProfile->contract)
-                        <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Contract</p>
-                    @endif
-                </div>
+                        <!-- Preferred Positions -->
+                        <div class="mb-4">
+                            <h3 class="text-lg mb-1">Preferred Positions</h3>
+                            @if($developerProfile->part_time)
+                                <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Part-time</p>
+                            @endif
+                            @if($developerProfile->full_time)
+                                <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Full-time</p>
+                            @endif
+                            @if($developerProfile->contract)
+                                <p class="text-gray-800"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>Contract</p>
+                            @endif
+                        </div>
 
-                <div class="mb-4">
+                        <!-- Role Level -->
+                        <div class="mb-4">
+                            <h3 class="text-lg mb-1">Role Level</h3>
+                            <p class="text-gray-800 mb-2"><i class="fa-solid fa-circle-check text-gray-400 mr-2"></i>{{ ucfirst($developerProfile->role_level) }}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
                     <h3 class="text-lg mb-1">Bio</h3>
                     <p class="text-gray-800 mb-2">{{ $developerProfile->bio }}</p>
                 </div>
