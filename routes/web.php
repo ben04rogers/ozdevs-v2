@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/developer-profiles/{id}/edit", [DeveloperProfilesController::class, "edit"])->name("editDeveloper");
     Route::put("/developer-profiles/{id}", [DeveloperProfilesController::class, "update"])->name("updateDeveloper");
 
+    Route::get("/company-profiles/{id}/edit", [CompanyProfilesController::class, "edit"])->name("editCompany");
+    Route::put("/company-profiles/{id}", [CompanyProfilesController::class, "update"])->name("updateCompany");
+
     Route::get('/billing-portal', function (Request $request) {
         return $request->user()->redirectToBillingPortal();
     });

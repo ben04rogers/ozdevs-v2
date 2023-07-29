@@ -74,6 +74,9 @@ class DeveloperProfilesController extends Controller
 
     public function update(StoreDevProfileRequest $request, $id)
     {
+        Log::info(json_encode($request->validated()));
+
+
         // Find the developer profile by ID
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
