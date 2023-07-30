@@ -1,10 +1,10 @@
 <a href="{{ url('/developer-profiles/' . $developer->id) }}" class="bg-white p-6 w-full flex border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
     <div class="mr-4">
         @empty($developer['image'])
-            <img src="{{ asset('/img/profile-placeholder.png') }}" alt="profile" class="h-auto md:h-auto object-cover max-w-36 max-h-36 rounded-lg border border-gray-300">
+            <img src="{{ asset('/img/profile-placeholder.png') }}" alt="profile" class="object-cover w-24 md:h-32 md:w-36 max-w-36 max-h-36 rounded-lg border border-gray-300">
 {{--            <img src="https://randomuser.me/api/portraits/men/{{ $developer['id'] }}.jpg" alt="Avatar" class="h-auto md:h-auto object-cover max-w-36 max-h-36 rounded-lg border border-gray-300">--}}
         @else
-            <img src="{{ $developer['image'] }}" alt="Avatar" class="md:h-auto object-cover w-36 h-36 rounded-lg border border-gray-300">
+            <img src="{{ $developer['image'] }}" alt="Avatar" class="object-cover w-24 md:h-32 md:w-36 rounded-lg border border-gray-300">
         @endempty
     </div>
     <div class="w-full">

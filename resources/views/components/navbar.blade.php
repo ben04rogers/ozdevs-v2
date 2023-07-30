@@ -35,14 +35,13 @@
                     <!-- Profile dropdown -->
                     <div class="relative ml-3" x-data="{ open: false }" @click.away="open = false">
                         <div>
-                            <button @click="open = !open" type="button" class="flex flex-col justify-center items-center rounded-full text-sm" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <button @click="open = !open" type="button" class="flex flex-col justify-center items-center rounded-full text-sm focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                @if (auth()->user()->developerProfile->image)
-                                    <img class="h-7 w-7 rounded-full" src="{{ auth()->user()->developerProfile->image }}" alt="">
+                                @if (auth()->user()->developerProfile?->image)
+                                    <img class="h-9 w-9 rounded-full" src="{{ auth()->user()->developerProfile->image }}" alt="">
                                 @else
-                                    <img class="h-7 w-7 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
+                                    <img class="h-9 h-9 rounded-full" src="{{ url('img/profile-placeholder.png') }}" alt="">
                                 @endif
-                                <p class="text-white text-[11px]">My Profile</p>
                             </button>
                         </div>
 

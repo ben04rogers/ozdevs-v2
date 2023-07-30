@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="max-w-2xl mx-auto mb-8">
-        <h1 class="text-3xl font-bold mb-8 text-center">Edit Developer Profile</h1>
+        <h1 class="text-2xl md:text-3xl font-bold mb-8 text-center">Edit Developer Profile</h1>
 
         @if($errors->any())
             <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -22,9 +22,9 @@
             <div class="mb-4">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
                 @if ($developerProfile->image)
-                    <img class="rounded w-32 h-32 border mb-3" id="profileImage" src="{{$developerProfile->image}}" alt="Extra large avatar">
+                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{$developerProfile->image}}" alt="Extra large avatar">
                 @else
-                    <img class="rounded w-32 h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
                 @endif
                 <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none" accept="image/*">
             </div>
@@ -37,7 +37,7 @@
 
             <!-- Hero -->
             <div class="mb-4">
-                <label for="hero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hero:</label>
+                <label for="hero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Headline:</label>
                 <input type="text" id="hero" name="hero" value="{{ $developerProfile->hero }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 

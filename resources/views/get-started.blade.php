@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold mb-8">Get Started</h1>
+        <h1 class="text-3xl font-bold mb-8">Get Started</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white rounded-lg shadow-md p-8">
                 <h3 class="text-3xl font-bold text-gray-800 mb-4">Developer</h3>

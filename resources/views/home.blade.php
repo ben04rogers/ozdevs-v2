@@ -17,7 +17,7 @@
         </div>
     </section>
 
-    <div class="container mx-auto mt-10">
+    <div class="container mx-auto mt-5">
         <h2 class="text-xl lg:text-2xl mb-5">Developers available right now</h2>
 
         <div class="flex flex-wrap gap-y-4">
