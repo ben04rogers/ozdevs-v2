@@ -58,6 +58,47 @@ class CompanyProfilesController extends Controller
         return view('company-profile', compact('companyProfile'));
     }
 
+    public function edit($id)
+    {
+        // Users can only edit their own profile
+        if (auth()->user()->companyProfile->id != $id) {
+            return redirect()->route('developers')->with('error', 'You are not authorized to edit this profile.');
+        }
+
+        // Find the company profile by ID
+        $companyProfile = CompanyProfile::where('id', $id)->first();
+
+        // Check if the developer profile exists
+        if (!$companyProfile) {
+            return redirect()->route('developers')->with('error', 'Company profile not found.');
+        }
+
+        // Return the view with the developer profile data for editing
+        return view('edit-company', compact('companyProfile'));
+    }
+
+    public function update(StoreCompanyProfileRequest $request, $id)
+    {
+        // Find the company profile by ID
+        $companyProfile = CompanyProfile::where('user_id', $id)->first();
+
+        // Check if the developer profile exists
+        if (!$companyProfile) {
+            return redirect()->route('developers')->with('error', 'Company profile not found.');
+        }
+
+        // Validate the request data
+        $data = $request->validated();
+
+        // Handle the image upload to S3
+        $data = $this->handleTheImageUploadToS3($request, $data);
+
+        // Update the developer profile with the validated data
+        $companyProfile->update($data);
+
+        return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
+    }
+
     /**
      * @param StoreCompanyProfileRequest $request
      * @param mixed $data

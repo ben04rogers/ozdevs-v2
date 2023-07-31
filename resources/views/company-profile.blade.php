@@ -2,14 +2,12 @@
 
 @section("content")
     <div class="max-w-2xl mx-auto">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold">{{ $companyProfile->company_name }}</h1>
-
+        <div class="bg-white p-6 rounded-lg shadow-md relative">
+            <div class="absolute right-5 top-5">
                 <!-- Display Edit Button for the authenticated user's own profile -->
                 @auth
                     @if(auth()->user()->id === $companyProfile->user_id)
-                        <a href="" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg">Edit</a>
+                        <a href="{{ url('/company-profiles/' . auth()->user()->companyProfile->id . '/edit') }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg">Edit</a>
                     @endif
                 @endauth
             </div>
@@ -21,8 +19,9 @@
                     <img class="rounded w-25 h-25 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
                 @endif
 
+                <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $companyProfile->company_name }}</h1>
+
                 <div class="mb-4">
-                    <h3 class="text-lg mb-1">Bio</h3>
                     <p class="text-gray-800 mb-2">{{ $companyProfile->bio }}</p>
                 </div>
 
