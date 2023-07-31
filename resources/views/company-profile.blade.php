@@ -25,7 +25,7 @@
                     <p class="text-gray-800 mb-2">{{ $companyProfile->bio }}</p>
                 </div>
 
-                <h3 class="text-lg mb-1">Social Links</h3>
+                <h3 class="text-lg mb-1">Website</h3>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         @if($companyProfile->website)
