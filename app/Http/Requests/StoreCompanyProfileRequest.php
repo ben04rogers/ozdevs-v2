@@ -29,6 +29,7 @@ class StoreCompanyProfileRequest extends FormRequest
             'staff_role' => 'required|string|max:255',
             'bio' => 'required|nullable|string',
             'email_notifications' => 'nullable|boolean',
+            'image' => 'nullable|image|max:2048'
         ];
     }
 }

@@ -15,6 +15,12 @@
             </div>
 
             <div class="mb-4">
+                @if ($companyProfile->image)
+                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-5 my-4" src="{{$companyProfile->image}}" alt="Extra large avatar">
+                @else
+                    <img class="rounded w-25 h-25 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                @endif
+
                 <div class="mb-4">
                     <h3 class="text-lg mb-1">Bio</h3>
                     <p class="text-gray-800 mb-2">{{ $companyProfile->bio }}</p>
