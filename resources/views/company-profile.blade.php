@@ -14,9 +14,9 @@
 
             <div class="mb-4">
                 @if ($companyProfile->image)
-                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-5 my-4" src="{{$companyProfile->image}}" alt="Extra large avatar">
+                    <img class="rounded h-24 w-auto md:h-32 border mb-3" src="{{$companyProfile->image}}" alt="Extra large avatar">
                 @else
-                    <img class="rounded w-25 h-25 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                    <img class="rounded h-24 w-auto md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
                 @endif
 
                 <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $companyProfile->company_name }}</h1>

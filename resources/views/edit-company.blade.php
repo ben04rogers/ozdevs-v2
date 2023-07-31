@@ -22,9 +22,9 @@
             <div class="mb-4">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company Image:</label>
                 @if ($companyProfile->image)
-                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{$companyProfile->image}}" alt="Extra large avatar">
+                    <img class="rounded h-24 w-auto md:h-32 border mb-3" id="profileImage" src="{{$companyProfile->image}}" alt="Extra large avatar">
                 @else
-                    <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                    <img class="rounded h-24 w-auto md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
                 @endif
                 <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none" accept="image/*">
             </div>
