@@ -73,6 +73,7 @@
             <div class="mb-4">
                 <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio:</label>
                 <textarea id="bio" name="bio" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $developerProfile->bio }}</textarea>
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Personally identifiable information will be removed.</p>
             </div>
 
             <!-- Search Status -->
@@ -185,22 +186,6 @@
                 <button type="submit" class="text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2 mt-4 w-full text-sm">Save</button>
             </div>
         </form>
-
-        <script>
-            // Update the displayed image when a new image is selected
-            const fileInput = document.getElementById('image');
-            const profileImage = document.getElementById('profileImage');
-
-            fileInput.addEventListener('change', function () {
-                const file = fileInput.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        profileImage.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        </script>
+        <script src="{{ asset('js/profile_image.js') }}"></script>
     </div>
 @endsection

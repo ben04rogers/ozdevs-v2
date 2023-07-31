@@ -47,6 +47,9 @@ class DeveloperProfilesController extends Controller
             ], 400);
         }
 
+        // Handle the image upload to S3
+        $data = $this->handleTheImageUploadToS3($request, $data);
+
         // Create a new developer profile with the validated data
         $developerProfile = new DeveloperProfile($data);
 
@@ -87,6 +90,21 @@ class DeveloperProfilesController extends Controller
         $data = $request->validated();
 
         // Handle the image upload to S3
+        $data = $this->handleTheImageUploadToS3($request, $data);
+
+        // Update the developer profile with the validated data
+        $developerProfile->update($data);
+
+        return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
+    }
+
+    /**
+     * @param StoreDevProfileRequest $request
+     * @param mixed $data
+     * @return mixed
+     */
+    public function handleTheImageUploadToS3(StoreDevProfileRequest $request, mixed $data): mixed
+    {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             try {
                 $uploadedImage = $request->file('image');
@@ -105,10 +123,6 @@ class DeveloperProfilesController extends Controller
                 Log::error($e->getMessage());
             }
         }
-
-        // Update the developer profile with the validated data
-        $developerProfile->update($data);
-
-        return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
+        return $data;
     }
 }

@@ -14,8 +14,15 @@
             </div>
         @endif
 
-        <form action="{{ route('newDeveloper') }}" method="POST" class="bg-white p-6 rounded-lg">
+        <form action="{{ route('newDeveloper') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg">
         @csrf
+
+        <!-- Image -->
+        <div class="mb-4">
+            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
+            <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+            <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none" accept="image/*">
+        </div>
 
         <!-- Name -->
         <div class="mb-4">
@@ -61,6 +68,7 @@
         <div class="mb-4">
             <label for="bio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bio:</label>
             <textarea id="bio" name="bio" rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Personally identifiable information will be removed.</p>
         </div>
 
         <!-- Search Status -->
@@ -167,6 +175,7 @@
         <div>
             <button type="submit" class="text-white bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-3 mr-2 mb-2 mt-4 w-full text-sm">Create Developer Profile</button>
         </div>
-    </form>
+        </form>
+        <script src="{{ asset('js/profile_image.js') }}"></script>
     </div>
 @endsection
