@@ -14,7 +14,7 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OzDevs</span>
+                    <span class="self-center text-2xl whitespace-nowrap text-customBlue font-bold">OzDevs</span>
                 </a>
                 <div class="hidden sm:ml-3 sm:block">
                     <div class="flex space-x-2">
