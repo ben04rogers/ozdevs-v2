@@ -71,9 +71,7 @@
 
                 </div>
 
-                <div class="mb-4">
-                    <p class="text-gray-800 mb-2" style="white-space: pre-line;">{{ $developerProfile->bio }}</p>
-                </div>
+                <div class="mb-4" id="bio-container"></div>
 
                 <h3 class="text-lg mb-1">Social Links</h3>
 
@@ -114,4 +112,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Get the bio content from the PHP variable
+        const bioContent = `{!! $developerProfile->bio !!}`;
+
+        // Create the Shadow DOM container
+        const bioContainer = document.getElementById('bio-container');
+        const shadow = bioContainer.attachShadow({ mode: 'open' });
+
+        // Create a new paragraph element to hold the bio content
+        const bioParagraph = document.createElement('p');
+        bioParagraph.classList.add('text-gray-800', 'mb-2');
+        bioParagraph.innerHTML = bioContent;
+
+        // Append the bio paragraph to the Shadow DOM
+        shadow.appendChild(bioParagraph);
+    </script>
 @endsection

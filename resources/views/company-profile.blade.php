@@ -21,9 +21,7 @@
 
                 <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $companyProfile->company_name }}</h1>
 
-                <div class="mb-4">
-                    <p class="text-gray-800 mb-2">{{ $companyProfile->bio }}</p>
-                </div>
+                <div class="mb-4" id="bio-container"></div>
 
                 <h3 class="text-lg mb-1">Website</h3>
                 <div class="grid grid-cols-2 gap-4">
@@ -36,4 +34,20 @@
             </div>
         </div>
     </div>
+    <script>
+        // Get the bio content from the PHP variable
+        const bioContent = `{!! $companyProfile->bio !!}`;
+
+        // Create the Shadow DOM container
+        const bioContainer = document.getElementById('bio-container');
+        const shadow = bioContainer.attachShadow({ mode: 'open' });
+
+        // Create a new paragraph element to hold the bio content
+        const bioParagraph = document.createElement('p');
+        bioParagraph.classList.add('text-gray-800', 'mb-2');
+        bioParagraph.innerHTML = bioContent;
+
+        // Append the bio paragraph to the Shadow DOM
+        shadow.appendChild(bioParagraph);
+    </script>
 @endsection
