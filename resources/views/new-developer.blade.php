@@ -18,10 +18,13 @@
         @csrf
 
         <!-- Image -->
-        <div class="mb-4">
+        <div class="mb-2">
             <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
-            <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
-            <input type="file" id="image" name="image" class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none" accept="image/*">
+            <div class="flex items-center">
+                <img class="rounded w-24 h-24 md:w-32 md:h-32 border mb-3" id="profileImage" src="{{ asset('img/profile-placeholder.png') }}" alt="Extra large avatar">
+                <button type="button" id="uploadButton" class="block px-3 py-2 ml-3 text-sm text-white bg-customBlue border border-gray-300 rounded-lg cursor-pointer focus:outline-none">Upload</button>
+            </div>
+            <input type="file" id="image" name="image" class="hidden" accept="image/*">
         </div>
 
         <!-- Name -->
