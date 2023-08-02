@@ -21,7 +21,7 @@
         </div>
         <p class="text-gray-600 mt-1">{{ $developer['city'] }}, {{ ucfirst($developer['state']) }}</p>
         <p class="text-gray-600 mt-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-            {{ $developer['bio'] }}
+            {{ ucfirst(strip_tags($developer['bio'])) }}
         </p>
         <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 mt-3">{{ ucfirst($developer['role_level']) }}</span>
     </div>
