@@ -71,7 +71,8 @@
 
                 </div>
 
-                <div class="mb-4" id="bio-container"></div>
+                <h3 class="text-lg mb-1">Bio</h3>
+                <div class="mb-4 border rounded px-4" id="bio-container"></div>
 
                 <h3 class="text-lg mb-1">Social Links</h3>
 
@@ -79,23 +80,23 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             @if($developerProfile->website)
-                                <p class="text-gray-800 mb-2"><a href="{{ $developerProfile->website }}" class="text-gray-500"><i class="fa-solid fa-globe mr-1"></i> {{ $developerProfile->website }}</a></p>
+                                <p class="text-gray-800 mb-2"><a href="{{ $developerProfile->website }}" class="text-gray-500 inline-flex items-center"><i class="fa-solid fa-globe mr-2"></i> {{ $developerProfile->website }}</a></p>
                             @endif
 
                             @if($developerProfile->github)
-                                <p class="text-gray-800 mb-2"><a href="https://github.com/{{ $developerProfile->github }}" class="text-gray-500"><i class="fa-brands fa-github mr-1"></i>  {{ $developerProfile->github }}</a></p>
+                                <p class="text-gray-800 mb-2"><a href="https://github.com/{{ $developerProfile->github }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-github mr-2"></i>  {{ $developerProfile->github }}</a></p>
                             @endif
 
                             @if($developerProfile->stack_overflow)
-                                <p class="text-gray-800 mb-2"><a href="https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}" class="text-gray-500"><i class="fa-brands fa-stack-overflow mr-1"></i> {{ $developerProfile->stack_overflow }}</a></p>
+                                <p class="text-gray-800 mb-2"><a href="https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-stack-overflow mr-2"></i> {{ $developerProfile->stack_overflow }}</a></p>
                             @endif
 
                             @if($developerProfile->linkedin)
-                                <p class="text-gray-800 mb-2"><a href="https://www.linkedin.com/in/{{ $developerProfile->linkedin }}" class="text-gray-500"><i class="fa-brands fa-linkedin mr-1"></i> {{ $developerProfile->linkedin }}</a></p>
+                                <p class="text-gray-800 mb-2"><a href="https://www.linkedin.com/in/{{ $developerProfile->linkedin }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-linkedin mr-2"></i> {{ $developerProfile->linkedin }}</a></p>
                             @endif
 
                             @if($developerProfile->twitter)
-                                <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500"><i class="fa-brands fa-twitter mr-1"></i> {{ $developerProfile->twitter }}</a></p>
+                                <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-twitter mr-2"></i> {{ $developerProfile->twitter }}</a></p>
                             @endif
                         </div>
                     </div>
