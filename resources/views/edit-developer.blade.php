@@ -179,7 +179,7 @@
             <!-- Email Notifications -->
             <div class="flex items-center mt-5 mb-2">
                 <input type="checkbox" id="email_notifications" name="email_notifications" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" @if($developerProfile->email_notifications) checked @endif>
-                <label for="email_notifications" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Receive email notifications</label>
+                <label for="email_notifications" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email notifications</label>
             </div>
 
             <!-- Submit Button -->
