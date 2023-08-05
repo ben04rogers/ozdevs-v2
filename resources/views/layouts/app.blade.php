@@ -16,7 +16,7 @@
         <script src="https://cdn.tiny.cloud/1/d9szl2pflzdc2runku731m4siovk9xhqbmjzcqxyzenrrx6c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
             tinymce.init({
-                selector: 'textarea',
+                selector: 'textarea:not(.messenger textarea)',
                 plugins:  'autolink emoticons image link lists media searchreplace table visualblocks checklist casechange export tinymcespellchecker autocorrect typography inlinecss',
                 toolbar: 'blocks fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                 tinycomments_mode: 'embedded',
