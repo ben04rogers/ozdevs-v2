@@ -123,7 +123,7 @@
             </div>
         @endif
 
-        <div class="container max-w-screen-xl mx-auto px-2 sm:px-6 mt-12">
+        <div class="container max-w-screen-xl mx-auto px-2 sm:px-6 @if(!request()->is('*messages*')) mt-12 @endif">
             @yield('content')
         </div>
     </body>

@@ -1,9 +1,10 @@
 <?php
 
-namespace Chatify\Http\Controllers\Api;
+namespace App\Http\Controllers\vendor\Chatify\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use App\Models\ChMessage as Message;
 use App\Models\ChFavorite as Favorite;
@@ -43,7 +44,6 @@ class MessagesController extends Controller
      */
     public function idFetchData(Request $request)
     {
-        return auth()->user();
         // Favorite
         $favorite = Chatify::inFavorite($request['id']);
 
@@ -207,6 +207,7 @@ class MessagesController extends Controller
      */
     public function getContacts(Request $request)
     {
+
         // get all users that received/sent message from/to [Auth user]
         $users = Message::join('users',  function ($join) {
             $join->on('ch_messages.from_id', '=', 'users.id')
