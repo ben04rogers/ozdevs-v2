@@ -9,6 +9,10 @@
                     @if(auth()->user()->id === $developerProfile->user_id)
                         <a href="{{ url('/developer-profiles/' . auth()->user()->developerProfile->id . '/edit') }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg">Edit</a>
                     @endif
+
+                        @if(auth()->user()?->companyProfile?->paid_subscription && auth()->user()->id !== $developerProfile->user_id)
+                            <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg">Message</a>
+                        @endif
                 @endauth
             </div>
 
@@ -77,7 +81,7 @@
                 <h3 class="text-lg mb-1">Social Links</h3>
 
                 @if (auth()->user()->id === $developerProfile->user_id || auth()->user()?->companyProfile?->paid_subscription)
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid gap-4">
                         <div>
                             @if($developerProfile->website)
                                 <p class="text-gray-800 mb-2"><a href="{{ $developerProfile->website }}" class="text-gray-500 inline-flex items-center"><i class="fa-solid fa-globe mr-2"></i> {{ $developerProfile->website }}</a></p>
