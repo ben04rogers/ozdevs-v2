@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold mb-8 text-center">Create Company Profile</h1>
+        <h1 class="text-2xl md:text-3xl font-bold mb-8 text-center">Create Company Profile</h1>
 
         @if($errors->any())
             <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
