@@ -14,7 +14,7 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img class="block h-6 ml-2" src="{{ asset('img/ozdevs-logo.png') }}" alt="OzDevs Logo">
+                    <img class="block h-6" src="{{ asset('img/ozdevs-logo.png') }}" alt="OzDevs Logo">
                 </a>
                 <div class="hidden sm:ml-3 sm:block">
                     <div class="flex space-x-2">
