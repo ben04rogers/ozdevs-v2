@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('developer_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->constrained();
-            $table->string('name');
             $table->string('hero');
             $table->string('city');
             $table->string('state');

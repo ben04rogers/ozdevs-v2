@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDevProfileRequest;
 use App\Models\DeveloperProfile;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,6 +51,9 @@ class DeveloperProfilesController extends Controller
         // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
+        $name = $data['name'] ?? null;
+        unset($data['name']);
+
         // Create a new developer profile with the validated data
         $developerProfile = new DeveloperProfile($data);
 
@@ -58,6 +62,16 @@ class DeveloperProfilesController extends Controller
 
         // Save the developer profile
         $developerProfile->save();
+
+        // Update 'name' in the users table
+        if ($name) {
+            $user = User::find(auth()->id());
+            if ($user) {
+                $user->update([
+                    'name' => $name,
+                ]);
+            }
+        }
 
         return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('success', 'Developer profile created successfully.');
     }
@@ -92,8 +106,21 @@ class DeveloperProfilesController extends Controller
         // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
+        $name = $data['name'] ?? null;
+        unset($data['name']);
+
         // Update the developer profile with the validated data
         $developerProfile->update($data);
+
+        // Update 'name' in the users table
+        if ($name) {
+            $user = User::find($id);
+            if ($user) {
+                $user->update([
+                    'name' => $name,
+                ]);
+            }
+        }
 
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }

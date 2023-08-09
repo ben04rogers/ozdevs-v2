@@ -27,7 +27,7 @@
 
                 <div class="mb-4">
                     @if (auth()->user()->id === $developerProfile->user_id || auth()->user()?->companyProfile?->paid_subscription)
-                        <p class="text-xl">{{ $developerProfile->name  }}</p>
+                        <p class="text-xl">{{ $developerProfile->user->name  }}</p>
                     @else
                         <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-200 rounded-lg px-3 py-1.5">
                         <span class="inline-block pr-1">

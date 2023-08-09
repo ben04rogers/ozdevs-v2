@@ -35,12 +35,12 @@
             <!-- Name -->
             <div class="mb-4">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $developerProfile->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 
             <!-- Hero -->
             <div class="mb-4">
-                <label for="hero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Headline:</label>
+                <label for="hero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hero:</label>
                 <input type="text" id="hero" name="hero" value="{{ $developerProfile->hero }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 
