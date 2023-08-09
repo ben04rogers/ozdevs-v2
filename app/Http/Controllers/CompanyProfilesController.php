@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyProfileRequest;
 use App\Models\CompanyProfile;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,6 +32,9 @@ class CompanyProfilesController extends Controller
         // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
+        $name = $data['staff_name'] ?? null;
+        unset($data['staff_name']);
+
         // Create a new company profile with the validated data
         $companyProfile = new CompanyProfile($data);
 
@@ -39,6 +43,16 @@ class CompanyProfilesController extends Controller
 
         // Save the company profile
         $companyProfile->save();
+
+        // Update 'name' in the users table
+        if ($name) {
+            $user = User::find(auth()->id());
+            if ($user) {
+                $user->update([
+                    'name' => $name,
+                ]);
+            }
+        }
 
         return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('success', 'Company profile created successfully.');
     }
@@ -93,8 +107,21 @@ class CompanyProfilesController extends Controller
         // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
+        $name = $data['staff_name'] ?? null;
+        unset($data['staff_name']);
+
         // Update the developer profile with the validated data
         $companyProfile->update($data);
+
+        // Update 'name' in the users table
+        if ($name) {
+            $user = User::find(auth()->id());
+            if ($user) {
+                $user->update([
+                    'name' => $name,
+                ]);
+            }
+        }
 
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
     }

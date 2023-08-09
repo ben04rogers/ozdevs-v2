@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->unique()->constrained();
             $table->string('company_name');
             $table->string('website');
-            $table->string('staff_name');
             $table->string('staff_role');
             $table->longText('bio');
             $table->boolean('email_notifications')->default(true);
