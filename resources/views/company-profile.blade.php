@@ -21,9 +21,6 @@
 
                 <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $companyProfile->company_name }}</h1>
 
-                <h3 class="text-lg mb-1">Bio</h3>
-                <div class="mb-4 border rounded px-4" id="bio-container"></div>
-
                 <h3 class="text-lg mb-1">Website</h3>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -32,6 +29,9 @@
                         @endif
                     </div>
                 </div>
+
+                <h3 class="text-lg mb-1">Bio</h3>
+                <div class="mb-4 border rounded px-4" id="bio-container"></div>
             </div>
         </div>
     </div>
