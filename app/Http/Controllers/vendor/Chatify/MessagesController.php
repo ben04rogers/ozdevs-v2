@@ -43,6 +43,10 @@ class MessagesController extends Controller
      */
     public function index( $id = null)
     {
+        if (!auth()->user()?->companyProfile?->paid_subscription) {
+            return redirect()->route('pricing')->with('error', 'Messaging requires paid subscription.');
+        }
+
         $messenger_color = Auth::user()->messenger_color;
         return view('Chatify::pages.app', [
             'id' => $id ?? 0,
@@ -50,7 +54,6 @@ class MessagesController extends Controller
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
         ]);
     }
-
 
     /**
      * Fetch data (user, favorite.. etc).
