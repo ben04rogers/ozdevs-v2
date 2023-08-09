@@ -22,7 +22,7 @@
                 <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $developerProfile->hero }}</h1>
 
                 <div class="mb-4">
-                    @if (auth()->user()?->companyProfile?->paid_subscription)
+                    @if (auth()->user()->id === $developerProfile->user_id || auth()->user()?->companyProfile?->paid_subscription)
                         <p class="text-xl">{{ $developerProfile->name  }}</p>
                     @else
                         <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-200 rounded-lg px-3 py-1.5">
@@ -76,7 +76,7 @@
 
                 <h3 class="text-lg mb-1">Social Links</h3>
 
-                @if (auth()->user()?->companyProfile?->paid_subscription)
+                @if (auth()->user()->id === $developerProfile->user_id || auth()->user()?->companyProfile?->paid_subscription)
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             @if($developerProfile->website)
