@@ -74,7 +74,7 @@
                     <div class="flex flex-wrap flex-row items-start space-y-3 p-6">
 
                         @if(!auth()->user()?->companyProfile?->paid_subscription)
-                            <a href="/hire" class="transition-all group duration-200 ease-in-out bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg py-3 px-5 inline-flex items-center justify-start w-full">
+                            <a href="{{ route('pricing') }}" class="transition-all group duration-200 ease-in-out bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg py-3 px-5 inline-flex items-center justify-start w-full">
                                 <div class="z-10 text-left">
                                     <p class="mb-2 font-bold text-gray-500">Private Information</p>
                                     <p class="mb-2 text-gray-500">This information is only visible with a business subscription.</p>
@@ -122,7 +122,7 @@
                         @endif
 
                         @if (!auth()->user()?->companyProfile?->paid_subscription)
-                            <a href="/hire" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
+                            <a href="{{ route('pricing') }}" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
                                 Subscribe to hire →
                             </a>
                         @endif
