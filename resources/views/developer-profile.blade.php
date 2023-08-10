@@ -14,6 +14,10 @@
                             <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg"><i class="fas fa-comment-dots mr-1"></i>Message</a>
                         @endif
                 @endauth
+
+                @guest
+                    <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="inline-block px-4 py-2 bg-customBlue hover:bg-customDarkBlue text-white text-sm rounded-lg">Subscribe to Hire</a>
+                @endguest
             </div>
 
             <div>
