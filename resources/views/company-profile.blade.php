@@ -22,10 +22,10 @@
                 <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $companyProfile->company_name }}</h1>
 
                 <h3 class="text-lg mb-1">Website</h3>
-                <div class="grid grid-cols-2 gap-4">
+                <div>
                     <div>
                         @if($companyProfile->website)
-                            <p class="text-gray-800 mb-2"><a href="{{ $companyProfile->website }}" class="text-gray-500"><i class="fa-solid fa-globe mr-1"></i> {{ $companyProfile->website }}</a></p>
+                            <p class="text-gray-800 mb-2 flex items-center"><a href="{{ $companyProfile->website }}" class="text-gray-500"><i class="fa-solid fa-globe mr-1"></i> {{ $companyProfile->website }}</a></p>
                         @endif
                     </div>
                 </div>
