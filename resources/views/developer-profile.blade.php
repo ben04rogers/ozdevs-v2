@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        @if(auth()->user()?->companyProfile?->paid_subscription && auth()->user()->id !== $developerProfile->user_id)
+                        @if(auth()->user()?->companyProfile?->paid_subscription)
                             <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
                                 <i class="fas fa-comment-dots mr-1"></i> Message
                             </a>
