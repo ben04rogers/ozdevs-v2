@@ -30,8 +30,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg mb-1">Bio</h3>
-                <div class="mb-4 border rounded px-4" id="bio-container"></div>
+                <div class="mb-4" id="bio-container"></div>
             </div>
         </div>
     </div>
