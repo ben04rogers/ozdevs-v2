@@ -22,7 +22,6 @@ class DeveloperProfileFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
             'hero' => $this->faker->sentence,
             'city' => $this->faker->city,
             'state' => $this->faker->stateAbbr,
