@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyProfileRequest;
 use App\Models\CompanyProfile;
+use App\Models\DeveloperProfile;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class CompanyProfilesController extends Controller
 {
     public function index() {
+
+        if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
+            return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('warning', 'You have already created a developer profile.');
+        }
+
         if (CompanyProfile::where('user_id', auth()->id())->exists()) {
             return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('warning', 'You have already created a company profile.');
         }
