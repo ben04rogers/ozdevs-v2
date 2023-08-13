@@ -57,6 +57,10 @@ class DeveloperProfileFactory extends Factory
         $correspondingState = $cityToStateMapping[$randomCity];
         $randomDeveloperRole = $this->faker->randomElement($developerRoles);
 
+        // Fetch a random user data from randomuser.me API
+        $response = json_decode(file_get_contents('https://randomuser.me/api/?inc=picture'));
+        $profileImage = $response->results[0]->picture->large;
+
         return [
             'hero' => $randomDeveloperRole,
             'city' => $randomCity,
@@ -74,6 +78,7 @@ class DeveloperProfileFactory extends Factory
             'stack_overflow' => $this->faker->userName,
             'linkedin' => $this->faker->userName,
             'email_notifications' => $this->faker->boolean,
+            'image' => $profileImage,
         ];
     }
 }
