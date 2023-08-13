@@ -8,6 +8,7 @@ use App\Http\Controllers\DevelopersController;
 use App\Http\Controllers\GetStartedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/developers', [DevelopersController::class, "index"])->name("developers");
 Route::get('/pricing', [PricingController::class, "index"])->name("pricing");
+Route::get('/purchase', [PurchaseController::class, "index"])->name("purchase");
 
 Route::get('/get-started', [GetStartedController::class, "index"])->name("getStarted");
 

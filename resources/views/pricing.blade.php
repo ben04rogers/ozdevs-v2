@@ -72,7 +72,7 @@
                                 <span class="text-5xl font-bold tracking-tight text-gray-900">$99</span>
                                 <span class="text-md font-semibold leading-6 tracking-wide text-gray-600">/month</span>
                             </p>
-                            <a href="#" class="mt-10 block w-full rounded-md px-3 py-2 w-[230px] text-center text-sm font-semibold text-white shadow-sm bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300">Get access</a>
+                            <a href="{{ route('purchase') }}" class="mt-10 block w-full rounded-md px-3 py-2 w-[230px] text-center text-sm font-semibold text-white shadow-sm bg-customBlue hover:bg-customDarkBlue focus:outline-none focus:ring-4 focus:ring-gray-300">Get access</a>
                         </div>
                     </div>
                 </div>
