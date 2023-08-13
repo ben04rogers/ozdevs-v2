@@ -85,14 +85,12 @@
                     <div>
                         <div class="mb-10">
                             <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                                <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
                                 Does OzDevs cost anything for developers?
                             </h3>
                             <p class="text-gray-500 dark:text-gray-400">No. OzDevs is free for developers.</p>
                         </div>
                         <div class="mb-10">
                             <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                                <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
                                 How does the pricing work?
                             </h3>
                             <p class="text-gray-500 dark:text-gray-400">Our pricing is simple and transparent. You pay a fixed monthly fee of $99 for unlimited access to our curated pool of talented developers. There are no additional charges or hidden costs.</p>
@@ -101,14 +99,12 @@
                     <div>
                         <div class="mb-10">
                             <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                                <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
                                 Can I cancel my subscription?
                             </h3>
                             <p class="text-gray-500 dark:text-gray-400">Yes, you can cancel your subscription at any time. If you decide to cancel, simply reach out to our support team or access the cancellation option in your account settings. .</p>
                         </div>
                         <div class="mb-10">
                             <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                                <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
                                 Who can I contact for more specific questions?
                             </h3>
                             <p class="text-gray-500 dark:text-gray-400">Send an email to the owner and I will get back to you as soon as possible.</p>

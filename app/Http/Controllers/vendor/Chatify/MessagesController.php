@@ -43,7 +43,7 @@ class MessagesController extends Controller
      */
     public function index( $id = null)
     {
-        if (!auth()->user()?->companyProfile?->paid_subscription) {
+        if (!auth()->user()?->developerProfile && !auth()->user()?->companyProfile?->paid_subscription) {
             return redirect()->route('pricing')->with('error', 'Messaging requires paid subscription.');
         }
 
@@ -333,11 +333,20 @@ class MessagesController extends Controller
      */
     public function search(Request $request)
     {
+        $userType = auth()->user()->user_type;
+
         $getRecords = null;
+        $records = null;
         $input = trim(filter_var($request['input']));
-        $records = User::where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
-                    ->paginate($request->per_page ?? $this->perPage);
+
+        if ($userType === 'developer') {
+            $records = collect(); // Empty collection for zero results
+        } elseif ($userType === 'company') {
+            $records = User::where('id', '!=', Auth::user()->id)
+                ->where('name', 'LIKE', "%{$input}%")
+                ->where('user_type', '=', 'developer')
+                ->paginate($request->per_page ?? $this->perPage);
+        }
 
         foreach ($records->items() as $record) {
             $getRecords .= view('Chatify::layouts.listItem', [
