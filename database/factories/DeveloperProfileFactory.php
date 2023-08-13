@@ -32,21 +32,24 @@ class DeveloperProfileFactory extends Factory
             'Australian Capital Territory'
         ];
 
-        $australianCities = [
-            'Sydney',
-            'Melbourne',
-            'Brisbane',
-            'Adelaide',
-            'Perth',
-            'Hobart',
-            'Darwin',
-            'Canberra'
+        $cityToStateMapping = [
+            'Sydney' => 'New South Wales',
+            'Melbourne' => 'Victoria',
+            'Brisbane' => 'Queensland',
+            'Adelaide' => 'South Australia',
+            'Perth' => 'Western Australia',
+            'Hobart' => 'Tasmania',
+            'Darwin' => 'Northern Territory',
+            'Canberra' => 'Australian Capital Territory'
         ];
+
+        $randomCity = $this->faker->randomElement(array_keys($cityToStateMapping));
+        $correspondingState = $cityToStateMapping[$randomCity];
 
         return [
             'hero' => $this->faker->sentence,
-            'city' => $this->faker->randomElement($australianCities),
-            'state' => $this->faker->randomElement($australianStates),
+            'city' => $randomCity,
+            'state' => $correspondingState,
             'country' => 'Australia',
             'bio' => $this->faker->paragraph,
             'search_status' => $this->faker->randomElement(['actively looking', 'open', 'not interested', 'invisible']),
