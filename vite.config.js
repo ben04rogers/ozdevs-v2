@@ -9,8 +9,4 @@ export default defineConfig({
             publicPath: "/public/",
         }),
     ],
-    server: {
-        https: false,
-        host: 'my-app.test',
-    },
 });
