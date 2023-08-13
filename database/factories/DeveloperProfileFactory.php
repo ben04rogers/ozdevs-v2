@@ -43,11 +43,22 @@ class DeveloperProfileFactory extends Factory
             'Canberra' => 'Australian Capital Territory'
         ];
 
+        $developerRoles = [
+            'Software Engineer',
+            'Web Developer',
+            'Frontend Developer',
+            'Backend Developer',
+            'Full Stack Developer',
+            'DevOps Engineer',
+            'Mobile App Developer'
+        ];
+
         $randomCity = $this->faker->randomElement(array_keys($cityToStateMapping));
         $correspondingState = $cityToStateMapping[$randomCity];
+        $randomDeveloperRole = $this->faker->randomElement($developerRoles);
 
         return [
-            'hero' => $this->faker->sentence,
+            'hero' => $randomDeveloperRole,
             'city' => $randomCity,
             'state' => $correspondingState,
             'country' => 'Australia',
