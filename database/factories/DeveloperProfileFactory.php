@@ -21,11 +21,33 @@ class DeveloperProfileFactory extends Factory
      */
     public function definition()
     {
+        $australianStates = [
+            'New South Wales',
+            'Victoria',
+            'Queensland',
+            'South Australia',
+            'Western Australia',
+            'Tasmania',
+            'Northern Territory',
+            'Australian Capital Territory'
+        ];
+
+        $australianCities = [
+            'Sydney',
+            'Melbourne',
+            'Brisbane',
+            'Adelaide',
+            'Perth',
+            'Hobart',
+            'Darwin',
+            'Canberra'
+        ];
+
         return [
             'hero' => $this->faker->sentence,
-            'city' => $this->faker->city,
-            'state' => $this->faker->stateAbbr,
-            'country' => $this->faker->country,
+            'city' => $this->faker->randomElement($australianCities),
+            'state' => $this->faker->randomElement($australianStates),
+            'country' => 'Australia',
             'bio' => $this->faker->paragraph,
             'search_status' => $this->faker->randomElement(['actively looking', 'open', 'not interested', 'invisible']),
             'role_level' => $this->faker->randomElement(['junior', 'mid', 'senior', 'principal']),
