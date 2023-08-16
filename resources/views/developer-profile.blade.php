@@ -56,10 +56,13 @@
                                 @if($developerProfile->twitter)
                                     <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-twitter mr-2"></i> https://twitter.com/{{ $developerProfile->twitter }}</a></p>
                                 @endif
+
+                                @if(!$developerProfile->website && !$developerProfile->github && !$developerProfile->stack_overflow && !$developerProfile->linkedin && !$developerProfile->twitter)
+                                    <p class="text-gray-800 mb-2">No social links found.</p>
+                                @endif
                             </div>
                         </div>
                     @else
-
                     <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 mb-5">
                         <span class="inline-block pr-1">
                           <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
