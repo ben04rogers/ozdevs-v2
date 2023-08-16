@@ -32,46 +32,47 @@
 
                     <div class="mb-4 rounded" id="bio-container"></div>
 
-                    <h3 class="text-lg mb-1">Social Links</h3>
+                    <div class="hidden md:block">
+                        <h3 class="text-lg mb-1">Social Links</h3>
+                        @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
+                            <div class="grid gap-4">
+                                <div>
+                                    @if($developerProfile->website)
+                                        <p class="text-gray-800 mb-2"><a href="https://{{ $developerProfile->website }}" class="text-gray-500 inline-flex items-center"><i class="fa-solid fa-globe mr-2"></i> https://{{ $developerProfile->website }}</a></p>
+                                    @endif
 
-                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
-                        <div class="grid gap-4">
-                            <div>
-                                @if($developerProfile->website)
-                                    <p class="text-gray-800 mb-2"><a href="https://{{ $developerProfile->website }}" class="text-gray-500 inline-flex items-center"><i class="fa-solid fa-globe mr-2"></i> https://{{ $developerProfile->website }}</a></p>
-                                @endif
+                                    @if($developerProfile->github)
+                                        <p class="text-gray-800 mb-2"><a href="https://github.com/{{ $developerProfile->github }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-github mr-2"></i> https://github.com/{{ $developerProfile->github }}</a></p>
+                                    @endif
 
-                                @if($developerProfile->github)
-                                    <p class="text-gray-800 mb-2"><a href="https://github.com/{{ $developerProfile->github }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-github mr-2"></i> https://github.com/{{ $developerProfile->github }}</a></p>
-                                @endif
+                                    @if($developerProfile->stack_overflow)
+                                        <p class="text-gray-800 mb-2"><a href="https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-stack-overflow mr-2"></i> https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}</a></p>
+                                    @endif
 
-                                @if($developerProfile->stack_overflow)
-                                    <p class="text-gray-800 mb-2"><a href="https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-stack-overflow mr-2"></i> https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}</a></p>
-                                @endif
+                                    @if($developerProfile->linkedin)
+                                        <p class="text-gray-800 mb-2"><a href="https://www.linkedin.com/in/{{ $developerProfile->linkedin }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-linkedin mr-2"></i> https://www.linkedin.com/in/{{ $developerProfile->linkedin }}</a></p>
+                                    @endif
 
-                                @if($developerProfile->linkedin)
-                                    <p class="text-gray-800 mb-2"><a href="https://www.linkedin.com/in/{{ $developerProfile->linkedin }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-linkedin mr-2"></i> https://www.linkedin.com/in/{{ $developerProfile->linkedin }}</a></p>
-                                @endif
+                                    @if($developerProfile->twitter)
+                                        <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-twitter mr-2"></i> https://twitter.com/{{ $developerProfile->twitter }}</a></p>
+                                    @endif
 
-                                @if($developerProfile->twitter)
-                                    <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-twitter mr-2"></i> https://twitter.com/{{ $developerProfile->twitter }}</a></p>
-                                @endif
-
-                                @if(!$developerProfile->website && !$developerProfile->github && !$developerProfile->stack_overflow && !$developerProfile->linkedin && !$developerProfile->twitter)
-                                    <p class="text-gray-800 mb-2">No social links found.</p>
-                                @endif
+                                    @if(!$developerProfile->website && !$developerProfile->github && !$developerProfile->stack_overflow && !$developerProfile->linkedin && !$developerProfile->twitter)
+                                        <p class="text-gray-800 mb-2">No social links found.</p>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    @else
-                    <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 mb-5">
-                        <span class="inline-block pr-1">
-                          <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"></path>
-                          </svg>
-                         </span>
-                        Private Information
-                     </span>
-                    @endif
+                        @else
+                            <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 mb-5">
+                                <span class="inline-block pr-1">
+                                  <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"></path>
+                                  </svg>
+                                 </span>
+                                Private Information
+                           </span>
+                        @endif
+                    </div>
                 </div>
                 <div class="col-span-1 md:col-span-1 border-2 border-customBlue rounded-lg" style="height: fit-content;">
                     <div class="flex flex-wrap flex-row items-start space-y-3 p-6">
@@ -130,6 +131,48 @@
                             </a>
                         @endif
                     </div>
+                </div>
+
+                <div class="block md:hidden mt-4">
+                    <h3 class="text-lg mb-1">Social Links</h3>
+                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
+                        <div class="grid gap-4">
+                            <div>
+                                @if($developerProfile->website)
+                                    <p class="text-gray-800 mb-2"><a href="https://{{ $developerProfile->website }}" class="text-gray-500 inline-flex items-center"><i class="fa-solid fa-globe mr-2"></i> https://{{ $developerProfile->website }}</a></p>
+                                @endif
+
+                                @if($developerProfile->github)
+                                    <p class="text-gray-800 mb-2"><a href="https://github.com/{{ $developerProfile->github }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-github mr-2"></i> https://github.com/{{ $developerProfile->github }}</a></p>
+                                @endif
+
+                                @if($developerProfile->stack_overflow)
+                                    <p class="text-gray-800 mb-2"><a href="https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-stack-overflow mr-2"></i> https://stackoverflow.com/users/{{ $developerProfile->stack_overflow }}</a></p>
+                                @endif
+
+                                @if($developerProfile->linkedin)
+                                    <p class="text-gray-800 mb-2"><a href="https://www.linkedin.com/in/{{ $developerProfile->linkedin }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-linkedin mr-2"></i> https://www.linkedin.com/in/{{ $developerProfile->linkedin }}</a></p>
+                                @endif
+
+                                @if($developerProfile->twitter)
+                                    <p class="text-gray-800 mb-2"><a href="https://twitter.com/{{ $developerProfile->twitter }}" class="text-gray-500 inline-flex items-center"><i class="fa-brands fa-twitter mr-2"></i> https://twitter.com/{{ $developerProfile->twitter }}</a></p>
+                                @endif
+
+                                @if(!$developerProfile->website && !$developerProfile->github && !$developerProfile->stack_overflow && !$developerProfile->linkedin && !$developerProfile->twitter)
+                                    <p class="text-gray-800 mb-2">No social links found.</p>
+                                @endif
+                            </div>
+                        </div>
+                    @else
+                        <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 mb-5">
+                                <span class="inline-block pr-1">
+                                  <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"></path>
+                                  </svg>
+                                 </span>
+                                Private Information
+                           </span>
+                    @endif
                 </div>
             </div>
         </div>
