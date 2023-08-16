@@ -2,17 +2,17 @@
 
 @section("content")
     <div class="container mx-auto mt-10">
-        <h2 class="text-2xl lg:text-3xl mb-5 font-bold">Find developers in Australia</h2>
+        <h2 class="text-2xl lg:text-3xl mb-3 font-bold">Find developers in Australia</h2>
 
-        <div class="flex justify-between mb-2">
-            <div class="flex justify-end block lg:hidden">
-                <button class="flex items-center justify-center text-white bg-customBlue hover:bg-customDarkBlue focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 dark:bg-gray-700 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
-                    Filters
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="white" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
+        <p class="text-gray-600 mb-2 lg:mb-6">Find developers in Australia looking for their next job. From juniors to seniors and everyone in between.</p>
+
+        <div class="flex justify-end block lg:hidden ml-4">
+            <button class="flex items-center justify-center focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-md py-1.5 focus:outline-none dark:focus:ring-gray-800" type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
+                Filters
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="gray" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
 
         <!-- drawer component -->
@@ -112,6 +112,7 @@
                     @endif
 
                     <div class="flex-grow h-px ml-4 bg-gray-300"></div>
+
                 </div>
 
                 <div class="flex flex-wrap gap-y-4" style="height: fit-content;">
