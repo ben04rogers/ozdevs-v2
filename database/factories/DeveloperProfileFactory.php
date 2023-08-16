@@ -70,7 +70,7 @@ class DeveloperProfileFactory extends Factory
             'search_status' => $this->faker->randomElement(['actively looking', 'open', 'not interested', 'invisible']),
             'role_level' => $this->faker->randomElement(['junior', 'mid', 'senior', 'principal']),
             'part_time' => $this->faker->boolean,
-            'full_time' => $this->faker->boolean,
+            'full_time' => true,
             'contract' => $this->faker->boolean,
             'website' => $this->faker->url,
             'github' => $this->faker->userName,
