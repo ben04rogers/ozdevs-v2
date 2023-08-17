@@ -77,7 +77,7 @@
                 <div class="col-span-1 md:col-span-1 border-2 border-customBlue rounded-lg" style="height: fit-content;">
                     <div class="flex flex-wrap flex-row items-start space-y-3 p-6">
 
-                        @if(!auth()->user()?->companyProfile?->paid_subscription)
+                        @if(!auth()->user()?->companyProfile?->paid_subscription && $developerProfile->user_id !== auth()->user()?->id)
                             <a href="{{ route('pricing') }}" class="transition-all group duration-200 ease-in-out bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg py-3 px-5 inline-flex items-center justify-start w-full">
                                 <div class="z-10 text-left">
                                     <p class="mb-2 font-bold text-gray-500">Private Information</p>
