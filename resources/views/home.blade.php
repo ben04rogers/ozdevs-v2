@@ -2,7 +2,7 @@
 
 @section("content")
     <section class="dark:bg-gray-900">
-        <div class="grid max-w-screen-xl px-4 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+        <div class="grid max-w-screen-xl px-2 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Reverse job board for <span class="text-customBlue">developers</span> in <span style="color: rgb(255, 199, 0);">Australia</span></h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Find your next developer opportunity in Australia. Create a profile and let companies come to you.</p>
