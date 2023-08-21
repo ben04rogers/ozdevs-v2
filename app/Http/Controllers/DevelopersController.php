@@ -25,8 +25,7 @@ class DevelopersController extends Controller
         // Search all developer attributes for the search query
         if ($searchQuery) {
             $query->where(function ($subquery) use ($searchQuery) {
-                $subquery->where('name', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('bio', 'like', '%' . $searchQuery . '%')
+                $subquery->where('bio', 'like', '%' . $searchQuery . '%')
                     ->orWhere('state', 'like', '%' . $searchQuery . '%')
                     ->orWhere('hero', 'like', '%' . $searchQuery . '%')
                     ->orWhere('city', 'like', '%' . $searchQuery . '%')
