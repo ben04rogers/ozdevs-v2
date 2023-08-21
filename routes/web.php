@@ -28,8 +28,6 @@ Route::get('/developers', [DevelopersController::class, "index"])->name("develop
 Route::get('/pricing', [PricingController::class, "index"])->name("pricing");
 Route::get('/purchase', [PurchaseController::class, "index"])->name("purchase");
 
-Route::get('/get-started', [GetStartedController::class, "index"])->name("getStarted");
-
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, "index"])->name("login");
     Route::post('/login', [LoginController::class, "store"])->middleware('web');
@@ -45,6 +43,8 @@ Route::get("/developer-profiles/{id}", [DeveloperProfilesController::class, "sho
 Route::get("/company-profiles/{id}", [CompanyProfilesController::class, "show"])->name("companyProfile");
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/get-started', [GetStartedController::class, "index"])->name("getStarted");
+
     Route::get('/new-developer', [DeveloperProfilesController::class, "index"])->name("newDeveloperForm");
     Route::post('/new-developer', [DeveloperProfilesController::class, "store"])->name("newDeveloper");
 
