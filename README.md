@@ -2,16 +2,6 @@
 
 Welcome to the Reverse Job Board for Developers in Australia! This platform is designed to help software developers find exciting job opportunities in the tech industry across Australia.
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Introduction
 
 This is a reverse job board platform where developers can create profiles and showcase their skills, projects, and experience. Employers and recruiters can then discover and reach out to developers who match their requirements. This README will guide you through setting up and using the platform.
