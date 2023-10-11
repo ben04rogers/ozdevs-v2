@@ -1,10 +1,6 @@
 # Reverse Job Board for Developers in Australia
 
-Welcome to the Reverse Job Board for Developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
-
-## Introduction
-
-This is a reverse job board platform where developers can create profiles and showcase their skills, projects, and experience. Employers and recruiters can then discover and reach out to developers who match their requirements. This README will guide you through setting up and using the platform.
+OzDevs is a reverse job board for developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
 
 ## Features
 
