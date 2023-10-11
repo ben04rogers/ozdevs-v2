@@ -50,13 +50,13 @@ php artisan migrate
 
 ### Running the Application
 
-Run the backend
+1. Run the backend
 
 ```
 php artisan serve
 ```
 
-Compile and bundle front end assets
+2. Compile and bundle front end assets
 
 ```
 npm run dev
