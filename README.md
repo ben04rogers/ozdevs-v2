@@ -48,3 +48,17 @@ php artisan key:generate
 php artisan migrate
 ```
 
+### Running the Application
+
+Run the backend
+
+```
+php artisan serve
+```
+
+Compile and bundle front end assets
+
+```
+npm run dev
+```
+
