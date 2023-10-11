@@ -44,9 +44,9 @@ php artisan key:generate
 php artisan migrate
 ```
 
-### Running the Application
+### Running locally
 
-1. Run the backend
+1. Run the laravel app
 
 ```
 php artisan serve
