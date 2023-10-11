@@ -1,6 +1,6 @@
 # Reverse Job Board for Developers in Australia
 
-Welcome to the Reverse Job Board for Developers in Australia! This platform is designed to help software developers find exciting job opportunities in the tech industry across Australia.
+Welcome to the Reverse Job Board for Developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
 
 ## Introduction
 
@@ -8,28 +8,43 @@ This is a reverse job board platform where developers can create profiles and sh
 
 ## Features
 
-- Developer Profiles: Create detailed developer profiles with your skills, experience, and projects.
-- Job Listings: Employers and recruiters can post job listings and specify the skills they're looking for.
-- Matching Algorithm: Our platform uses a powerful matching algorithm to connect developers with relevant job opportunities.
+- Developer Profiles: Create detailed developer profiles with your location, bio, skills, experience, and contact information
 - Messaging System: Communicate with potential employers within the platform.
-- Location-Based: Focused on the Australian tech job market.
+- Search Profiles: Filter developer profiles by keywords, state, and experience level.
 
 ## Getting Started
-
-### Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- [Node.js](https://nodejs.org/) installed
-- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) package manager
-- [MongoDB](https://www.mongodb.com/) database
 
 ### Installation
 
 1. Clone this repository to your local machine:
 
-   ```sh
-   git clone https://github.com/your-repo-name.git
+```sh
+git clone https://github.com/your-repo-name.git
+```        
 
+2. Install project dependencies using Composer:
 
+```
+composer install
+```
+
+3. Create a copy of the .env.example file and name it .env:
+
+```
+cp .env.example .env
+```
+
+3. Generate a unique application key:
+   
+```
+php artisan key:generate
+```
+
+4. Update the .env file with your database configuration. Set the DB_DATABASE, DB_USERNAME, and DB_PASSWORD to match your local database setup
+   
+6. Run database migrations to create the necessary tables:
+   
+```
+php artisan migrate
+```
 
