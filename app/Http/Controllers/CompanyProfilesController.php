@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Console\Commands\CreateCompanyProfileCommand;
 use App\Http\Requests\StoreCompanyProfileRequest;
 use App\Models\CompanyProfile;
 use App\Models\DeveloperProfile;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class CompanyProfilesController extends Controller
 {
+    use DispatchesJobs;
+
     public function index() {
 
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
@@ -36,29 +40,10 @@ class CompanyProfilesController extends Controller
         }
 
         // Handle the image upload to S3
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $this->handleTheImageUploadToS3($request, $data);
 
-        $name = $data['staff_name'] ?? null;
-        unset($data['staff_name']);
-
-        // Create a new company profile with the validated data
-        $companyProfile = new CompanyProfile($data);
-
-        // Set the user ID for the company profile
-        $companyProfile->user_id = auth()->id();
-
-        // Save the company profile
-        $companyProfile->save();
-
-        // Update 'name' in the users table
-        if ($name) {
-            $user = User::find(auth()->id());
-            if ($user) {
-                $user->update([
-                    'name' => $name,
-                ]);
-            }
-        }
+        // Create company profile
+        $this->dispatch(new CreateCompanyProfileCommand($data));
 
         return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('success', 'Company profile created successfully.');
     }
