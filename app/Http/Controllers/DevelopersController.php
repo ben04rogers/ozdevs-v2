@@ -11,7 +11,6 @@ class DevelopersController extends Controller
     {
         $query = DeveloperProfile::query();
 
-        // Apply filters if provided
         if ($request->filled('state')) {
             $query->where('state', $request->input('state'));
         }
@@ -22,7 +21,6 @@ class DevelopersController extends Controller
 
         $searchQuery = $request->query('search');
 
-        // Search all developer attributes for the search query
         if ($searchQuery) {
             $query->where(function ($subquery) use ($searchQuery) {
                 $subquery->whereRaw('LOWER(bio) LIKE ?', ["%$searchQuery%"])
@@ -42,10 +40,8 @@ class DevelopersController extends Controller
 
         $query->orderByDesc('created_at');
 
-        // Retrieve filtered developers with pagination
         $developers = $query->paginate(15);
 
-        // Append the query parameters to the pagination links
         $developers->appends($request->query());
 
         return view("developers", [
