@@ -33,7 +33,6 @@ class CreateCompanyProfileCommand extends Command
 
         $companyProfile->save();
 
-        // Update 'name' in the users table
         if ($name) {
             $user = User::find(auth()->id());
             if ($user) {

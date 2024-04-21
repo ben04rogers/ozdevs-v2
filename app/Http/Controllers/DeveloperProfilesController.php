@@ -20,26 +20,21 @@ class DeveloperProfilesController extends Controller
 
     public function edit($id)
     {
-        // Users can only edit their own profile
         if (auth()->user()->developerProfile->id != $id) {
             return redirect()->route('developers')->with('error', 'You are not authorized to edit this profile.');
         }
 
-        // Find the developer profile by ID
         $developerProfile = DeveloperProfile::where('id', $id)->first();
 
-        // Check if the developer profile exists
         if (!$developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        // Return the view with the developer profile data for editing
         return view('edit-developer', compact('developerProfile'));
     }
 
     public function store(StoreDevProfileRequest $request)
     {
-        // Validate the request data
         $data = $request->validated();
 
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
@@ -48,22 +43,17 @@ class DeveloperProfilesController extends Controller
             ], 400);
         }
 
-        // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
         $name = $data['name'] ?? null;
         unset($data['name']);
 
-        // Create a new developer profile with the validated data
         $developerProfile = new DeveloperProfile($data);
 
-        // Set the user ID for the developer profile
         $developerProfile->user_id = auth()->id();
 
-        // Save the developer profile
         $developerProfile->save();
 
-        // Update 'name' in the users table
         if ($name) {
             $user = User::find(auth()->id());
             if ($user) {
@@ -78,41 +68,32 @@ class DeveloperProfilesController extends Controller
 
     public function show($id)
     {
-        // Find the developer profile by ID
         $developerProfile = DeveloperProfile::where('id', $id)->first();
 
-        // Check if the developer profile exists
         if (!$developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        // If everything is valid, return the view with the developer profile data
         return view('developer-profile', compact('developerProfile'));
     }
 
     public function update(StoreDevProfileRequest $request, $id)
     {
-        // Find the developer profile by ID
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
-        // Check if the developer profile exists
         if (!$developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        // Validate the request data
         $data = $request->validated();
 
-        // Handle the image upload to S3
         $data = $this->handleTheImageUploadToS3($request, $data);
 
         $name = $data['name'] ?? null;
         unset($data['name']);
 
-        // Update the developer profile with the validated data
         $developerProfile->update($data);
 
-        // Update 'name' in the users table
         if ($name) {
             $user = User::find($id);
             if ($user) {
@@ -136,13 +117,12 @@ class DeveloperProfilesController extends Controller
             try {
                 $uploadedImage = $request->file('image');
 
-                // Generate a unique filename (you can use any logic to generate a unique name)
+                // Generate a unique filename
                 $fileName = 'profile_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
 
                 // Use the store method to store the file in the root of the 's3' disk
                 $imagePath = $uploadedImage->storeAs('', $fileName, 's3');
 
-                // Get the S3 URL of the uploaded image
                 $s3Url = Storage::disk('s3')->url($imagePath);
 
                 $data['image'] = $s3Url;
