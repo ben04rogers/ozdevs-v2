@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Console\Commands\CreateCompanyProfileCommand;
 use App\Http\Requests\StoreCompanyProfileRequest;
+use App\Jobs\CreateCompanyProfileJob;
 use App\Models\CompanyProfile;
 use App\Models\DeveloperProfile;
 use App\Models\User;
@@ -40,7 +40,7 @@ class CompanyProfilesController extends Controller
 
         $this->handleTheImageUploadToS3($request, $data);
 
-        $this->dispatch(new CreateCompanyProfileCommand($data));
+        dispatch(new CreateCompanyProfileJob($data));
 
         return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('success', 'Company profile created successfully.');
     }
