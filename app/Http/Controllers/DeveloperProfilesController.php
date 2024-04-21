@@ -106,11 +106,6 @@ class DeveloperProfilesController extends Controller
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }
 
-    /**
-     * @param StoreDevProfileRequest $request
-     * @param mixed $data
-     * @return mixed
-     */
     public function handleTheImageUploadToS3(StoreDevProfileRequest $request, mixed $data): mixed
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {

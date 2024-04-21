@@ -101,11 +101,6 @@ class CompanyProfilesController extends Controller
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
     }
 
-    /**
-     * @param StoreCompanyProfileRequest $request
-     * @param mixed $data
-     * @return mixed
-     */
     public function handleTheImageUploadToS3(StoreCompanyProfileRequest $request, mixed $data): mixed
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
