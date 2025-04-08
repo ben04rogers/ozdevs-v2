@@ -2,6 +2,8 @@
 
 OzDevs is a reverse job board for developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
 
+![image](https://github.com/user-attachments/assets/a278ec07-6c2e-43a2-9887-1a188abf740b)
+
 ## Features
 
 - Developer Profiles: Create detailed developer profiles with your location, bio, skills, experience, and contact information
