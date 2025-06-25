@@ -46,6 +46,12 @@ php artisan key:generate
 php artisan migrate
 ```
 
+7. Seed database with some test data
+   
+```
+php artisan db:seed
+```
+
 ### Running locally
 
 1. Run the laravel app
@@ -59,4 +65,3 @@ php artisan serve
 ```
 npm run dev
 ```
-
