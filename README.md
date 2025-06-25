@@ -20,10 +20,11 @@ OzDevs is a reverse job board for developers in Australia! This platform is desi
 git clone https://github.com/your-repo-name.git
 ```        
 
-2. Install project dependencies using Composer:
+2. Install project dependencies using Composer and NPM:
 
 ```
 composer install
+npm install
 ```
 
 3. Create a copy of the .env.example file and name it .env:
