@@ -77,6 +77,7 @@ class MessagesController extends Controller
                 'download_path' => Chatify::storage()->url($path)
             ], 200);
         }
+        
         return response()->json([
             'message'=>"Sorry, File does not exist in our server or may have been deleted!"
         ], 404);
