@@ -54,7 +54,7 @@ class CompanyProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 
-        return view('company-profile', compact('companyProfile'));
+        return view('company-profile', ['companyProfile' => $companyProfile]);
     }
 
     public function edit($id)
@@ -69,7 +69,7 @@ class CompanyProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 
-        return view('edit-company', compact('companyProfile'));
+        return view('edit-company', ['companyProfile' => $companyProfile]);
     }
 
     public function update(StoreCompanyProfileRequest $request, $id)
@@ -101,11 +101,6 @@ class CompanyProfilesController extends Controller
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
     }
 
-    /**
-     * @param StoreCompanyProfileRequest $request
-     * @param mixed $data
-     * @return mixed
-     */
     public function handleTheImageUploadToS3(StoreCompanyProfileRequest $request, mixed $data): mixed
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {

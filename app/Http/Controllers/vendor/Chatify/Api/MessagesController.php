@@ -23,7 +23,6 @@ class MessagesController extends Controller
      /**
      * Authinticate the connection for pusher
      *
-     * @param Request $request
      * @return void
      */
     public function pusherAuth(Request $request)
@@ -39,7 +38,6 @@ class MessagesController extends Controller
     /**
      * Fetch data by id for (user/group)
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function idFetchData(Request $request)
@@ -88,7 +86,6 @@ class MessagesController extends Controller
     /**
      * Send a message to database
      *
-     * @param Request $request
      * @return JSON response
      */
     public function send(Request $request)
@@ -165,7 +162,6 @@ class MessagesController extends Controller
     /**
      * fetch [user/group] messages from database
      *
-     * @param Request $request
      * @return JSON response
      */
     public function fetch(Request $request)
@@ -186,7 +182,6 @@ class MessagesController extends Controller
     /**
      * Make messages as seen
      *
-     * @param Request $request
      * @return void
      */
     public function seen(Request $request)
@@ -202,7 +197,6 @@ class MessagesController extends Controller
     /**
      * Get contacts list
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse response
      */
     public function getContacts(Request $request)
@@ -233,7 +227,6 @@ class MessagesController extends Controller
     /**
      * Put a user in the favorites list
      *
-     * @param Request $request
      * @return void
      */
     public function favorite(Request $request)
@@ -252,7 +245,6 @@ class MessagesController extends Controller
     /**
      * Get favorites list
      *
-     * @param Request $request
      * @return void
      */
     public function getFavorites(Request $request)
@@ -270,7 +262,6 @@ class MessagesController extends Controller
     /**
      * Search in messenger
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function search(Request $request)
@@ -294,7 +285,6 @@ class MessagesController extends Controller
     /**
      * Get shared photos
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function sharedPhotos(Request $request)
@@ -313,7 +303,6 @@ class MessagesController extends Controller
     /**
      * Delete conversation
      *
-     * @param Request $request
      * @return void
      */
     public function deleteConversation(Request $request)
@@ -378,16 +367,15 @@ class MessagesController extends Controller
 
         // send the response
         return Response::json([
-            'status' => $success ? 1 : 0,
-            'error' => $error ? 1 : 0,
-            'message' => $error ? $msg : 0,
+            'status' => $success !== 0 ? 1 : 0,
+            'error' => $error !== 0 ? 1 : 0,
+            'message' => $error !== 0 ? $msg : 0,
         ], 200);
     }
 
     /**
      * Set user's active status
      *
-     * @param Request $request
      * @return void
      */
     public function setActiveStatus(Request $request)

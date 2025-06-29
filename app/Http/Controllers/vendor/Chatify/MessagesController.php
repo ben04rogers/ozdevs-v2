@@ -22,7 +22,6 @@ class MessagesController extends Controller
     /**
      * Authenticate the connection for pusher
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function pusherAuth(Request $request)
@@ -58,7 +57,6 @@ class MessagesController extends Controller
     /**
      * Fetch data (user, favorite.. etc).
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function idFetchData(Request $request)
@@ -94,7 +92,6 @@ class MessagesController extends Controller
     /**
      * Send a message to database
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function send(Request $request)
@@ -165,7 +162,6 @@ class MessagesController extends Controller
     /**
      * fetch [user/group] messages from database
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function fetch(Request $request)
@@ -203,7 +199,6 @@ class MessagesController extends Controller
     /**
      * Make messages as seen
      *
-     * @param Request $request
      * @return JsonResponse|void
      */
     public function seen(Request $request)
@@ -219,7 +214,6 @@ class MessagesController extends Controller
     /**
      * Get contacts list
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function getContacts(Request $request)
@@ -260,7 +254,6 @@ class MessagesController extends Controller
     /**
      * Update user's list item data
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function updateContactItem(Request $request)
@@ -283,7 +276,6 @@ class MessagesController extends Controller
     /**
      * Put a user in the favorites list
      *
-     * @param Request $request
      * @return JsonResponse|void
      */
     public function favorite(Request $request)
@@ -302,7 +294,6 @@ class MessagesController extends Controller
     /**
      * Get favorites list
      *
-     * @param Request $request
      * @return JsonResponse|void
      */
     public function getFavorites(Request $request)
@@ -328,7 +319,6 @@ class MessagesController extends Controller
     /**
      * Search in messenger
      *
-     * @param Request $request
      * @return JsonResponse|void
      */
     public function search(Request $request)
@@ -368,16 +358,17 @@ class MessagesController extends Controller
     /**
      * Get shared photos
      *
-     * @param Request $request
      * @return JsonResponse|void
      */
     public function sharedPhotos(Request $request)
     {
         $shared = Chatify::getSharedPhotos($request['user_id']);
         $sharedPhotos = null;
+        // shared with its template
+        $counter = count($shared);
 
         // shared with its template
-        for ($i = 0; $i < count($shared); $i++) {
+        for ($i = 0; $i < $counter; $i++) {
             $sharedPhotos .= view('Chatify::layouts.listItem', [
                 'get' => 'sharedPhoto',
                 'image' => Chatify::getAttachmentUrl($shared[$i]),
@@ -392,7 +383,6 @@ class MessagesController extends Controller
     /**
      * Delete conversation
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function deleteConversation(Request $request)
@@ -409,7 +399,6 @@ class MessagesController extends Controller
     /**
      * Delete message
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function deleteMessage(Request $request)
@@ -474,16 +463,15 @@ class MessagesController extends Controller
 
         // send the response
         return Response::json([
-            'status' => $success ? 1 : 0,
-            'error' => $error ? 1 : 0,
-            'message' => $error ? $msg : 0,
+            'status' => $success !== 0 ? 1 : 0,
+            'error' => $error !== 0 ? 1 : 0,
+            'message' => $error !== 0 ? $msg : 0,
         ], 200);
     }
 
     /**
      * Set user's active status
      *
-     * @param Request $request
      * @return JsonResponse
      */
     public function setActiveStatus(Request $request)

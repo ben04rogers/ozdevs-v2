@@ -21,17 +21,6 @@ class DeveloperProfileFactory extends Factory
      */
     public function definition()
     {
-        $australianStates = [
-            'New South Wales',
-            'Victoria',
-            'Queensland',
-            'South Australia',
-            'Western Australia',
-            'Tasmania',
-            'Northern Territory',
-            'Australian Capital Territory'
-        ];
-
         $cityToStateMapping = [
             'Sydney' => 'New South Wales',
             'Melbourne' => 'Victoria',

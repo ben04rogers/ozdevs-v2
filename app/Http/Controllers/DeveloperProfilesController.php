@@ -30,7 +30,7 @@ class DeveloperProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        return view('edit-developer', compact('developerProfile'));
+        return view('edit-developer', ['developerProfile' => $developerProfile]);
     }
 
     public function store(StoreDevProfileRequest $request)
@@ -74,7 +74,7 @@ class DeveloperProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        return view('developer-profile', compact('developerProfile'));
+        return view('developer-profile', ['developerProfile' => $developerProfile]);
     }
 
     public function update(StoreDevProfileRequest $request, $id)
@@ -106,11 +106,6 @@ class DeveloperProfilesController extends Controller
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }
 
-    /**
-     * @param StoreDevProfileRequest $request
-     * @param mixed $data
-     * @return mixed
-     */
     public function handleTheImageUploadToS3(StoreDevProfileRequest $request, mixed $data): mixed
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
