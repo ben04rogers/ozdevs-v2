@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Http\Requests\StoreDevProfileRequest;
 use App\Models\DeveloperProfile;
 use App\Models\User;
@@ -33,9 +34,9 @@ class DeveloperProfilesController extends Controller
         return view('edit-developer', ['developerProfile' => $developerProfile]);
     }
 
-    public function store(StoreDevProfileRequest $request)
+    public function store(StoreDevProfileRequest $storeDevProfileRequest)
     {
-        $data = $request->validated();
+        $data = $storeDevProfileRequest->validated();
 
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
             return response()->json([
@@ -43,7 +44,7 @@ class DeveloperProfilesController extends Controller
             ], 400);
         }
 
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $data = $this->handleTheImageUploadToS3($storeDevProfileRequest, $data);
 
         $name = $data['name'] ?? null;
         unset($data['name']);
@@ -77,7 +78,7 @@ class DeveloperProfilesController extends Controller
         return view('developer-profile', ['developerProfile' => $developerProfile]);
     }
 
-    public function update(StoreDevProfileRequest $request, $id)
+    public function update(StoreDevProfileRequest $storeDevProfileRequest, $id)
     {
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
@@ -85,9 +86,9 @@ class DeveloperProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        $data = $request->validated();
+        $data = $storeDevProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $data = $this->handleTheImageUploadToS3($storeDevProfileRequest, $data);
 
         $name = $data['name'] ?? null;
         unset($data['name']);
@@ -106,11 +107,11 @@ class DeveloperProfilesController extends Controller
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }
 
-    public function handleTheImageUploadToS3(StoreDevProfileRequest $request, mixed $data): mixed
+    public function handleTheImageUploadToS3(StoreDevProfileRequest $storeDevProfileRequest, mixed $data): mixed
     {
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        if ($storeDevProfileRequest->hasFile('image') && $storeDevProfileRequest->file('image')->isValid()) {
             try {
-                $uploadedImage = $request->file('image');
+                $uploadedImage = $storeDevProfileRequest->file('image');
 
                 // Generate a unique filename
                 $fileName = 'profile_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
@@ -121,10 +122,11 @@ class DeveloperProfilesController extends Controller
                 $s3Url = Storage::disk('s3')->url($imagePath);
 
                 $data['image'] = $s3Url;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Log::error($e->getMessage());
             }
         }
+
         return $data;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Http\Requests\StoreCompanyProfileRequest;
 use App\Jobs\CreateCompanyProfileJob;
 use App\Models\CompanyProfile;
@@ -28,9 +29,9 @@ class CompanyProfilesController extends Controller
         return view("new-company");
     }
 
-    public function store(StoreCompanyProfileRequest $request)
+    public function store(StoreCompanyProfileRequest $storeCompanyProfileRequest)
     {
-        $data = $request->validated();
+        $data = $storeCompanyProfileRequest->validated();
 
         if (CompanyProfile::where('user_id', auth()->id())->exists()) {
             return response()->json([
@@ -38,7 +39,7 @@ class CompanyProfilesController extends Controller
             ], 400);
         }
 
-        $this->handleTheImageUploadToS3($request, $data);
+        $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data);
 
         dispatch(new CreateCompanyProfileJob($data));
 
@@ -72,7 +73,7 @@ class CompanyProfilesController extends Controller
         return view('edit-company', ['companyProfile' => $companyProfile]);
     }
 
-    public function update(StoreCompanyProfileRequest $request, $id)
+    public function update(StoreCompanyProfileRequest $storeCompanyProfileRequest, $id)
     {
         $companyProfile = CompanyProfile::where('user_id', $id)->first();
 
@@ -80,9 +81,9 @@ class CompanyProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 
-        $data = $request->validated();
+        $data = $storeCompanyProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $data = $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data);
 
         $name = $data['staff_name'] ?? null;
         unset($data['staff_name']);
@@ -101,11 +102,11 @@ class CompanyProfilesController extends Controller
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
     }
 
-    public function handleTheImageUploadToS3(StoreCompanyProfileRequest $request, mixed $data): mixed
+    public function handleTheImageUploadToS3(StoreCompanyProfileRequest $storeCompanyProfileRequest, mixed $data): mixed
     {
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        if ($storeCompanyProfileRequest->hasFile('image') && $storeCompanyProfileRequest->file('image')->isValid()) {
             try {
-                $uploadedImage = $request->file('image');
+                $uploadedImage = $storeCompanyProfileRequest->file('image');
 
                 // Generate a unique filename
                 $fileName = 'company_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
@@ -116,10 +117,11 @@ class CompanyProfilesController extends Controller
                 $s3Url = Storage::disk('s3')->url($imagePath);
 
                 $data['image'] = $s3Url;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 Log::error($e->getMessage());
             }
         }
+
         return $data;
     }
 }

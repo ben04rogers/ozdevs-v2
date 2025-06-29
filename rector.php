@@ -9,14 +9,19 @@ return static function (RectorConfig $rectorConfig): void {
     // Paths to refactor
     $rectorConfig->paths([
         __DIR__ . '/app',
-        __DIR__ . '/config',
-        __DIR__ . '/database',
-        __DIR__ . '/routes',
         __DIR__ . '/tests',
     ]);
 
     $rectorConfig->sets([
         SetList::CODE_QUALITY,
-        SetList::DEAD_CODE
+        SetList::DEAD_CODE,
+        SetList::CODING_STYLE,
+        SetList::TYPE_DECLARATION,
+        SetList::EARLY_RETURN,
+        SetList::PRIVATIZATION,
+        SetList::NAMING,
     ]);
+
+    $rectorConfig->parallel();
+    $rectorConfig->importNames();
 };

@@ -22,8 +22,8 @@ class DevelopersController extends Controller
         $searchQuery = $request->query('search');
 
         if ($searchQuery) {
-            $query->where(function ($subquery) use ($searchQuery) {
-                $subquery->whereRaw('LOWER(bio) LIKE ?', ["%$searchQuery%"])
+            $query->where(function ($subquery) use ($searchQuery): void {
+                $subquery->whereRaw('LOWER(bio) LIKE ?', [sprintf('%%%s%%', $searchQuery)])
                     ->orWhere('state', 'like', '%' . $searchQuery . '%')
                     ->orWhere('hero', 'like', '%' . $searchQuery . '%')
                     ->orWhere('city', 'like', '%' . $searchQuery . '%')
@@ -40,12 +40,12 @@ class DevelopersController extends Controller
 
         $query->orderByDesc('created_at');
 
-        $developers = $query->paginate(15);
+        $lengthAwarePaginator = $query->paginate(15);
 
-        $developers->appends($request->query());
+        $lengthAwarePaginator->appends($request->query());
 
         return view("developers", [
-            'developers' => $developers,
+            'developers' => $lengthAwarePaginator,
         ]);
     }
 }

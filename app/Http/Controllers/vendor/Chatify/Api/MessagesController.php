@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\vendor\Chatify\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
@@ -38,7 +39,7 @@ class MessagesController extends Controller
     /**
      * Fetch data by id for (user/group)
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function idFetchData(Request $request)
     {
@@ -65,10 +66,9 @@ class MessagesController extends Controller
      * This method to make a links for the attachments
      * to be downloadable.
      *
-     * @param string $fileName
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function download($fileName)
+    public function download(string $fileName)
     {
         $path = config('chatify.attachments.folder') . '/' . $fileName;
         if (Chatify::storage()->exists($path)) {
@@ -76,11 +76,10 @@ class MessagesController extends Controller
                 'file_name' => $fileName,
                 'download_path' => Chatify::storage()->url($path)
             ], 200);
-        } else {
-            return response()->json([
-                'message'=>"Sorry, File does not exist in our server or may have been deleted!"
-            ], 404);
         }
+        return response()->json([
+            'message'=>"Sorry, File does not exist in our server or may have been deleted!"
+        ], 404);
     }
 
     /**
@@ -197,17 +196,17 @@ class MessagesController extends Controller
     /**
      * Get contacts list
      *
-     * @return \Illuminate\Http\JsonResponse response
+     * @return JsonResponse response
      */
     public function getContacts(Request $request)
     {
 
         // get all users that received/sent message from/to [Auth user]
-        $users = Message::join('users',  function ($join) {
+        $users = Message::join('users',  function ($join): void {
             $join->on('ch_messages.from_id', '=', 'users.id')
                 ->orOn('ch_messages.to_id', '=', 'users.id');
         })
-        ->where(function ($q) {
+        ->where(function ($q): void {
             $q->where('ch_messages.from_id', Auth::user()->id)
             ->orWhere('ch_messages.to_id', Auth::user()->id);
         })
@@ -253,6 +252,7 @@ class MessagesController extends Controller
         foreach ($favorites as $favorite) {
             $favorite->user = User::where('id', $favorite->favorite_id)->first();
         }
+
         return Response::json([
             'total' => count($favorites),
             'favorites' => $favorites ?? [],
@@ -262,13 +262,13 @@ class MessagesController extends Controller
     /**
      * Search in messenger
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function search(Request $request)
     {
         $input = trim(filter_var($request['input']));
         $records = User::where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
+                    ->where('name', 'LIKE', sprintf('%%%s%%', $input))
                     ->paginate($request->per_page ?? $this->perPage);
 
         foreach ($records->items() as $index => $record) {
@@ -285,7 +285,7 @@ class MessagesController extends Controller
     /**
      * Get shared photos
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function sharedPhotos(Request $request)
     {
@@ -294,6 +294,7 @@ class MessagesController extends Controller
         foreach ($images as $image) {
             $image = asset(config('chatify.attachments.folder') . $image);
         }
+
         // send the response
         return Response::json([
             'shared' => $images ?? [],
@@ -319,7 +320,8 @@ class MessagesController extends Controller
     public function updateSettings(Request $request)
     {
         $msg = null;
-        $error = $success = 0;
+        $error = 0;
+        $success = 0;
 
         // dark mode
         if ($request['dark_mode']) {
@@ -334,6 +336,7 @@ class MessagesController extends Controller
             User::where('id', Auth::user()->id)
                 ->update(['messenger_color' => $messenger_color]);
         }
+
         // if there is a [file]
         if ($request->hasFile('avatar')) {
             // allowed extensions
@@ -350,6 +353,7 @@ class MessagesController extends Controller
                             Chatify::storage()->delete($path);
                         }
                     }
+
                     // upload
                     $avatar = Str::uuid() . "." . $file->extension();
                     $update = User::where('id', Auth::user()->id)->update(['avatar' => $avatar]);

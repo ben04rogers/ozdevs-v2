@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\vendor\Chatify;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -38,7 +42,7 @@ class MessagesController extends Controller
      * Returning the view of the app with the required data.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index( $id = null)
     {
@@ -66,6 +70,7 @@ class MessagesController extends Controller
         if($fetch){
             $userAvatar = Chatify::getUserWithAvatar($fetch)->avatar;
         }
+
         return Response::json([
             'favorite' => $favorite,
             'fetch' => $fetch ?? null,
@@ -77,15 +82,15 @@ class MessagesController extends Controller
      * This method to make a links for the attachments
      * to be downloadable.
      *
-     * @param string $fileName
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse|void
+     * @return StreamedResponse|void
      */
-    public function download($fileName)
+    public function download(string $fileName)
     {
         $filePath = config('chatify.attachments.folder') . '/' . $fileName;
         if (Chatify::storage()->exists($filePath)) {
             return Chatify::storage()->download($filePath);
         }
+
         return abort(404, "Sorry, File does not exist in our server or may have been deleted!");
     }
 
@@ -182,16 +187,19 @@ class MessagesController extends Controller
             $response['messages'] ='<p class="message-hint center-el"><span>Say \'hi\' and start messaging</span></p>';
             return Response::json($response);
         }
+
         if (count($messages->items()) < 1) {
             $response['messages'] = '';
             return Response::json($response);
         }
+
         $allMessages = null;
         foreach ($messages->reverse() as $message) {
             $allMessages .= Chatify::messageCard(
                 Chatify::parseMessage($message)
             );
         }
+
         $response['messages'] = $allMessages;
         return Response::json($response);
     }
@@ -219,11 +227,11 @@ class MessagesController extends Controller
     public function getContacts(Request $request)
     {
         // get all users that received/sent message from/to [Auth user]
-        $users = Message::join('users',  function ($join) {
+        $users = Message::join('users',  function ($join): void {
             $join->on('ch_messages.from_id', '=', 'users.id')
                 ->orOn('ch_messages.to_id', '=', 'users.id');
         })
-        ->where(function ($q) {
+        ->where(function ($q): void {
             $q->where('ch_messages.from_id', Auth::user()->id)
             ->orWhere('ch_messages.to_id', Auth::user()->id);
         })
@@ -237,8 +245,8 @@ class MessagesController extends Controller
 
         if (count($usersList) > 0) {
             $contacts = '';
-            foreach ($usersList as $user) {
-                $contacts .= Chatify::getContactItem($user);
+            foreach ($usersList as $userList) {
+                $contacts .= Chatify::getContactItem($userList);
             }
         } else {
             $contacts = '<p class="message-hint center-el"><span>Your contact list is empty</span></p>';
@@ -265,6 +273,7 @@ class MessagesController extends Controller
                 'message' => 'User not found!',
             ], 401);
         }
+
         $contactItem = Chatify::getContactItem($user);
 
         // send the response
@@ -307,6 +316,7 @@ class MessagesController extends Controller
                 'user' => $user,
             ]);
         }
+
         // send the response
         return Response::json([
             'count' => $favorites->count(),
@@ -333,7 +343,7 @@ class MessagesController extends Controller
             $records = collect(); // Empty collection for zero results
         } elseif ($userType === 'company') {
             $records = User::where('id', '!=', Auth::user()->id)
-                ->where('name', 'LIKE', "%{$input}%")
+                ->where('name', 'LIKE', sprintf('%%%s%%', $input))
                 ->where('user_type', '=', 'developer')
                 ->paginate($request->per_page ?? $this->perPage);
         }
@@ -344,9 +354,11 @@ class MessagesController extends Controller
                 'user' => Chatify::getUserWithAvatar($record),
             ])->render();
         }
+
         if($records->total() < 1){
             $getRecords = '<p class="message-hint center-el"><span>Nothing to show.</span></p>';
         }
+
         // send the response
         return Response::json([
             'records' => $getRecords,
@@ -374,6 +386,7 @@ class MessagesController extends Controller
                 'image' => Chatify::getAttachmentUrl($shared[$i]),
             ])->render();
         }
+
         // send the response
         return Response::json([
             'shared' => count($shared) > 0 ? $sharedPhotos : '<p class="message-hint"><span>Nothing shared yet</span></p>',
@@ -415,7 +428,8 @@ class MessagesController extends Controller
     public function updateSettings(Request $request)
     {
         $msg = null;
-        $error = $success = 0;
+        $error = 0;
+        $success = 0;
 
         // dark mode
         if ($request['dark_mode']) {
@@ -430,6 +444,7 @@ class MessagesController extends Controller
             User::where('id', Auth::user()->id)
                 ->update(['messenger_color' => $messenger_color]);
         }
+
         // if there is a [file]
         if ($request->hasFile('avatar')) {
             // allowed extensions
@@ -446,6 +461,7 @@ class MessagesController extends Controller
                             Chatify::storage()->delete($avatar);
                         }
                     }
+
                     // upload
                     $avatar = Str::uuid() . "." . $file->extension();
                     $update = User::where('id', Auth::user()->id)->update(['avatar' => $avatar]);
