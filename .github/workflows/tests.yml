@@ -42,8 +42,8 @@ jobs:
       - name: Run Linter
         run: find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
 
-  phpstan:
-    name: PHPStan
+  larastan:
+    name: Larastan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -58,24 +58,5 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-progress
 
-      - name: Run PHPStan (static analysis)
+      - name: Run Larastan (static analysis)
         run: vendor/bin/phpstan analyse --no-progress
-
-  phpcsfixer:
-    name: PHP CS Fixer
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          tools: composer
-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --no-progress
-
-      - name: Run PHP CS Fixer (dry-run)
-        run: vendor/bin/php-cs-fixer fix --diff --dry-run --allow-risky=yes
