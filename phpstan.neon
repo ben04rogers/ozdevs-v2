@@ -1,5 +1,5 @@
 parameters:
-    levek: 7
+    level: 7
     paths:
         - app
         - tests
