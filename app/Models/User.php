@@ -8,12 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property-read \App\Models\DeveloperProfile|null $developerProfile
+ * @property-read \App\Models\CompanyProfile|null $companyProfile
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
