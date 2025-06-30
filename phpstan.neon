@@ -6,3 +6,5 @@ parameters:
     paths:
         - app
         - tests
+    ignoreErrors:
+        - '#Call to an undefined static method Chatify\\Facades\\ChatifyMessenger::#'
