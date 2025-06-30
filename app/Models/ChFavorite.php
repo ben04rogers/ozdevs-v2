@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Chatify\Traits\UUID;
 
 /**
- * @property-read \App\Models\User|null $user
+ * @property \App\Models\User|null $user
  */
 class ChFavorite extends Model
 {
