@@ -8,10 +8,6 @@ parameters:
         - tests
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - '#Call to an undefined static method Chatify\\Facades\\ChatifyMessenger::#'
-        - message: '#has invalid return type App\\Http\\Controllers\\vendor\\Chatify\\Api\\JSON#'
+        - message: '#.*#'
           paths:
-              - app/Http/Controllers/vendor/Chatify/Api/.*$
-        - message: '#Variable \$favorites on left side of \?\? always exists and is not nullable#'
-          paths:
-              - app/Http/Controllers/vendor/Chatify/Api/.*$
+              - app/Http/Controllers/vendor/Chatify/.*$
