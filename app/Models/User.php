@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\DeveloperProfile;
 
 /**
- * @property-read \App\Models\DeveloperProfile|null $developerProfile
- * @property-read \App\Models\CompanyProfile|null $companyProfile
+ * @property-read DeveloperProfile|null $developerProfile
+ * @property-read CompanyProfile|null $companyProfile
  */
 class User extends Authenticatable
 {

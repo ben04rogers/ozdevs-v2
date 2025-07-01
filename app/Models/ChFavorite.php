@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Chatify\Traits\UUID;
+use App\Models\User;
 
 /**
- * @property \App\Models\User|null $user
+ * @property User|null $user
  */
 class ChFavorite extends Model
 {
