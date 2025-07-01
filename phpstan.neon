@@ -6,7 +6,7 @@ parameters:
     paths:
         - app
         - tests
-    reportUnmatchedIgnoreErrors: false
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Call to an undefined static method Chatify\\Facades\\ChatifyMessenger::#'
         - message: '#has invalid return type App\\Http\\Controllers\\vendor\\Chatify\\Api\\JSON#'
