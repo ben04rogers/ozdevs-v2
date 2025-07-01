@@ -8,3 +8,6 @@ parameters:
         - tests
     ignoreErrors:
         - '#Call to an undefined static method Chatify\\Facades\\ChatifyMessenger::#'
+        - message: '#.*#'
+          paths:
+              - app/Http/Controllers/vendor/Chatify/.*$
