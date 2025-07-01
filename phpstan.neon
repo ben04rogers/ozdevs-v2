@@ -7,7 +7,6 @@ parameters:
         - app
         - tests
     reportUnmatchedIgnoredErrors: false
-    ignoreErrors:
-        - message: '#.*#'
-          paths:
-              - app/Http/Controllers/vendor/Chatify/.*$
+    excludePaths:
+        - app/Http/Controllers/vendor/Chatify/MessagesController.php
+        
