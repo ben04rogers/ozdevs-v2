@@ -14,7 +14,7 @@ class DeveloperProfileApiTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $payload = [
+        $response = $this->actingAs($user)->postJson('/new-developer', [
             'name' => 'Test User',
             'hero' => 'Software Engineer',
             'bio' => 'Test bio',
@@ -26,15 +26,22 @@ class DeveloperProfileApiTest extends TestCase
             'part_time' => true,
             'full_time' => true,
             'contract' => false,
-        ];
-
-        $response = $this->actingAs($user)->postJson(route('newDeveloper'), $payload);
+        ]);
 
         $response->assertStatus(302);
 
         $this->assertDatabaseHas('developer_profiles', [
-            'bio' => 'Test bio',
             'user_id' => $user->id,
+            'hero' => 'Software Engineer',
+            'bio' => 'Test bio',
+            'city' => 'Sydney',
+            'state' => 'New South Wales',
+            'country' => 'Australia',
+            'search_status' => 'actively looking',
+            'role_level' => 'junior',
+            'part_time' => true,
+            'full_time' => true,
+            'contract' => false,
         ]);
     }
 }
