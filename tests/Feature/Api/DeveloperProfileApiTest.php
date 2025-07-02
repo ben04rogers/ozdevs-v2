@@ -4,7 +4,7 @@ namespace Tests\Feature\Api;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
-    use Illuminate\Http\UploadedFile;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\Models\User;
 
