@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use App\Models\User;
 
-class DeveloperProfileApiTest extends TestCase
+class CreateDeveloperProfileTest extends TestCase
 {
     use RefreshDatabase;
 

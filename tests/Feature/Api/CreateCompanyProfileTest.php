@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 use App\Models\User;
 
-class CompanyProfileApiTest extends TestCase
+class CreateCompanyProfileTest extends TestCase
 {
     use RefreshDatabase;
 
