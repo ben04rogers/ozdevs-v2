@@ -96,7 +96,7 @@ class CompanyProfileApiTest extends TestCase
     public function test_email_notifications_field_defaults_to_false_if_not_specified()
     {
         config(['queue.default' => 'sync']);
-
+ 
         $user = User::factory()->create();
 
         $payload = [
@@ -115,5 +115,28 @@ class CompanyProfileApiTest extends TestCase
             'company_name' => 'Test Company',
             'email_notifications' => false,
         ]);
+    }
+
+    public function test_staff_name_is_saved_to_user_name()
+    {
+        config(['queue.default' => 'sync']);
+
+        $user = User::factory()->create([
+            'name' => 'Original Name'
+        ]);
+
+        $payload = [
+            'company_name' => 'Test Company',
+            'website' => 'https://testcompany.com',
+            'staff_name' => 'Updated Staff Name',
+            'staff_role' => 'HR Manager',
+            'bio' => 'We build amazing stuff.',
+        ];
+
+        $this->actingAs($user)->postJson('/new-company', $payload);
+
+        $user->refresh();
+        
+        $this->assertEquals('Updated Staff Name', $user->name);
     }
 }
