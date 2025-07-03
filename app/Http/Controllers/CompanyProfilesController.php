@@ -29,9 +29,9 @@ class CompanyProfilesController extends Controller
         return view("new-company");
     }
 
-    public function store(StoreCompanyProfileRequest $storeCompanyProfileRequest)
+    public function store(StoreCompanyProfileRequest $request)
     {
-        $data = $storeCompanyProfileRequest->validated();
+        $data = $request->validated();
 
         if (CompanyProfile::where('user_id', auth()->id())->exists()) {
             return response()->json([
@@ -39,7 +39,7 @@ class CompanyProfilesController extends Controller
             ], 400);
         }
 
-        $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data);
+        $this->handleTheImageUploadToS3($request, $data);
 
         dispatch(new CreateCompanyProfileJob($data));
 
