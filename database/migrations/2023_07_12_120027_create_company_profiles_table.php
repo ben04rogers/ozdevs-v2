@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('website');
             $table->string('staff_role');
             $table->longText('bio');
-            $table->boolean('email_notifications')->default(true);
+            $table->boolean('email_notifications')->default(false);
             $table->string('image')->nullable();
             $table->boolean('paid_subscription')->default(false);
             $table->timestamps();

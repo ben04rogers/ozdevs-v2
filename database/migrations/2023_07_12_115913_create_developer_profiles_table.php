@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('stack_overflow')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('email_notifications')->default(true);
+            $table->boolean('email_notifications')->default(false);
             $table->timestamps();
         });
     }
