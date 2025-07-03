@@ -60,4 +60,28 @@ class UpdateDeveloperProfileTest extends TestCase
         
         $this->assertEquals('Updated Name', $user->name);
     }
+
+    public function test_cannot_update_someone_elses_profile()
+    {
+        $user = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $profile = DeveloperProfile::factory()->create([
+            'user_id' => $otherUser->id,
+            'hero' => 'Other Hero',
+        ]);
+
+
+        $response = $this->actingAs($user)->putJson("/developer-profiles/{$otherUser->id}", [
+            'hero' => 'Hacked Hero',
+        ]);
+
+        $response->assertStatus(302);
+
+        $response->assertSessionHas('error', 'You are not authorized to update this profile.');
+
+        $this->assertDatabaseHas('developer_profiles', [
+            'user_id' => $otherUser->id,
+            'hero' => 'Other Hero',
+        ]);
+    }
 }

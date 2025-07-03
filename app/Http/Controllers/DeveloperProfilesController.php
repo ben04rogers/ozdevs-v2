@@ -66,6 +66,10 @@ class DeveloperProfilesController extends Controller
 
     public function update(UpdateDeveloperProfileRequest $request, $id)
     {
+        if (auth()->id() != $id) {
+            return redirect()->route('developers')->with('error', 'You are not authorized to update this profile.');
+        }
+
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
         if (!$developerProfile) {
