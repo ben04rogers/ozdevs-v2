@@ -84,4 +84,55 @@ class UpdateDeveloperProfileTest extends TestCase
             'hero' => 'Other Hero',
         ]);
     }
+
+    public function test_validation_errors_are_returned_for_invalid_data()
+    {
+        $user = User::factory()->create();
+        $profile = DeveloperProfile::factory()->create(['user_id' => $user->id]);
+
+        $payload = [
+            'state' => 'InvalidStateName',
+            'country' => 'NotAustralia',
+            'role_level' => 'superhero',
+        ];
+
+        $response = $this->actingAs($user)->putJson("/developer-profiles/{$user->id}", $payload);
+
+        $response->assertStatus(422);
+        $response->assertJsonValidationErrors(['state', 'country', 'role_level']);
+    }
+
+    public function test_unauthenticated_user_cannot_update_profile()
+    {
+        $user = User::factory()->create();
+        $profile = DeveloperProfile::factory()->create(['user_id' => $user->id]);
+
+        $payload = ['hero' => 'Unauthenticated update'];
+
+        $response = $this->putJson("/developer-profiles/{$user->id}", $payload);
+
+        $response->assertStatus(401);
+    }
+
+    public function test_partial_update_does_not_clear_unspecified_fields()
+    {
+        $user = User::factory()->create();
+        $profile = DeveloperProfile::factory()->create([
+            'user_id' => $user->id,
+            'bio' => 'Bio',
+            'city' => 'Melbourne',
+        ]);
+
+        $payload = [
+            'bio' => 'Updated bio',
+        ];
+
+        $response = $this->actingAs($user)->putJson("/developer-profiles/{$user->id}", $payload);
+
+        $response->assertStatus(302);
+
+        $profile->refresh();
+        $this->assertEquals('Updated bio', $profile->bio);
+        $this->assertEquals('Melbourne', $profile->city);
+    }
 }
