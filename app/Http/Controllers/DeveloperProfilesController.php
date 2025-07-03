@@ -8,6 +8,7 @@ use App\Models\DeveloperProfile;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\CreateDeveloperProfileJob;
 
 class DeveloperProfilesController extends Controller
 {
@@ -46,23 +47,7 @@ class DeveloperProfilesController extends Controller
 
         $data = $this->handleTheImageUploadToS3($storeDevProfileRequest, $data);
 
-        $name = $data['name'] ?? null;
-        unset($data['name']);
-
-        $developerProfile = new DeveloperProfile($data);
-
-        $developerProfile->user_id = auth()->id();
-
-        $developerProfile->save();
-
-        if ($name) {
-            $user = User::find(auth()->id());
-            if ($user) {
-                $user->update([
-                    'name' => $name,
-                ]);
-            }
-        }
+        dispatch(new CreateDeveloperProfileJob($data));
 
         return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('success', 'Developer profile created successfully.');
     }
