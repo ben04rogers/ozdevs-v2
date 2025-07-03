@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\CreateDeveloperProfileJob;
+use App\Jobs\UpdateDeveloperProfileJob;
 
 class DeveloperProfilesController extends Controller
 {
@@ -80,19 +81,7 @@ class DeveloperProfilesController extends Controller
 
         $data = $this->handleTheImageUploadToS3($request, $data);
 
-        $name = $data['name'] ?? null;
-        unset($data['name']);
-
-        $developerProfile->update($data);
-
-        if ($name) {
-            $user = User::find($id);
-            if ($user) {
-                $user->update([
-                    'name' => $name,
-                ]);
-            }
-        }
+        dispatch(new UpdateDeveloperProfileJob($id, $data));
 
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
     }
