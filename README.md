@@ -1,4 +1,4 @@
-# Developer Job Matching Portal for Developers in Australia
+# Developer Job Matching Portal
 
 OzDevs is a reverse job board for developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
 
