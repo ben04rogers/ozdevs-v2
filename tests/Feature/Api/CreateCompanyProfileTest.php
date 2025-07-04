@@ -12,7 +12,7 @@ class CreateCompanyProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_authenticated_user_can_create_company_profile()
+    public function test_authenticated_user_can_create_company_profile(): void
     {
         // Set the queue driver to 'sync' so jobs run immediately
         config(['queue.default' => 'sync']);
@@ -28,9 +28,9 @@ class CreateCompanyProfileTest extends TestCase
             'email_notifications' => true,
         ];
 
-        $response = $this->actingAs($user)->postJson('/new-company', $payload);
+        $testResponse = $this->actingAs($user)->postJson('/new-company', $payload);
 
-        $response->assertStatus(302);
+        $testResponse->assertStatus(302);
 
         $this->assertDatabaseHas('company_profiles', [
             'user_id' => $user->id,
@@ -42,7 +42,7 @@ class CreateCompanyProfileTest extends TestCase
          ]);
     }
 
-    public function test_guest_cannot_create_company_profile()
+    public function test_guest_cannot_create_company_profile(): void
     {
         $payload = [
             'company_name' => 'Test Company',
@@ -52,12 +52,12 @@ class CreateCompanyProfileTest extends TestCase
             'bio' => 'We build amazing stuff.',
         ];
 
-        $response = $this->postJson('/new-company', $payload);
+        $testResponse = $this->postJson('/new-company', $payload);
 
-        $response->assertStatus(401);
+        $testResponse->assertStatus(401);
     }
 
-    public function test_cannot_create_duplicate_company_profile()
+    public function test_cannot_create_duplicate_company_profile(): void
     {
         config(['queue.default' => 'sync']);
 
@@ -75,25 +75,25 @@ class CreateCompanyProfileTest extends TestCase
         $this->actingAs($user)->postJson('/new-company', $payload);
 
         // Attempt to create another profile
-        $response = $this->actingAs($user)->postJson('/new-company', $payload);
+        $testResponse = $this->actingAs($user)->postJson('/new-company', $payload);
 
-        $response->assertStatus(400);
-        $response->assertJson(['message' => 'Company profile already exists']);
+        $testResponse->assertStatus(400);
+        $testResponse->assertJson(['message' => 'Company profile already exists']);
     }
 
-    public function test_validation_error_for_missing_fields()
+    public function test_validation_error_for_missing_fields(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/new-company', []);
+        $testResponse = $this->actingAs($user)->postJson('/new-company', []);
 
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors([
+        $testResponse->assertStatus(422);
+        $testResponse->assertJsonValidationErrors([
             'company_name', 'website', 'staff_name', 'staff_role'
         ]);
     }
 
-    public function test_email_notifications_field_defaults_to_false_if_not_specified()
+    public function test_email_notifications_field_defaults_to_false_if_not_specified(): void
     {
         config(['queue.default' => 'sync']);
  
@@ -117,7 +117,7 @@ class CreateCompanyProfileTest extends TestCase
         ]);
     }
 
-    public function test_staff_name_is_saved_to_user_name()
+    public function test_staff_name_is_saved_to_user_name(): void
     {
         config(['queue.default' => 'sync']);
 

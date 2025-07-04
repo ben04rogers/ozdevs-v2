@@ -12,11 +12,11 @@ class CreateDeveloperProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_authenticated_user_can_create_developer_profile()
+    public function test_authenticated_user_can_create_developer_profile(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/new-developer', [
+        $testResponse = $this->actingAs($user)->postJson('/new-developer', [
             'name' => 'Test User',
             'hero' => 'Software Engineer',
             'bio' => 'Test bio',
@@ -30,7 +30,7 @@ class CreateDeveloperProfileTest extends TestCase
             'contract' => false,
         ]);
 
-        $response->assertStatus(302);
+        $testResponse->assertStatus(302);
 
         $this->assertDatabaseHas('developer_profiles', [
             'user_id' => $user->id,
@@ -47,25 +47,25 @@ class CreateDeveloperProfileTest extends TestCase
         ]);
     }
 
-    public function test_guest_cannot_create_developer_profile()
+    public function test_guest_cannot_create_developer_profile(): void
     {
-        $response = $this->postJson('/new-developer', []);
+        $testResponse = $this->postJson('/new-developer', []);
 
-        $response->assertStatus(401);
+        $testResponse->assertStatus(401);
     }
 
-    public function test_validation_error_for_missing_fields()
+    public function test_validation_error_for_missing_fields(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/new-developer', []);
+        $testResponse = $this->actingAs($user)->postJson('/new-developer', []);
 
-        $response->assertStatus(422);
+        $testResponse->assertStatus(422);
         
-        $response->assertJsonValidationErrors(['name', 'hero', 'state', 'country']);
+        $testResponse->assertJsonValidationErrors(['name', 'hero', 'state', 'country']);
     }
 
-    public function test_user_cannot_create_multiple_developer_profiles()
+    public function test_user_cannot_create_multiple_developer_profiles(): void
     {
         $user = User::factory()->create();
 
@@ -87,10 +87,10 @@ class CreateDeveloperProfileTest extends TestCase
         $this->actingAs($user)->postJson('/new-developer', $payload);
         
         // Attempt to create a second profile
-        $response = $this->actingAs($user)->postJson('/new-developer', $payload);
+        $testResponse = $this->actingAs($user)->postJson('/new-developer', $payload);
         
-        $response->assertStatus(400);
-        $response->assertJson([
+        $testResponse->assertStatus(400);
+        $testResponse->assertJson([
             'message' => 'Developer profile already exists',
         ]);
     }

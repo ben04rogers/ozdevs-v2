@@ -37,9 +37,9 @@ class DeveloperProfilesController extends Controller
         return view('edit-developer', ['developerProfile' => $developerProfile]);
     }
 
-    public function store(StoreDeveloperProfileRequest $request)
+    public function store(StoreDeveloperProfileRequest $storeDeveloperProfileRequest)
     {
-        $data = $request->validated();
+        $data = $storeDeveloperProfileRequest->validated();
 
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
             return response()->json([
@@ -47,7 +47,7 @@ class DeveloperProfilesController extends Controller
             ], 400);
         }
 
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $data = $this->handleTheImageUploadToS3($storeDeveloperProfileRequest, $data);
 
         dispatch(new CreateDeveloperProfileJob($data));
 
@@ -65,7 +65,7 @@ class DeveloperProfilesController extends Controller
         return view('developer-profile', ['developerProfile' => $developerProfile]);
     }
 
-    public function update(UpdateDeveloperProfileRequest $request, $id)
+    public function update(UpdateDeveloperProfileRequest $updateDeveloperProfileRequest, $id)
     {
         if (auth()->id() != $id) {
             return redirect()->route('developers')->with('error', 'You are not authorized to update this profile.');
@@ -77,9 +77,9 @@ class DeveloperProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
-        $data = $request->validated();
+        $data = $updateDeveloperProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($request, $data);
+        $data = $this->handleTheImageUploadToS3($updateDeveloperProfileRequest, $data);
 
         dispatch(new UpdateDeveloperProfileJob($id, $data));
 

@@ -13,12 +13,12 @@ class UpdateDeveloperProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_authenticated_user_can_update_developer_profile()
+    public function test_authenticated_user_can_update_developer_profile(): void
     {
         Storage::fake('s3');
 
         $user = User::factory()->create();
-        $profile = DeveloperProfile::factory()->create([
+        DeveloperProfile::factory()->create([
             'user_id' => $user->id,
             'hero' => 'Old Hero',
             'bio' => 'Old bio',
@@ -38,9 +38,9 @@ class UpdateDeveloperProfileTest extends TestCase
             'contract' => true,
         ];
 
-        $response = $this->actingAs($user)->putJson("/developer-profiles/{$user->id}", $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
 
-        $response->assertStatus(302);
+        $testResponse->assertStatus(302);
 
         $this->assertDatabaseHas('developer_profiles', [
             'user_id' => $user->id,
@@ -61,23 +61,23 @@ class UpdateDeveloperProfileTest extends TestCase
         $this->assertEquals('Updated Name', $user->name);
     }
 
-    public function test_cannot_update_someone_elses_profile()
+    public function test_cannot_update_someone_elses_profile(): void
     {
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
-        $profile = DeveloperProfile::factory()->create([
+        DeveloperProfile::factory()->create([
             'user_id' => $otherUser->id,
             'hero' => 'Other Hero',
         ]);
 
 
-        $response = $this->actingAs($user)->putJson("/developer-profiles/{$otherUser->id}", [
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $otherUser->id, [
             'hero' => 'Hacked Hero',
         ]);
 
-        $response->assertStatus(302);
+        $testResponse->assertStatus(302);
 
-        $response->assertSessionHas('error', 'You are not authorized to update this profile.');
+        $testResponse->assertSessionHas('error', 'You are not authorized to update this profile.');
 
         $this->assertDatabaseHas('developer_profiles', [
             'user_id' => $otherUser->id,
@@ -85,10 +85,10 @@ class UpdateDeveloperProfileTest extends TestCase
         ]);
     }
 
-    public function test_validation_errors_are_returned_for_invalid_data()
+    public function test_validation_errors_are_returned_for_invalid_data(): void
     {
         $user = User::factory()->create();
-        $profile = DeveloperProfile::factory()->create(['user_id' => $user->id]);
+        DeveloperProfile::factory()->create(['user_id' => $user->id]);
 
         $payload = [
             'state' => 'InvalidStateName',
@@ -96,25 +96,25 @@ class UpdateDeveloperProfileTest extends TestCase
             'role_level' => 'superhero',
         ];
 
-        $response = $this->actingAs($user)->putJson("/developer-profiles/{$user->id}", $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
 
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['state', 'country', 'role_level']);
+        $testResponse->assertStatus(422);
+        $testResponse->assertJsonValidationErrors(['state', 'country', 'role_level']);
     }
 
-    public function test_unauthenticated_user_cannot_update_profile()
+    public function test_unauthenticated_user_cannot_update_profile(): void
     {
         $user = User::factory()->create();
-        $profile = DeveloperProfile::factory()->create(['user_id' => $user->id]);
+        DeveloperProfile::factory()->create(['user_id' => $user->id]);
 
         $payload = ['hero' => 'Unauthenticated update'];
 
-        $response = $this->putJson("/developer-profiles/{$user->id}", $payload);
+        $testResponse = $this->putJson('/developer-profiles/' . $user->id, $payload);
 
-        $response->assertStatus(401);
+        $testResponse->assertStatus(401);
     }
 
-    public function test_partial_update_does_not_clear_unspecified_fields()
+    public function test_partial_update_does_not_clear_unspecified_fields(): void
     {
         $user = User::factory()->create();
         $profile = DeveloperProfile::factory()->create([
@@ -127,9 +127,9 @@ class UpdateDeveloperProfileTest extends TestCase
             'bio' => 'Updated bio',
         ];
 
-        $response = $this->actingAs($user)->putJson("/developer-profiles/{$user->id}", $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
 
-        $response->assertStatus(302);
+        $testResponse->assertStatus(302);
 
         $profile->refresh();
         $this->assertEquals('Updated bio', $profile->bio);

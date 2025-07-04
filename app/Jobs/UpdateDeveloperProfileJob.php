@@ -12,9 +12,12 @@ use App\Models\User;
 
 class UpdateDeveloperProfileJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     protected int $userId;
+
     protected array $data;
 
     public function __construct(int $userId, array $data)
