@@ -38,7 +38,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'contract' => true,
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson("/developer-profiles/$user->id", $payload);
 
         $testResponse->assertStatus(302);
 
@@ -71,7 +71,7 @@ class UpdateDeveloperProfileTest extends TestCase
         ]);
 
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $otherUser->id, [
+        $testResponse = $this->actingAs($user)->putJson("/developer-profiles/$otherUser->id", [
             'hero' => 'Hacked Hero',
         ]);
 
@@ -96,7 +96,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'role_level' => 'superhero',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson("/developer-profiles/$user->id", $payload);
 
         $testResponse->assertStatus(422);
         $testResponse->assertJsonValidationErrors(['state', 'country', 'role_level']);
@@ -109,7 +109,7 @@ class UpdateDeveloperProfileTest extends TestCase
 
         $payload = ['hero' => 'Unauthenticated update'];
 
-        $testResponse = $this->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->putJson("/developer-profiles/$user->id", $payload);
 
         $testResponse->assertStatus(401);
     }
@@ -127,7 +127,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'bio' => 'Updated bio',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson("/developer-profiles/$user->id", $payload);
 
         $testResponse->assertStatus(302);
 
