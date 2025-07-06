@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CompanyProfilesController;
-use App\Http\Controllers\DeveloperProfilesController;
-use App\Http\Controllers\DevelopersController;
-use App\Http\Controllers\GetStartedController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\PurchaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DevelopersController;
+use App\Http\Controllers\GetStartedController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CompanyProfilesController;
+use App\Http\Controllers\DeveloperProfilesController;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/developers', [DevelopersController::class, "index"])->name("developers");
 Route::get('/pricing', [PricingController::class, "index"])->name("pricing");
-Route::get('/purchase', [PurchaseController::class, "index"])->name("purchase");
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, "index"])->name("login");
@@ -58,7 +58,15 @@ Route::middleware(['auth'])->group(function () {
     Route::put("/company-profiles/{id}", [CompanyProfilesController::class, "update"])->name("updateCompany");
 
     Route::get('/billing-portal', function (Request $request) {
-        return $request->user()->redirectToBillingPortal();
-    });
+        return $request->user()->redirectToBillingPortal(route('home'));
+    })->name("billing.portal");
+
+    Route::get('/purchase', [PurchaseController::class, "index"])->name("purchase");
+    Route::post('/purchase', [PurchaseController::class, "store"])->name("purchase.store");
+    Route::get('/purchase/success', [PurchaseController::class, "success"])->name("purchase.success");
 });
 
+Route::post(
+    '/stripe/webhook',
+    [WebhookController::class, 'handleWebhook']
+);

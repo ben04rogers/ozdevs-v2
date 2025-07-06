@@ -61,6 +61,10 @@
                                 <a href="{{ url('/messages') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Messages</a>
                             @endif
 
+                            @if (auth()->user()?->companyProfile && auth()->user()?->companyProfile?->paid_subscription)
+                                <a href="{{ route('billing.portal') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Billing Portal</a>
+                            @endif
+
                             <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
