@@ -6,23 +6,6 @@
         <h1 class="text-3xl font-bold mb-4 text-center">Purchase Company Subscription</h1>
         <p class="text-center text-gray-600 mb-8">Directly connect with hundreds of developers in Australia looking for their next job. Unlock premium features for your company and streamline your hiring workflow.</p>
 
-        @if(session('error'))
-            <div class="mb-4">
-                <div class="flex items-center p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    <svg class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11. . ."/></svg>
-                    <span class="font-medium">{{ session('error') }}</span>
-                </div>
-            </div>
-        @endif
-        @if(session('success'))
-            <div class="mb-4">
-                <div class="flex items-center p-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                    <svg class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11. . ."/></svg>
-                    <span class="font-medium">{{ session('success') }}</span>
-                </div>
-            </div>
-        @endif
-
         <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
             <div>
                 <div class="mb-2">
