@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gray-50 py-8 px-4">
-    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 mx-auto mt-16">
+<div class="bg-gray-50 py-4 px-4">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 mx-auto mt-4">
         <h1 class="text-3xl font-bold mb-4 text-center">Purchase Company Subscription</h1>
         <p class="text-center text-gray-600 mb-8">Directly connect with hundreds of developers in Australia looking for their next job. Unlock premium features for your company and streamline your hiring workflow.</p>
 

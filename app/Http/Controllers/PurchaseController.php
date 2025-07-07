@@ -25,7 +25,7 @@ class PurchaseController extends Controller
                 $companyProfile->save();
             }
 
-            return view('purchase-success');
+            return view('purchase');
         }
 
         return view('purchase', ['companyProfile' => $companyProfile]);
