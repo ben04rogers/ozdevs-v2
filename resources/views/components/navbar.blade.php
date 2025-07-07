@@ -19,7 +19,7 @@
                 <div class="hidden sm:ml-3 sm:block">
                     <div class="flex space-x-2">
                         <a href="{{ route('developers') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
-                        <a href="{{ route('pricing') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Pricing</a>
+                        <a href="{{ route('purchase') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Purchase</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
     <div class="sm:hidden" id="mobile-menu" x-show="mobileOpen">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <a href="{{ route('developers') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Developers</a>
-            <a href="{{ route('pricing') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Pricing</a>
+            <a href="{{ route('purchase') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Purchase</a>
             @guest
             <a href="{{ route('login') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Login</a>
             <a href="{{ route('register') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Register</a>

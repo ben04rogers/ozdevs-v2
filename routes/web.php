@@ -26,7 +26,6 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 
 Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/developers', [DevelopersController::class, "index"])->name("developers");
-Route::get('/pricing', [PricingController::class, "index"])->name("pricing");
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, "index"])->name("login");

@@ -65,6 +65,6 @@ class PurchaseController extends Controller
             $companyProfile->save();
         }
 
-        return view('purchase-success');
+        return redirect()->route('purchase')->with('success', 'Your company subscription is now active. Thank you!');
     }
 }

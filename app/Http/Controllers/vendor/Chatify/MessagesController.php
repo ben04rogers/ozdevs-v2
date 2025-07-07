@@ -47,7 +47,7 @@ class MessagesController extends Controller
     public function index( $id = null)
     {
         if (!auth()->user()?->developerProfile && !auth()->user()?->companyProfile?->paid_subscription) {
-            return redirect()->route('pricing')->with('error', 'Messaging requires paid subscription.');
+            return redirect()->route('purchase')->with('error', 'Messaging requires paid subscription.');
         }
 
         $messenger_color = Auth::user()->messenger_color;
