@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Http\Requests\StoreCompanyProfileRequest;
+use App\Http\Requests\UpdateCompanyProfileRequest;
 use App\Jobs\CreateCompanyProfileJob;
 use App\Models\CompanyProfile;
 use App\Models\DeveloperProfile;
@@ -73,7 +74,7 @@ class CompanyProfilesController extends Controller
         return view('edit-company', ['companyProfile' => $companyProfile]);
     }
 
-    public function update(StoreCompanyProfileRequest $storeCompanyProfileRequest, $id)
+    public function update(UpdateCompanyProfileRequest $updateCompanyProfileRequest, $id)
     {
         $companyProfile = CompanyProfile::where('user_id', $id)->first();
 
@@ -81,9 +82,9 @@ class CompanyProfilesController extends Controller
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 
-        $data = $storeCompanyProfileRequest->validated();
+        $data = $updateCompanyProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data);
+        $data = $this->handleTheImageUploadToS3($updateCompanyProfileRequest, $data);
 
         $name = $data['staff_name'] ?? null;
         unset($data['staff_name']);
@@ -102,11 +103,11 @@ class CompanyProfilesController extends Controller
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
     }
 
-    public function handleTheImageUploadToS3(StoreCompanyProfileRequest $storeCompanyProfileRequest, mixed $data): mixed
+    public function handleTheImageUploadToS3($request, mixed $data): mixed
     {
-        if ($storeCompanyProfileRequest->hasFile('image') && $storeCompanyProfileRequest->file('image')->isValid()) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
             try {
-                $uploadedImage = $storeCompanyProfileRequest->file('image');
+                $uploadedImage = $request->file('image');
 
                 // Generate a unique filename
                 $fileName = 'company_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
