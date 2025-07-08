@@ -11,7 +11,6 @@ use App\Http\Controllers\GetStartedController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CompanyProfilesController;
 use App\Http\Controllers\DeveloperProfilesController;
-use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +63,3 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase', [PurchaseController::class, "store"])->name("purchase.store");
     Route::get('/purchase/success', [PurchaseController::class, "success"])->name("purchase.success");
 });
-
-Route::post(
-    '/stripe/webhook',
-    [WebhookController::class, 'handleWebhook']
-);
