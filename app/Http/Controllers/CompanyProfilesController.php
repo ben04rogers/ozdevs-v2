@@ -12,10 +12,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use App\Http\Controllers\Traits\HandlesImageUploadToS3;
+
 
 class CompanyProfilesController extends Controller
 {
     use DispatchesJobs;
+    use HandlesImageUploadToS3;
 
     public function index() {
 
@@ -40,7 +43,7 @@ class CompanyProfilesController extends Controller
             ], 400);
         }
 
-        $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data);
+        $this->handleTheImageUploadToS3($storeCompanyProfileRequest, $data, 'company_image_');
 
         dispatch(new CreateCompanyProfileJob($data));
 
@@ -88,7 +91,7 @@ class CompanyProfilesController extends Controller
 
         $data = $updateCompanyProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($updateCompanyProfileRequest, $data);
+        $data = $this->handleTheImageUploadToS3($updateCompanyProfileRequest, $data, 'company_image_');
 
         $name = $data['staff_name'] ?? null;
         unset($data['staff_name']);
@@ -105,28 +108,5 @@ class CompanyProfilesController extends Controller
         }
 
         return redirect()->route('companyProfile', $companyProfile->id)->with('success', 'Company profile updated successfully.');
-    }
-
-    public function handleTheImageUploadToS3($request, mixed $data): mixed
-    {
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            try {
-                $uploadedImage = $request->file('image');
-
-                // Generate a unique filename
-                $fileName = 'company_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
-
-                // Use the store method to store the file in the root of the 's3' disk
-                $imagePath = $uploadedImage->storeAs('', $fileName, 's3');
-
-                $s3Url = Storage::disk('s3')->url($imagePath);
-
-                $data['image'] = $s3Url;
-            } catch (Exception $e) {
-                Log::error($e->getMessage());
-            }
-        }
-
-        return $data;
     }
 }

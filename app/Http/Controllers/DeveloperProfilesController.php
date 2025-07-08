@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\CreateDeveloperProfileJob;
 use App\Jobs\UpdateDeveloperProfileJob;
+use App\Http\Controllers\Traits\HandlesImageUploadToS3;
 
 class DeveloperProfilesController extends Controller
 {
+    use HandlesImageUploadToS3;
+
     public function index() {
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
             return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('warning', 'You have already created a developer profile.');
@@ -47,7 +50,7 @@ class DeveloperProfilesController extends Controller
             ], 400);
         }
 
-        $data = $this->handleTheImageUploadToS3($storeDeveloperProfileRequest, $data);
+        $data = $this->handleTheImageUploadToS3($storeDeveloperProfileRequest, $data, 'profile_image_');
 
         dispatch(new CreateDeveloperProfileJob($data));
 
@@ -79,33 +82,10 @@ class DeveloperProfilesController extends Controller
 
         $data = $updateDeveloperProfileRequest->validated();
 
-        $data = $this->handleTheImageUploadToS3($updateDeveloperProfileRequest, $data);
+        $data = $this->handleTheImageUploadToS3($updateDeveloperProfileRequest, $data, 'profile_image_');
 
         dispatch(new UpdateDeveloperProfileJob($id, $data));
 
         return redirect()->route('developerProfile', $developerProfile->id)->with('success', 'Developer profile updated successfully.');
-    }
-
-    public function handleTheImageUploadToS3($request, mixed $data): mixed
-    {
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            try {
-                $uploadedImage = $request->file('image');
-
-                // Generate a unique filename
-                $fileName = 'profile_image_' . time() . '.' . $uploadedImage->getClientOriginalExtension();
-
-                // Use the store method to store the file in the root of the 's3' disk
-                $imagePath = $uploadedImage->storeAs('', $fileName, 's3');
-
-                $s3Url = Storage::disk('s3')->url($imagePath);
-
-                $data['image'] = $s3Url;
-            } catch (Exception $e) {
-                Log::error($e->getMessage());
-            }
-        }
-
-        return $data;
     }
 }
