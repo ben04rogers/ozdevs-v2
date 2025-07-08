@@ -15,7 +15,7 @@ trait HandlesImageUploadToS3
                 $uploadedImage = $request->file('image');
 
                 // Generate a unique filename
-                $fileName = $prefix . time() . '.' . $uploadedImage->getClientOriginalExtension();
+                $fileName = $prefix.time().'.'.$uploadedImage->getClientOriginalExtension();
 
                 // Use the store method to store the file in the root of the 's3' disk
                 $imagePath = $uploadedImage->storeAs('', $fileName, 's3');

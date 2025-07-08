@@ -27,7 +27,7 @@ class CompanyProfile extends Model
         'staff_role',
         'bio',
         'email_notifications',
-        'image'
+        'image',
     ];
 
     public function user()

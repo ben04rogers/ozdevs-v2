@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
+use App\Http\Controllers\Traits\HandlesImageUploadToS3;
 use App\Http\Requests\StoreDeveloperProfileRequest;
 use App\Http\Requests\UpdateDeveloperProfileRequest;
-use App\Models\DeveloperProfile;
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use App\Jobs\CreateDeveloperProfileJob;
 use App\Jobs\UpdateDeveloperProfileJob;
-use App\Http\Controllers\Traits\HandlesImageUploadToS3;
+use App\Models\DeveloperProfile;
 
 class DeveloperProfilesController extends Controller
 {
     use HandlesImageUploadToS3;
 
-    public function index() {
+    public function index()
+    {
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
             return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('warning', 'You have already created a developer profile.');
         }
 
-        return view("new-developer");
+        return view('new-developer');
     }
 
     public function edit($id)
@@ -33,7 +30,7 @@ class DeveloperProfilesController extends Controller
 
         $developerProfile = DeveloperProfile::where('id', $id)->first();
 
-        if (!$developerProfile) {
+        if (! $developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
@@ -61,7 +58,7 @@ class DeveloperProfilesController extends Controller
     {
         $developerProfile = DeveloperProfile::where('id', $id)->first();
 
-        if (!$developerProfile) {
+        if (! $developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 
@@ -76,7 +73,7 @@ class DeveloperProfilesController extends Controller
 
         $developerProfile = DeveloperProfile::where('user_id', $id)->first();
 
-        if (!$developerProfile) {
+        if (! $developerProfile) {
             return redirect()->route('developers')->with('error', 'Developer profile not found.');
         }
 

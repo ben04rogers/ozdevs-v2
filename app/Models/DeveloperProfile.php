@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Skill;
-
 
 /**
  * @property int $user_id
@@ -53,7 +51,7 @@ class DeveloperProfile extends Model
         'stack_overflow',
         'linkedin',
         'email_notifications',
-        'image'
+        'image',
     ];
 
     public function user()

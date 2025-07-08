@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\CompanyProfile;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\CompanyProfile;
 
 class UpdateCompanyProfileTest extends TestCase
 {
@@ -36,7 +35,7 @@ class UpdateCompanyProfileTest extends TestCase
             'email_notifications' => true,
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/company-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/company-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(302);
 
@@ -63,7 +62,7 @@ class UpdateCompanyProfileTest extends TestCase
             'staff_role' => 'Other Role',
         ]);
 
-        $testResponse = $this->actingAs($user)->putJson('/company-profiles/' . $otherUser->id, [
+        $testResponse = $this->actingAs($user)->putJson('/company-profiles/'.$otherUser->id, [
             'company_name' => 'Hacked Company',
             'staff_name' => 'Hacker',
         ]);
@@ -87,17 +86,17 @@ class UpdateCompanyProfileTest extends TestCase
 
         $payload = [
             'company_name' => str_repeat('a', 300),
-            'staff_name' => '', 
+            'staff_name' => '',
             'staff_role' => '',
             'bio' => str_repeat('b', 2000),
             'email_notifications' => 'not-a-boolean',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/company-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/company-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(422);
         $testResponse->assertJsonValidationErrors([
-            'company_name', 'staff_name', 'staff_role', 'bio', 'email_notifications'
+            'company_name', 'staff_name', 'staff_role', 'bio', 'email_notifications',
         ]);
     }
 
@@ -108,7 +107,7 @@ class UpdateCompanyProfileTest extends TestCase
 
         $payload = ['company_name' => 'Unauthenticated update'];
 
-        $testResponse = $this->putJson('/company-profiles/' . $user->id, $payload);
+        $testResponse = $this->putJson('/company-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(401);
     }
@@ -130,7 +129,7 @@ class UpdateCompanyProfileTest extends TestCase
             'staff_name' => 'Updated Staff',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/company-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/company-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(302);
 
@@ -141,4 +140,4 @@ class UpdateCompanyProfileTest extends TestCase
         $user->refresh();
         $this->assertEquals('Updated Staff', $user->name);
     }
-} 
+}

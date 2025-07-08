@@ -29,7 +29,7 @@ class UpdateDeveloperProfileRequest extends FormRequest
                     'South Australia',
                     'Tasmania',
                     'Victoria',
-                    'Western Australia'
+                    'Western Australia',
                 ]),
             ],
             'country' => ['sometimes', Rule::in(['Australia'])],
@@ -45,7 +45,7 @@ class UpdateDeveloperProfileRequest extends FormRequest
             'stack_overflow' => 'sometimes|nullable|string|max:255',
             'linkedin' => 'sometimes|nullable|string|max:255',
             'email_notifications' => 'sometimes|boolean',
-            'image' => 'sometimes|image|max:2048'
+            'image' => 'sometimes|image|max:2048',
         ];
     }
 }

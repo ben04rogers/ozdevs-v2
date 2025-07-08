@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\CompanyProfile;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyProfileFactory extends Factory

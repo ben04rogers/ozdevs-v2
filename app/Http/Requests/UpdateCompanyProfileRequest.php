@@ -20,7 +20,7 @@ class UpdateCompanyProfileRequest extends FormRequest
             'staff_role' => 'sometimes|string|max:255',
             'bio' => 'sometimes|nullable|string|max:1000',
             'email_notifications' => 'sometimes|nullable|boolean',
-            'image' => 'nullable|image|max:2048'
+            'image' => 'nullable|image|max:2048',
         ];
     }
 }

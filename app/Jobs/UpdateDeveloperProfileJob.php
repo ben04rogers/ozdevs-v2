@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Models\DeveloperProfile;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\DeveloperProfile;
-use App\Models\User;
 
 class UpdateDeveloperProfileJob implements ShouldQueue
 {
@@ -16,6 +16,7 @@ class UpdateDeveloperProfileJob implements ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
+
     protected int $userId;
 
     protected array $data;
@@ -30,7 +31,7 @@ class UpdateDeveloperProfileJob implements ShouldQueue
     {
         $developerProfile = DeveloperProfile::where('user_id', $this->userId)->first();
 
-        if (!$developerProfile) {
+        if (! $developerProfile) {
             // Optionally, handle the case where the profile doesn't exist.
             return;
         }

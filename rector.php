@@ -8,8 +8,8 @@ use Rector\Set\ValueObject\SetList;
 return static function (RectorConfig $rectorConfig): void {
     // Paths to refactor
     $rectorConfig->paths([
-        __DIR__ . '/app',
-        __DIR__ . '/tests',
+        __DIR__.'/app',
+        __DIR__.'/tests',
     ]);
 
     $rectorConfig->sets([

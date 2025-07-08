@@ -13,7 +13,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        if (!$request->expectsJson()) {
+        if (! $request->expectsJson()) {
             // Add flash message for non-JSON requests
             Session::flash('warning', 'You need to be logged in to access this page.');
         }

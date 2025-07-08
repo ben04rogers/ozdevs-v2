@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
-use App\Models\User;
 
 class CreateCompanyProfileTest extends TestCase
 {
@@ -38,8 +37,8 @@ class CreateCompanyProfileTest extends TestCase
             'website' => 'https://testcompany.com',
             'staff_role' => 'HR Manager',
             'bio' => 'We build amazing stuff.',
-            'email_notifications' => true
-         ]);
+            'email_notifications' => true,
+        ]);
     }
 
     public function test_guest_cannot_create_company_profile(): void
@@ -89,14 +88,14 @@ class CreateCompanyProfileTest extends TestCase
 
         $testResponse->assertStatus(422);
         $testResponse->assertJsonValidationErrors([
-            'company_name', 'website', 'staff_name', 'staff_role'
+            'company_name', 'website', 'staff_name', 'staff_role',
         ]);
     }
 
     public function test_email_notifications_field_defaults_to_false_if_not_specified(): void
     {
         config(['queue.default' => 'sync']);
- 
+
         $user = User::factory()->create();
 
         $payload = [
@@ -122,7 +121,7 @@ class CreateCompanyProfileTest extends TestCase
         config(['queue.default' => 'sync']);
 
         $user = User::factory()->create([
-            'name' => 'Original Name'
+            'name' => 'Original Name',
         ]);
 
         $payload = [
@@ -136,7 +135,7 @@ class CreateCompanyProfileTest extends TestCase
         $this->actingAs($user)->postJson('/new-company', $payload);
 
         $user->refresh();
-        
+
         $this->assertEquals('Updated Staff Name', $user->name);
     }
 }

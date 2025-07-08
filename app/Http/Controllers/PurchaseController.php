@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
@@ -14,13 +14,13 @@ class PurchaseController extends Controller
 
         $companyProfile = CompanyProfile::where('user_id', $user->id)->first();
 
-        if (!$companyProfile) {
+        if (! $companyProfile) {
             return redirect()->route('newCompanyForm')->with('error', 'You must create a company profile before purchasing a subscription.');
         }
 
-       // Check if user already subscribed
-       if ($user->subscribed('default')) {
-            if (!$companyProfile->paid_subscription) {
+        // Check if user already subscribed
+        if ($user->subscribed('default')) {
+            if (! $companyProfile->paid_subscription) {
                 $companyProfile->paid_subscription = true;
                 $companyProfile->save();
             }
@@ -36,7 +36,7 @@ class PurchaseController extends Controller
         $user = Auth::user();
         $companyProfile = CompanyProfile::where('user_id', $user->id)->first();
 
-        if (!$companyProfile) {
+        if (! $companyProfile) {
             return redirect()->route('newCompanyForm')->with('error', 'You must create a company profile before purchasing.');
         }
 
@@ -45,12 +45,12 @@ class PurchaseController extends Controller
             return redirect()->route('purchase')->with('success', 'You are already subscribed.');
         }
 
-        # Price ID is not sensitive so we can leave it here for now
+        // Price ID is not sensitive so we can leave it here for now
         $stripePriceId = 'price_1NNuOmLy6lmd25t7G0dDmNKU';
 
         return $user->newSubscription('default', $stripePriceId)
             ->checkout([
-                'success_url' => route('purchase.success') . '?session_id={CHECKOUT_SESSION_ID}',
+                'success_url' => route('purchase.success').'?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => route('purchase'),
             ]);
     }
@@ -59,8 +59,8 @@ class PurchaseController extends Controller
     {
         $user = Auth::user();
         $companyProfile = CompanyProfile::where('user_id', $user->id)->first();
-        
-        if ($companyProfile && !$companyProfile->paid_subscription) {
+
+        if ($companyProfile && ! $companyProfile->paid_subscription) {
             $companyProfile->paid_subscription = true;
             $companyProfile->save();
         }

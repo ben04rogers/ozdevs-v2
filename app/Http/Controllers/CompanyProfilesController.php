@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
+use App\Http\Controllers\Traits\HandlesImageUploadToS3;
 use App\Http\Requests\StoreCompanyProfileRequest;
 use App\Http\Requests\UpdateCompanyProfileRequest;
 use App\Jobs\CreateCompanyProfileJob;
 use App\Models\CompanyProfile;
 use App\Models\DeveloperProfile;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use App\Http\Controllers\Traits\HandlesImageUploadToS3;
-
 
 class CompanyProfilesController extends Controller
 {
     use DispatchesJobs;
     use HandlesImageUploadToS3;
 
-    public function index() {
+    public function index()
+    {
 
         if (DeveloperProfile::where('user_id', auth()->id())->exists()) {
             return redirect()->route('developerProfile', auth()->user()->developerProfile->id)->with('warning', 'You have already created a developer profile.');
@@ -30,7 +27,7 @@ class CompanyProfilesController extends Controller
             return redirect()->route('companyProfile', auth()->user()->companyProfile->id)->with('warning', 'You have already created a company profile.');
         }
 
-        return view("new-company");
+        return view('new-company');
     }
 
     public function store(StoreCompanyProfileRequest $storeCompanyProfileRequest)
@@ -54,7 +51,7 @@ class CompanyProfilesController extends Controller
     {
         $companyProfile = CompanyProfile::where('id', $id)->first();
 
-        if (!$companyProfile) {
+        if (! $companyProfile) {
             // TODO: Change this to redirect somewhere else
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
@@ -70,7 +67,7 @@ class CompanyProfilesController extends Controller
 
         $companyProfile = CompanyProfile::where('id', $id)->first();
 
-        if (!$companyProfile) {
+        if (! $companyProfile) {
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 
@@ -85,7 +82,7 @@ class CompanyProfilesController extends Controller
 
         $companyProfile = CompanyProfile::where('user_id', $id)->first();
 
-        if (!$companyProfile) {
+        if (! $companyProfile) {
             return redirect()->route('developers')->with('error', 'Company profile not found.');
         }
 

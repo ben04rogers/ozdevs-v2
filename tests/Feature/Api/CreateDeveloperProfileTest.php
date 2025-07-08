@@ -2,11 +2,9 @@
 
 namespace Tests\Feature\Api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
-use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CreateDeveloperProfileTest extends TestCase
 {
@@ -61,7 +59,7 @@ class CreateDeveloperProfileTest extends TestCase
         $testResponse = $this->actingAs($user)->postJson('/new-developer', []);
 
         $testResponse->assertStatus(422);
-        
+
         $testResponse->assertJsonValidationErrors(['name', 'hero', 'state', 'country']);
     }
 
@@ -82,13 +80,13 @@ class CreateDeveloperProfileTest extends TestCase
             'full_time' => true,
             'contract' => false,
         ];
-        
+
         // Create the first profile
         $this->actingAs($user)->postJson('/new-developer', $payload);
-        
+
         // Attempt to create a second profile
         $testResponse = $this->actingAs($user)->postJson('/new-developer', $payload);
-        
+
         $testResponse->assertStatus(400);
         $testResponse->assertJson([
             'message' => 'Developer profile already exists',

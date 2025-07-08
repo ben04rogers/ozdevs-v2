@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\DeveloperProfile;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\DeveloperProfile;
 
 class UpdateDeveloperProfileTest extends TestCase
 {
@@ -38,7 +37,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'contract' => true,
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(302);
 
@@ -57,7 +56,7 @@ class UpdateDeveloperProfileTest extends TestCase
         ]);
 
         $user->refresh();
-        
+
         $this->assertEquals('Updated Name', $user->name);
     }
 
@@ -70,8 +69,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'hero' => 'Other Hero',
         ]);
 
-
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $otherUser->id, [
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/'.$otherUser->id, [
             'hero' => 'Hacked Hero',
         ]);
 
@@ -96,7 +94,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'role_level' => 'superhero',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(422);
         $testResponse->assertJsonValidationErrors(['state', 'country', 'role_level']);
@@ -109,7 +107,7 @@ class UpdateDeveloperProfileTest extends TestCase
 
         $payload = ['hero' => 'Unauthenticated update'];
 
-        $testResponse = $this->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->putJson('/developer-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(401);
     }
@@ -129,7 +127,7 @@ class UpdateDeveloperProfileTest extends TestCase
             'bio' => 'Updated bio',
         ];
 
-        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/' . $user->id, $payload);
+        $testResponse = $this->actingAs($user)->putJson('/developer-profiles/'.$user->id, $payload);
 
         $testResponse->assertStatus(302);
 

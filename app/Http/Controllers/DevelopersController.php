@@ -24,15 +24,15 @@ class DevelopersController extends Controller
         if ($searchQuery) {
             $query->where(function ($subquery) use ($searchQuery): void {
                 $subquery->whereRaw('LOWER(bio) LIKE ?', [sprintf('%%%s%%', $searchQuery)])
-                    ->orWhere('state', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('hero', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('city', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('role_level', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('website', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('github', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('twitter', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('stack_overflow', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('linkedin', 'like', '%' . $searchQuery . '%');
+                    ->orWhere('state', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('hero', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('city', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('role_level', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('website', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('github', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('twitter', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('stack_overflow', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('linkedin', 'like', '%'.$searchQuery.'%');
             });
         }
 
@@ -44,7 +44,7 @@ class DevelopersController extends Controller
 
         $lengthAwarePaginator->appends($request->query());
 
-        return view("developers", [
+        return view('developers', [
             'developers' => $lengthAwarePaginator,
         ]);
     }

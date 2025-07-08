@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
-    public function index() {
-        return view("auth.register");
+    public function index()
+    {
+        return view('auth.register');
     }
 
     public function store(Request $request)
@@ -24,7 +25,7 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
         ]);
-        
+
         // Create a new user
         $user = User::create([
             'user_type' => $validatedData['user_type'],

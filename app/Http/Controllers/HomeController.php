@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeveloperProfile;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -14,8 +13,8 @@ class HomeController extends Controller
             ->orderByRaw("CASE WHEN search_status = 'actively looking' THEN 0 ELSE 1 END, created_at DESC")
             ->orderByDesc('created_at')->get();
 
-        return view("home", [
-            'developers' => $developers
+        return view('home', [
+            'developers' => $developers,
         ]);
     }
 }
