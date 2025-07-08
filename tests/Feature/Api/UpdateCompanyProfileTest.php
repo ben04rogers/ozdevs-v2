@@ -18,7 +18,7 @@ class UpdateCompanyProfileTest extends TestCase
         Storage::fake('s3');
 
         $user = User::factory()->create(['name' => 'Old Staff']);
-        $profile = CompanyProfile::factory()->create([
+        CompanyProfile::factory()->create([
             'user_id' => $user->id,
             'company_name' => 'Old Company',
             'bio' => 'Old bio',
@@ -57,7 +57,7 @@ class UpdateCompanyProfileTest extends TestCase
     {
         $user = User::factory()->create(['name' => 'User']);
         $otherUser = User::factory()->create(['name' => 'Other Staff']);
-        $profile = CompanyProfile::factory()->create([
+        CompanyProfile::factory()->create([
             'user_id' => $otherUser->id,
             'company_name' => 'Other Company',
             'staff_role' => 'Other Role',
@@ -83,7 +83,7 @@ class UpdateCompanyProfileTest extends TestCase
     public function test_validation_errors_are_returned_for_invalid_data(): void
     {
         $user = User::factory()->create(['name' => 'Staff']);
-        $profile = CompanyProfile::factory()->create(['user_id' => $user->id]);
+        CompanyProfile::factory()->create(['user_id' => $user->id]);
 
         $payload = [
             'company_name' => str_repeat('a', 300),
@@ -104,7 +104,7 @@ class UpdateCompanyProfileTest extends TestCase
     public function test_unauthenticated_user_cannot_update_company_profile(): void
     {
         $user = User::factory()->create(['name' => 'Staff']);
-        $profile = CompanyProfile::factory()->create(['user_id' => $user->id]);
+        CompanyProfile::factory()->create(['user_id' => $user->id]);
 
         $payload = ['company_name' => 'Unauthenticated update'];
 

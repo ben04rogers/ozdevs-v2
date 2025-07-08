@@ -118,7 +118,7 @@ class UpdateDeveloperProfileTest extends TestCase
     {
         $user = User::factory()->create();
 
-        /** @var \App\Models\DeveloperProfile $profile */
+        /** @var DeveloperProfile $profile */
         $profile = DeveloperProfile::factory()->create([
             'user_id' => $user->id,
             'bio' => 'Bio',
