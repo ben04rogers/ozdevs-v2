@@ -117,6 +117,8 @@ class UpdateDeveloperProfileTest extends TestCase
     public function test_partial_update_does_not_clear_unspecified_fields(): void
     {
         $user = User::factory()->create();
+
+        /** @var \App\Models\DeveloperProfile $profile */
         $profile = DeveloperProfile::factory()->create([
             'user_id' => $user->id,
             'bio' => 'Bio',
