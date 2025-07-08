@@ -80,7 +80,12 @@ jobs:
         run: composer install --no-interaction --no-progress
 
       - name: Prepare .env
-        run: cp .env.example .env
+        run: cp .env.testing .env
+
+      - name: Set SQLite for testing
+        run: |
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=:memory:" >> .env
 
       - name: Generate application key
         run: php artisan key:generate
