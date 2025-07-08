@@ -43,6 +43,7 @@ jobs:
         run: find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
 
   larastan:
+  
     name: Larastan
     runs-on: ubuntu-latest
     steps:
@@ -60,3 +61,32 @@ jobs:
 
       - name: Run Larastan (static analysis)
         run: vendor/bin/phpstan analyse --no-progress
+
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql
+          tools: composer
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Prepare .env
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run migrations
+        run: php artisan migrate --env=testing --no-interaction --force
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --testdox
