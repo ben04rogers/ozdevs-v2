@@ -16,10 +16,10 @@ class UpdateCompanyProfileRequest extends FormRequest
         return [
             'company_name' => 'sometimes|string|max:255',
             'website' => 'sometimes|nullable|max:255',
+            'staff_name' => 'sometimes|string|max:255',
+            'staff_role' => 'sometimes|string|max:255',
             'bio' => 'sometimes|nullable|string|max:1000',
-            'city' => 'sometimes|nullable|string|max:255',
-            'state' => 'sometimes|nullable|string|max:255',
-            'country' => 'sometimes|nullable|string|max:255',
+            'email_notifications' => 'sometimes|nullable|boolean',
             'image' => 'nullable|image|max:2048'
         ];
     }

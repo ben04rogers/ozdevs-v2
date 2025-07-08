@@ -13,13 +13,11 @@ class CompanyProfileFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
             'company_name' => $this->faker->company,
-            'bio' => $this->faker->paragraph,
-            'city' => $this->faker->city,
-            'state' => $this->faker->state,
-            'country' => $this->faker->country,
             'website' => $this->faker->url,
+            'staff_role' => $this->faker->jobTitle,
+            'bio' => $this->faker->paragraph,
+            'email_notifications' => $this->faker->boolean,
             'image' => null,
         ];
     }

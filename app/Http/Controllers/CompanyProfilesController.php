@@ -76,6 +76,10 @@ class CompanyProfilesController extends Controller
 
     public function update(UpdateCompanyProfileRequest $updateCompanyProfileRequest, $id)
     {
+        if (auth()->id() != $id) {
+            return redirect()->route('developers')->with('error', 'You are not authorized to update this profile.');
+        }
+
         $companyProfile = CompanyProfile::where('user_id', $id)->first();
 
         if (!$companyProfile) {
