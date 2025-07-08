@@ -8,5 +8,5 @@ parameters:
         - tests
     reportUnmatchedIgnoredErrors: false
     excludePaths:
-        - app/Http/Controllers/vendor/Chatify/MessagesController.php
+        - app/Http/Controllers/vendor/Chatify/*
         
