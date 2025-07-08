@@ -43,6 +43,7 @@ jobs:
         run: find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
 
   larastan:
+  
     name: Larastan
     runs-on: ubuntu-latest
     steps:
