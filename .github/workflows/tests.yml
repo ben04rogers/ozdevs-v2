@@ -43,7 +43,6 @@ jobs:
         run: find . -type f -name "*.php" -not -path "./vendor/*" -exec php -l {} \;
 
   larastan:
-  
     name: Larastan
     runs-on: ubuntu-latest
     steps:
@@ -61,3 +60,22 @@ jobs:
 
       - name: Run Larastan (static analysis)
         run: vendor/bin/phpstan analyse --no-progress
+
+  pint:
+    name: Code Style (Pint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Check code style with Pint
+        run: vendor/bin/pint --test
