@@ -29,11 +29,11 @@ class DevelopersControllerTest extends TestCase
             'search_status' => 'not looking',
         ]);
 
-        $response = $this->get('/developers');
+        $testResponse = $this->get('/developers');
 
-        $response->assertOk()->assertViewIs('developers');
+        $testResponse->assertOk()->assertViewIs('developers');
 
-        $developers = $response->viewData('developers');
+        $developers = $testResponse->viewData('developers');
 
         $this->assertTrue($developers->contains($dev1));
         $this->assertTrue($developers->contains($dev2));
