@@ -3,10 +3,13 @@
 @section('content')
 <div class="bg-gray-50 py-4 px-4">
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 mx-auto mt-4">
-        <h1 class="text-3xl font-bold mb-4 text-center">Purchase Company Subscription</h1>
+        <h1 class="text-3xl font-bold mb-4 text-center">
+            {{ $companyProfile->paid_subscription ? 'You’re Subscribed 🎉' : 'Purchase Company Subscription' }}
+        </h1>
         <p class="text-center text-gray-600 mb-8">Directly connect with hundreds of developers in Australia looking for their next job. Unlock premium features for your company and streamline your hiring workflow.</p>
 
-        <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
+
+<div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 {{ $companyProfile->paid_subscription ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200' }} border rounded-lg p-6">
             <div>
                 <div class="mb-2">
                     <span class="font-semibold text-gray-700">Company:</span> {{ $companyProfile->company_name }}
@@ -60,19 +63,14 @@
         @if(!$companyProfile->paid_subscription)
             <form method="POST" action="{{ route('purchase.store') }}" class="mt-6">
                 @csrf
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     class="w-full flex justify-center items-center px-6 py-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-xl text-lg shadow-lg transition dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                     Buy Subscription (A$99.00/month)
                 </button>
             </form>
-        @else
-            <div class="flex items-center p-4 mt-6 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 justify-center" role="alert">
-                <svg class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11. . ."/></svg>
-                <span class="font-medium">You already have an active subscription!</span>
-            </div>
         @endif
     </div>
 </div>
-@endsection 
+@endsection
