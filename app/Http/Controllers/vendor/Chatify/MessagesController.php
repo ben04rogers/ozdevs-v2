@@ -57,12 +57,7 @@ class MessagesController extends Controller
             'dark_mode' => Auth::user()->dark_mode < 1 ? 'light' : 'dark',
         ]);
     }
-
-
-
-
     
-
     /**
      * Fetch data (user, favorite.. etc).
      *
