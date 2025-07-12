@@ -63,7 +63,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
 });
 
-Route::post(
-    '/stripe/webhook',
-    [WebhookController::class, 'handleWebhook']
-);
+Route::post('/stripe/webhook', [WebhookController::class, 'handleWebhook']);
