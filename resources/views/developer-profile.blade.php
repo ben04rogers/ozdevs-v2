@@ -25,7 +25,7 @@
                     <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $developerProfile->hero }}</h1>
 
                     <div class="mb-4">
-                        @if (auth()->check() && $developerProfile && (auth()->user()->id === $developerProfile->user_id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
+                        @if (auth()->check() && $developerProfile && (auth()->user()->id === $developerProfile->user_id || (auth()->user()->companyProfile && auth()->user()->subscribed('default'))))
                             <p class="text-xl">{{ $developerProfile->user->name  }}</p>
                         @endif
                     </div>
@@ -34,7 +34,7 @@
 
                     <div class="hidden md:block">
                         <h3 class="text-lg mb-1">Social Links</h3>
-                        @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
+                        @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default'))))
                             <div class="grid gap-4">
                                 <div>
                                     @if($developerProfile->website)
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        @if(auth()->user()?->subscribed('default')
+                        @if(auth()->user()?->subscribed('default'))
                             <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
                                 <i class="fas fa-comment-dots mr-1"></i> Message
                             </a>
@@ -135,7 +135,7 @@
 
                 <div class="block md:hidden mt-4">
                     <h3 class="text-lg mb-1">Social Links</h3>
-                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
+                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default'))))
                         <div class="grid gap-4">
                             <div>
                                 @if($developerProfile->website)
@@ -165,13 +165,13 @@
                         </div>
                     @else
                         <span class="inline-block border-dashed border-2 border-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 mb-5">
-                                <span class="inline-block pr-1">
-                                  <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"></path>
-                                  </svg>
-                                 </span>
-                                Private Information
-                           </span>
+                            <span class="inline-block pr-1">
+                                <svg class="fill-current text-gray-500 w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"></path>
+                                </svg>
+                                </span>
+                            Private Information
+                        </span>
                     @endif
                 </div>
             </div>
