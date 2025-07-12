@@ -37,8 +37,25 @@ class DeveloperProfileFactory extends Factory
         $randomDeveloperRole = $this->faker->randomElement($developerRoles);
 
         // Fetch a random user data from randomuser.me API
-        $response = json_decode(file_get_contents('https://randomuser.me/api/?inc=picture'));
-        $profileImage = $response->results[0]->picture->large;
+        try {
+            $response = json_decode(file_get_contents('https://randomuser.me/api/?inc=picture'));
+            if (
+                $response &&
+                isset($response->results) &&
+                isset($response->results[0]) &&
+                isset($response->results[0]->picture) &&
+                isset($response->results[0]->picture->large)
+            ) {
+                $profileImage = $response->results[0]->picture->large;
+            }
+        } catch (\Throwable $e) {
+            // Ignore exception, fallback below
+        }
+
+        // Fallback image if API fails
+        if (!$profileImage) {
+            $profileImage = 'https://ui-avatars.com/api/?name=Developer&background=random';
+        }
 
         return [
             'hero' => $randomDeveloperRole,
