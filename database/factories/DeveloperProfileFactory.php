@@ -37,6 +37,7 @@ class DeveloperProfileFactory extends Factory
         $randomDeveloperRole = $this->faker->randomElement($developerRoles);
 
         // Fetch a random user data from randomuser.me API
+        $profileImage = null;
         try {
             $response = json_decode(file_get_contents('https://randomuser.me/api/?inc=picture'));
             if (
