@@ -54,7 +54,7 @@ class DeveloperProfileFactory extends Factory
         }
 
         // Fallback image if API fails
-        if (!$profileImage) {
+        if (! $profileImage) {
             $profileImage = 'https://ui-avatars.com/api/?name=Developer&background=random';
         }
 
