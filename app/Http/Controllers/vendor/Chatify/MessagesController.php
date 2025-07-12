@@ -58,6 +58,11 @@ class MessagesController extends Controller
         ]);
     }
 
+
+
+
+    
+
     /**
      * Fetch data (user, favorite.. etc).
      *
