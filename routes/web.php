@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PurchaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Cashier\Http\Controllers\WebhookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
     Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
 });
+
+Route::post(
+    '/stripe/webhook',
+    [WebhookController::class, 'handleWebhook']
+);

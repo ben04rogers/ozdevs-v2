@@ -57,11 +57,11 @@
                                 <a href="{{ url('/company-profiles/' . auth()->user()->companyProfile->id) }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Company Profile</a>
                             @endif
 
-                            @if (auth()->user()?->developerProfile || auth()->user()?->companyProfile?->paid_subscription)
+                            @if (auth()->user()?->developerProfile || auth()->user()?->subscribed('default'))
                                 <a href="{{ url('/messages') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Messages</a>
                             @endif
 
-                            @if (auth()->user()?->companyProfile && auth()->user()?->companyProfile?->paid_subscription)
+                            @if (auth()->user()?->companyProfile && auth()->user()?->subscribed('default'))
                                 <a href="{{ route('billing.portal') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Billing</a>
                             @endif
 

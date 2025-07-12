@@ -20,7 +20,6 @@ return new class extends Migration
             $table->longText('bio');
             $table->boolean('email_notifications')->default(false);
             $table->string('image')->nullable();
-            $table->boolean('paid_subscription')->default(false);
             $table->timestamps();
         });
     }

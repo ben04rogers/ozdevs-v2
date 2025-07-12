@@ -46,7 +46,7 @@ class MessagesController extends Controller
      */
     public function index( $id = null)
     {
-        if (!auth()->user()?->developerProfile && !auth()->user()?->companyProfile?->paid_subscription) {
+        if (!auth()->user()?->developerProfile && !auth()->user()->subscribed('default')) {
             return redirect()->route('purchase')->with('error', 'Messaging requires paid subscription.');
         }
 

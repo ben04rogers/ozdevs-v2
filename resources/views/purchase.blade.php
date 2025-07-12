@@ -7,7 +7,7 @@
     {{-- Header --}}
     <div class="text-center space-y-2">
         <h1 class="text-3xl font-bold">
-            {{ $companyProfile->paid_subscription ? 'You’re Subscribed 🎉' : 'Purchase Company Subscription' }}
+            {{ Auth::user()->subscribed('default') ? 'You’re Subscribed 🎉' : 'Purchase Company Subscription' }}
         </h1>
         <p class="text-gray-600 mx-auto">
             Directly connect with hundreds of developers in Australia looking for their next job. Unlock premium features for your company and streamline your hiring workflow.
@@ -16,15 +16,15 @@
 
     {{-- Subscription Info --}}
     <div class="relative">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 {{ $companyProfile->paid_subscription ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200' }} border rounded-xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 {{ Auth::user()->subscribed('default') ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200' }} border rounded-xl p-6">
             <div>
                 <div class="mb-2 text-sm text-gray-700">
                     <span class="font-semibold">Company:</span> {{ $companyProfile->company_name }}
                 </div>
                 <div class="text-sm text-gray-700">
                     <span class="font-semibold">Current Subscription:</span>
-                    <span class="ml-2 i py-1 font-semibold {{ $companyProfile->paid_subscription ? 'text-green-700' : 'text-gray-500' }} rounded-full">
-                        {{ $companyProfile->paid_subscription ? 'Active' : 'None' }}
+                    <span class="ml-2 i py-1 font-semibold {{ Auth::user()->subscribed('default') ? 'text-green-700' : 'text-gray-500' }} rounded-full">
+                        {{ Auth::user()->subscribed('default') ? 'Active' : 'None' }}
                     </span>
                 </div>
             </div>
@@ -82,7 +82,7 @@
     </div>
 
     {{-- Call to Action --}}
-    @if(!$companyProfile->paid_subscription)
+    @if(!Auth::user()->subscribed('default'))
         <form method="POST" action="{{ route('purchase.store') }}">
             @csrf
             <button

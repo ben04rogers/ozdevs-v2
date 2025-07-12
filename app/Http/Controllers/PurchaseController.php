@@ -11,21 +11,10 @@ class PurchaseController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         $companyProfile = CompanyProfile::where('user_id', $user->id)->first();
 
         if (! $companyProfile) {
             return redirect()->route('newCompanyForm')->with('error', 'You must create a company profile before purchasing a subscription.');
-        }
-
-        // Check if user already subscribed
-        if ($user->subscribed('default')) {
-            if (! $companyProfile->paid_subscription) {
-                $companyProfile->paid_subscription = true;
-                $companyProfile->save();
-            }
-
-            return view('purchase');
         }
 
         return view('purchase', ['companyProfile' => $companyProfile]);
@@ -58,12 +47,7 @@ class PurchaseController extends Controller
     public function success(Request $request)
     {
         $user = Auth::user();
-        $companyProfile = CompanyProfile::where('user_id', $user->id)->first();
-
-        if ($companyProfile && ! $companyProfile->paid_subscription) {
-            $companyProfile->paid_subscription = true;
-            $companyProfile->save();
-        }
+        CompanyProfile::where('user_id', $user->id)->first();
 
         return redirect()->route('purchase')->with('success', 'Your company subscription is now active. Thank you!');
     }

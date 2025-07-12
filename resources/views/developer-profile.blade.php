@@ -25,7 +25,7 @@
                     <h1 class="text-2xl md:text-3xl font-bold text-left mb-2">{{ $developerProfile->hero }}</h1>
 
                     <div class="mb-4">
-                        @if (auth()->check() && $developerProfile && (auth()->user()->id === $developerProfile->user_id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
+                        @if (auth()->check() && $developerProfile && (auth()->user()->id === $developerProfile->user_id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
                             <p class="text-xl">{{ $developerProfile->user->name  }}</p>
                         @endif
                     </div>
@@ -34,7 +34,7 @@
 
                     <div class="hidden md:block">
                         <h3 class="text-lg mb-1">Social Links</h3>
-                        @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
+                        @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
                             <div class="grid gap-4">
                                 <div>
                                     @if($developerProfile->website)
@@ -77,7 +77,7 @@
                 <div class="col-span-1 md:col-span-1 border-2 border-customBlue rounded-lg" style="height: fit-content;">
                     <div class="flex flex-wrap flex-row items-start space-y-3 p-6">
 
-                        @if(!auth()->user()?->companyProfile?->paid_subscription && $developerProfile->user_id !== auth()->user()?->id)
+                        @if(!Auth()->user()?->subscribed('default') && $developerProfile->user_id !== auth()->user()?->id)
                             <a href="{{ route('purchase') }}" class="transition-all group duration-200 ease-in-out bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg py-3 px-5 inline-flex items-center justify-start w-full">
                                 <div class="z-10 text-left">
                                     <p class="mb-2 font-bold text-gray-500">Private Information</p>
@@ -119,13 +119,13 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        @if(auth()->user()?->companyProfile?->paid_subscription)
+                        @if(auth()->user()?->subscribed('default')
                             <a href="{{ url('/messages/' . $developerProfile->user_id) }}" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
                                 <i class="fas fa-comment-dots mr-1"></i> Message
                             </a>
                         @endif
 
-                        @if (!auth()->user()?->companyProfile?->paid_subscription)
+                        @if (!auth()->user()?->subscribed('default'))
                             <a href="{{ route('purchase') }}" class="text-base font-semibold text-white bg-customBlue leading-loose relative flex items-center justify-center py-1 px-4 mx-auto w-full">
                                 Subscribe to hire →
                             </a>
@@ -135,7 +135,7 @@
 
                 <div class="block md:hidden mt-4">
                     <h3 class="text-lg mb-1">Social Links</h3>
-                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->companyProfile->paid_subscription)))
+                    @if (auth()->check() && ($developerProfile->user_id === auth()->user()->id || (auth()->user()->companyProfile && auth()->user()->subscribed('default')))
                         <div class="grid gap-4">
                             <div>
                                 @if($developerProfile->website)
