@@ -16,12 +16,12 @@ class DeveloperProfileControllerTest extends TestCase
             'search_status' => 'open',
         ]);
 
-        $response = $this->get('/developer-profiles/'.$devProfile->id);
+        $testResponse = $this->get('/developer-profiles/'.$devProfile->id);
 
-        $response->assertOk();
-        $response->assertViewIs('developer-profile');
+        $testResponse->assertOk();
+        $testResponse->assertViewIs('developer-profile');
 
-        $returnedProfile = $response->viewData('developerProfile');
+        $returnedProfile = $testResponse->viewData('developerProfile');
         $this->assertEquals($devProfile->id, $returnedProfile->id);
         $this->assertEquals($devProfile->user_id, $returnedProfile->user_id);
         $this->assertEquals('open', $returnedProfile->search_status);
@@ -29,9 +29,9 @@ class DeveloperProfileControllerTest extends TestCase
 
     public function test_show_redirects_if_developer_profile_not_found(): void
     {
-        $response = $this->get('/developer-profiles/99999');
+        $testResponse = $this->get('/developer-profiles/99999');
 
-        $response->assertRedirect(route('developers'));
-        $response->assertSessionHas('error', 'Developer profile not found.');
+        $testResponse->assertRedirect(route('developers'));
+        $testResponse->assertSessionHas('error', 'Developer profile not found.');
     }
 }
