@@ -11,6 +11,8 @@ class DeveloperProfileControllerTest extends TestCase
     public function test_show_displays_correct_developer_profile(): void
     {
         $user = User::factory()->create();
+
+        /** @var DeveloperProfile $devProfile */
         $devProfile = DeveloperProfile::factory()->create([
             'user_id' => $user->id,
             'search_status' => 'open',
