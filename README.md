@@ -145,42 +145,45 @@ stripe trigger customer.subscription.updated
 
 > A quick tour of the main pages. Images are stored in `docs/screenshots/`.
 
-### Home
-Landing page with CTA for developers and a feed of recently joined profiles.
-
-![Home](docs/screenshots/home.png)
-
-### Developers
-Searchable, filterable list of developer profiles for companies to browse.
-
-![Developers](docs/screenshots/developers.png)
-
-### Developer Profile
-Public profile page showcasing bio, skills, experience, and contact preferences.
-
-![Developer Profile](docs/screenshots/developer-profile.png)
-
-### Messages
-Built-in messaging so companies can reach out and developers can respond.
-
-![Developer Messages](docs/screenshots/developer-messages.png)
-
-### Company Profile
-Company presence with details that are shown to developers during outreach.
-
-![Company Profile](docs/screenshots/company-profile.png)
-
-### Edit Developer Profile
-Edit form for developers to update their information and media.
-
-![Edit Developer Profile](docs/screenshots/edit-developer-profile.png)
-
-### Edit Company Profile
-Edit form for companies to update their organization details.
-
-![Edit Company Profile](docs/screenshots/edit-company-profile.png)
-
-### Purchase Page
-Checkout page for company subscriptions to enable messaging and outreach.
-
-![Purchase](docs/screenshots/purchase.png)
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/home.png" alt="Home" width="100%" />
+      <div><sub><b>Home</b> — Landing with CTA and recent developers</sub></div>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/developers.png" alt="Developers" width="100%" />
+      <div><sub><b>Developers</b> — Searchable, filterable list of profiles</sub></div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/developer-profile.png" alt="Developer Profile" width="100%" />
+      <div><sub><b>Developer Profile</b> — Bio, skills, experience, contact</sub></div>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/company-profile.png" alt="Company Profile" width="100%" />
+      <div><sub><b>Company Profile</b> — Company presence shown during outreach</sub></div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/developer-messages.png" alt="Messages" width="100%" />
+      <div><sub><b>Messages</b> — Built-in messaging between companies and developers</sub></div>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/edit-developer-profile.png" alt="Edit Developer Profile" width="100%" />
+      <div><sub><b>Edit Developer Profile</b> — Update profile information and media</sub></div>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/edit-company-profile.png" alt="Edit Company Profile" width="100%" />
+      <div><sub><b>Edit Company Profile</b> — Update organization details</sub></div>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/screenshots/purchase.png" alt="Purchase" width="100%" />
+      <div><sub><b>Purchase</b> — Subscribe to enable messaging and outreach</sub></div>
+    </td>
+  </tr>
+</table>
