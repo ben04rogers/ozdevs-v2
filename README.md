@@ -2,7 +2,13 @@
 
 OzDevs is a reverse job board for developers in Australia! This platform is designed to help software developers find jobs in the tech industry across Australia.
 
-![image](https://github.com/user-attachments/assets/a278ec07-6c2e-43a2-9887-1a188abf740b)
+
+![Developers](docs/screenshots/developers.png)
+
+
+[See more images here](#screenshots)
+
+
 
 ## Features
 
@@ -18,7 +24,7 @@ OzDevs is a reverse job board for developers in Australia! This platform is desi
 
 ```sh
 git clone https://github.com/your-repo-name.git
-```        
+```
 
 2. Install project dependencies using Composer and NPM:
 
@@ -34,21 +40,21 @@ cp .env.example .env
 ```
 
 4. Generate a unique application key:
-   
+
 ```
 php artisan key:generate
 ```
 
 5. Update the .env file with your database configuration. Set the DB_DATABASE, DB_USERNAME, and DB_PASSWORD to match your local database setup.
-   
+
 6. Run database migrations to create the necessary tables:
-   
+
 ```
 php artisan migrate
 ```
 
 7. Seed database with some test data:
-   
+
 ```
 php artisan db:seed
 ```
@@ -107,7 +113,7 @@ Ready! You are using Stripe API Version [2020-08-27]. Your webhook signing secre
 
 ### Step 4: Trigger Events (e.g. Cancellations)
 
-You can manually trigger events using the Stripe dashboard or Stripe CLI.  
+You can manually trigger events using the Stripe dashboard or Stripe CLI.
 For cancellations, go to the [Stripe Dashboard](https://dashboard.stripe.com/test/customers), find your test customer, and cancel their subscription.
 
 You can also trigger test events from the CLI:
@@ -134,3 +140,47 @@ stripe trigger customer.subscription.updated
 
 - Stripe CLI is only for local development; for production, Stripe will send webhooks directly to your deployed `/stripe/webhook` endpoint.
 - You can find more info in the [Stripe Webhooks documentation](https://stripe.com/docs/webhooks).
+
+## Screenshots
+
+> A quick tour of the main pages. Images are stored in `docs/screenshots/`.
+
+### Home
+Landing page with CTA for developers and a feed of recently joined profiles.
+
+![Home](docs/screenshots/home.png)
+
+### Developers
+Searchable, filterable list of developer profiles for companies to browse.
+
+![Developers](docs/screenshots/developers.png)
+
+### Developer Profile
+Public profile page showcasing bio, skills, experience, and contact preferences.
+
+![Developer Profile](docs/screenshots/developer-profile.png)
+
+### Messages
+Built-in messaging so companies can reach out and developers can respond.
+
+![Developer Messages](docs/screenshots/developer-messages.png)
+
+### Company Profile
+Company presence with details that are shown to developers during outreach.
+
+![Company Profile](docs/screenshots/company-profile.png)
+
+### Edit Developer Profile
+Edit form for developers to update their information and media.
+
+![Edit Developer Profile](docs/screenshots/edit-developer-profile.png)
+
+### Edit Company Profile
+Edit form for companies to update their organization details.
+
+![Edit Company Profile](docs/screenshots/edit-company-profile.png)
+
+### Purchase Page
+Checkout page for company subscriptions to enable messaging and outreach.
+
+![Purchase](docs/screenshots/purchase.png)

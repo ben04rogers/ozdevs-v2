@@ -117,7 +117,7 @@
             </div>
         @endif
 
-        <div class="container max-w-[1200px] mx-auto px-2 sm:px-6 @if(!request()->is('*messages*')) mt-12 @endif">
+        <div class="container max-w-[1100px] mx-auto px-2 sm:px-6 @if(!request()->is('*messages*')) mt-12 @endif">
             @yield('content')
         </div>
     </body>

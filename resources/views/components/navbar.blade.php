@@ -1,5 +1,5 @@
 <nav class="bg-customBlue border-b border-gray-200 dark:border-gray-600" x-data="{ mobileOpen: false }">
-    <div class="mx-auto max-w-[1200px] px-2 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-[1100px] px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
@@ -19,7 +19,9 @@
                 <div class="hidden sm:ml-3 sm:block">
                     <div class="flex space-x-2">
                         <a href="{{ route('developers') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Developers</a>
-                        <a href="{{ route('purchase') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Purchase</a>
+                        @if (!auth()->check() || (auth()->check() && !auth()->user()->developerProfile()->exists()))
+                            <a href="{{ route('purchase') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Purchase</a>
+                        @endif
                         @if (auth()->check() && auth()->user()->subscribed('default'))
                             <a href="{{ route('messages') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Messages</a>
                         @endif
@@ -83,11 +85,13 @@
     <div class="sm:hidden" id="mobile-menu" x-show="mobileOpen">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <a href="{{ route('developers') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Developers</a>
-            <a href="{{ route('purchase') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Purchase</a>
+            @if (!auth()->check() || (auth()->check() && !auth()->user()->developerProfile()->exists()))
+                <a href="{{ route('purchase') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Purchase</a>
+            @endif
             @if (auth()->check() && auth()->user()->subscribed('default'))
                 <a href="{{ route('messages') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Messages</a>
             @endif
-            
+
             @guest
             <a href="{{ route('login') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Login</a>
             <a href="{{ route('register') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Register</a>
