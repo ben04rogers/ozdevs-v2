@@ -1449,6 +1449,9 @@ $(document).ready(function () {
   $(".messenger-search").on("focus", function () {
     $(".messenger-tab").hide();
     $('.messenger-tab[data-view="search"]').show();
+    if (!$(".messenger-search").val()) {
+      messengerSearch("");
+    }
   });
   $(".messenger-search").on("blur", function () {
     setTimeout(function () {

@@ -22,7 +22,7 @@
                         @if (!auth()->check() || (auth()->check() && !auth()->user()->developerProfile()->exists()))
                             <a href="{{ route('purchase') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Purchase</a>
                         @endif
-                        @if (auth()->check() && auth()->user()->subscribed('default'))
+                        @if (auth()->check() && (auth()->user()->subscribed('default') || auth()->user()->developerProfile()->exists()))
                             <a href="{{ route('messages') }}" class="text-white rounded-md px-3 py-2 text-sm font-medium">Messages</a>
                         @endif
                     </div>
@@ -88,7 +88,7 @@
             @if (!auth()->check() || (auth()->check() && !auth()->user()->developerProfile()->exists()))
                 <a href="{{ route('purchase') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Purchase</a>
             @endif
-            @if (auth()->check() && auth()->user()->subscribed('default'))
+            @if (auth()->check() && (auth()->user()->subscribed('default') || auth()->user()->developerProfile()->exists()))
                 <a href="{{ route('messages') }}" class="text-white hover:bg-customDarkBlue block rounded-md px-3 py-2 text-base font-medium">Messages</a>
             @endif
 
