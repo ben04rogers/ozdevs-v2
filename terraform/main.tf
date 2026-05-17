@@ -165,17 +165,103 @@ resource "aws_instance" "web" {
 
   associate_public_ip_address = true
 
+  iam_instance_profile = aws_iam_instance_profile.ec2_s3.name
+
   user_data = templatefile("${path.module}/user_data.sh", {
     github_repo = var.github_repo
     db_host     = aws_db_instance.main.address
     db_name     = var.db_name
     db_username = var.db_username
     db_password = var.db_password
+    s3_bucket   = aws_s3_bucket.images.id
+    aws_region  = "ap-southeast-2"
   })
 
   tags = {
     Name = "ozdevs-web"
   }
+}
+
+resource "aws_s3_bucket" "images" {
+  bucket = "ozdevs-images-${data.aws_caller_identity.current.account_id}"
+
+  tags = {
+    Name = "ozdevs-images"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "images" {
+  bucket = aws_s3_bucket.images.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_policy" "images" {
+  bucket = aws_s3_bucket.images.id
+  policy = data.aws_iam_policy_document.s3_public_read.json
+}
+
+data "aws_iam_policy_document" "s3_public_read" {
+  statement {
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+    actions = [
+      "s3:GetObject",
+    ]
+    resources = [
+      "${aws_s3_bucket.images.arn}/*",
+    ]
+  }
+}
+
+resource "aws_iam_role" "ec2_s3" {
+  name = "ozdevs-ec2-s3-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "s3_write" {
+  name = "ozdevs-s3-write"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+        ]
+        Resource = "${aws_s3_bucket.images.arn}/*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "s3_write" {
+  role       = aws_iam_role.ec2_s3.name
+  policy_arn = aws_iam_policy.s3_write.arn
+}
+
+resource "aws_iam_instance_profile" "ec2_s3" {
+  name = "ozdevs-ec2-s3-profile"
+  role = aws_iam_role.ec2_s3.name
 }
 
 resource "aws_eip" "web" {

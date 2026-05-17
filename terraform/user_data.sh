@@ -33,6 +33,13 @@ sed -i 's/DB_DATABASE=laravel/DB_DATABASE=${db_name}/' .env
 sed -i 's/DB_USERNAME=root/DB_USERNAME=${db_username}/' .env
 sed -i 's/DB_PASSWORD=/DB_PASSWORD=${db_password}/' .env
 
+# Configure S3 for image uploads
+sed -i 's|AWS_BUCKET=|AWS_BUCKET=${s3_bucket}|' .env
+sed -i 's|AWS_DEFAULT_REGION=us-east-1|AWS_DEFAULT_REGION=${aws_region}|' .env
+# Remove AWS keys so SDK uses instance profile instead
+sed -i '/^AWS_ACCESS_KEY_ID=/d' .env
+sed -i '/^AWS_SECRET_ACCESS_KEY=/d' .env
+
 # Install dependencies
 export HOME=/root
 COMPOSER_ALLOW_SUPERUSER=1 composer install --no-interaction --optimize-autoloader

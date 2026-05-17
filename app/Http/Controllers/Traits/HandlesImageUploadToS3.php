@@ -25,6 +25,7 @@ trait HandlesImageUploadToS3
                 $data['image'] = $s3Url;
             } catch (Exception $e) {
                 Log::error($e->getMessage());
+                unset($data['image']);
             }
         }
 
